@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigation, TopBar, Frame } from '@shopify/polaris'
-import { HomeMajor, ProductsMajor, FormsMajor, LayoutMajor, NavigationMajor, ChatMajor, ImageMajor, TextMajor, ColorMajor, SpaceMajor } from '@shopify/polaris-icons'
+import { HomeIcon, ProductIcon, FormsIcon, ViewIcon, MenuIcon, ChatIcon, ImageIcon, TextIcon, ColorIcon, GlobeIcon } from '@shopify/polaris-icons'
 import { useLocation } from 'react-router-dom'
 
 const Layout = ({ children }) => {
@@ -9,61 +9,73 @@ const Layout = ({ children }) => {
   const navigationItems = [
     {
       label: 'Home',
-      icon: HomeMajor,
+      icon: HomeIcon,
       url: '/',
       selected: location.pathname === '/'
     },
     {
-      label: 'Actions',
-      icon: ProductsMajor,
-      url: '/actions',
-      selected: location.pathname === '/actions'
+      label: 'Dashboard',
+      icon: ViewIcon,
+      url: '/dashboard',
+      selected: location.pathname === '/dashboard'
+    },
+    {
+      label: 'Product Listing',
+      icon: ProductIcon,
+      url: '/product-listing',
+      selected: location.pathname === '/product-listing'
+    },
+    {
+      label: 'Product Detail',
+      icon: ImageIcon,
+      url: '/product-detail',
+      selected: location.pathname === '/product-detail'
     },
     {
       label: 'Forms',
-      icon: FormsMajor,
+      icon: FormsIcon,
       url: '/forms',
       selected: location.pathname === '/forms'
     },
     {
       label: 'Layout',
-      icon: LayoutMajor,
+      icon: ViewIcon,
       url: '/layout',
       selected: location.pathname === '/layout'
     },
     {
       label: 'Navigation',
-      icon: NavigationMajor,
+      icon: MenuIcon,
       url: '/navigation',
       selected: location.pathname === '/navigation'
     },
     {
       label: 'Feedback',
-      icon: ChatMajor,
+      icon: ChatIcon,
       url: '/feedback',
       selected: location.pathname === '/feedback'
     },
     {
       label: 'Images & Media',
-      icon: ImageMajor,
+      icon: ImageIcon,
       url: '/images',
       selected: location.pathname === '/images'
     },
     {
       label: 'Typography',
-      icon: TextMajor,
+      icon: TextIcon,
       url: '/typography',
       selected: location.pathname === '/typography'
     },
     {
       label: 'Colors',
-      icon: ColorMajor,
+      icon: ColorIcon,
       url: '/colors',
       selected: location.pathname === '/colors'
     },
     {
       label: 'Spacing',
-      icon: SpaceMajor,
+      icon: GlobeIcon,
       url: '/spacing',
       selected: location.pathname === '/spacing'
     }
