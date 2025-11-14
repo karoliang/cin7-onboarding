@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navigation, TopBar, Frame } from '@shopify/polaris'
+import { HomeMajor, ProductsMajor, FormsMajor, LayoutMajor, NavigationMajor, ChatMajor, ImageMajor, TextMajor, ColorMajor, SpaceMajor } from '@shopify/polaris-icons'
 import { useLocation } from 'react-router-dom'
 
 const Layout = ({ children }) => {
@@ -8,61 +9,61 @@ const Layout = ({ children }) => {
   const navigationItems = [
     {
       label: 'Home',
-      icon: 'HomeMajor',
+      icon: HomeMajor,
       url: '/',
       selected: location.pathname === '/'
     },
     {
       label: 'Actions',
-      icon: 'ProductsMajor',
+      icon: ProductsMajor,
       url: '/actions',
       selected: location.pathname === '/actions'
     },
     {
       label: 'Forms',
-      icon: 'FormsMajor',
+      icon: FormsMajor,
       url: '/forms',
       selected: location.pathname === '/forms'
     },
     {
       label: 'Layout',
-      icon: 'LayoutMajor',
+      icon: LayoutMajor,
       url: '/layout',
       selected: location.pathname === '/layout'
     },
     {
       label: 'Navigation',
-      icon: 'NavigationMajor',
+      icon: NavigationMajor,
       url: '/navigation',
       selected: location.pathname === '/navigation'
     },
     {
       label: 'Feedback',
-      icon: 'ChatMajor',
+      icon: ChatMajor,
       url: '/feedback',
       selected: location.pathname === '/feedback'
     },
     {
       label: 'Images & Media',
-      icon: 'ImageMajor',
+      icon: ImageMajor,
       url: '/images',
       selected: location.pathname === '/images'
     },
     {
       label: 'Typography',
-      icon: 'TextMajor',
+      icon: TextMajor,
       url: '/typography',
       selected: location.pathname === '/typography'
     },
     {
       label: 'Colors',
-      icon: 'ColorMajor',
+      icon: ColorMajor,
       url: '/colors',
       selected: location.pathname === '/colors'
     },
     {
       label: 'Spacing',
-      icon: 'SpaceMajor',
+      icon: SpaceMajor,
       url: '/spacing',
       selected: location.pathname === '/spacing'
     }
