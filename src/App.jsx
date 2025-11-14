@@ -1,5 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { AppProvider } from '@shopify/polaris'
+import enTranslations from '@shopify/polaris/locales/en.json'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import ActionsDemo from './pages/ActionsDemo'
@@ -14,20 +16,22 @@ import SpacingDemo from './pages/SpacingDemo'
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/actions" element={<ActionsDemo />} />
-        <Route path="/forms" element={<FormsDemo />} />
-        <Route path="/layout" element={<LayoutDemo />} />
-        <Route path="/navigation" element={<NavigationDemo />} />
-        <Route path="/feedback" element={<FeedbackDemo />} />
-        <Route path="/images" element={<ImagesDemo />} />
-        <Route path="/typography" element={<TypographyDemo />} />
-        <Route path="/colors" element={<ColorsDemo />} />
-        <Route path="/spacing" element={<SpacingDemo />} />
-      </Routes>
-    </Layout>
+    <AppProvider i18n={enTranslations}>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/actions" element={<ActionsDemo />} />
+          <Route path="/forms" element={<FormsDemo />} />
+          <Route path="/layout" element={<LayoutDemo />} />
+          <Route path="/navigation" element={<NavigationDemo />} />
+          <Route path="/feedback" element={<FeedbackDemo />} />
+          <Route path="/images" element={<ImagesDemo />} />
+          <Route path="/typography" element={<TypographyDemo />} />
+          <Route path="/colors" element={<ColorsDemo />} />
+          <Route path="/spacing" element={<SpacingDemo />} />
+        </Routes>
+      </Layout>
+    </AppProvider>
   )
 }
 

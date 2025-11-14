@@ -1,387 +1,276 @@
 import React, { useState } from 'react'
+import {
+  Card,
+  Page,
+  Layout,
+  Text,
+  TextField,
+  Select,
+  Checkbox,
+  RadioButton,
+  FormLayout,
+  Button,
+  ButtonGroup,
+  InlineStack,
+  BlockStack,
+} from '@shopify/polaris'
 
 const FormsDemo = () => {
   const [textFieldValue, setTextFieldValue] = useState('')
+  const [emailValue, setEmailValue] = useState('')
+  const [passwordValue, setPasswordValue] = useState('')
+  const [descriptionValue, setDescriptionValue] = useState('')
   const [selectValue, setSelectValue] = useState('')
+  const [multiSelectValue, setMultiSelectValue] = useState([])
   const [checkboxChecked, setCheckboxChecked] = useState(false)
-  const [radioValue, setRadioValue] = useState('')
+  const [emailUpdates, setEmailUpdates] = useState(true)
+  const [radioValue, setRadioValue] = useState('standard')
+  const [formName, setFormName] = useState('')
+  const [formEmail, setFormEmail] = useState('')
+  const [formRole, setFormRole] = useState('')
+  const [formBio, setFormBio] = useState('')
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
+
+  const countryOptions = [
+    { label: 'United States', value: 'us' },
+    { label: 'Canada', value: 'ca' },
+    { label: 'United Kingdom', value: 'uk' },
+    { label: 'Australia', value: 'au' },
+    { label: 'Germany', value: 'de' }
+  ]
+
+  const tagOptions = [
+    { label: 'Design', value: 'design' },
+    { label: 'Development', value: 'development' },
+    { label: 'Marketing', value: 'marketing' },
+    { label: 'Sales', value: 'sales' },
+    { label: 'Support', value: 'support' }
+  ]
+
+  const roleOptions = [
+    { label: 'Developer', value: 'developer' },
+    { label: 'Designer', value: 'designer' },
+    { label: 'Manager', value: 'manager' },
+    { label: 'Other', value: 'other' }
+  ]
 
   return (
-    <div>
-      <div style={{ marginBottom: 'var(--p-space-8)' }}>
-        <h1 style={{
-          fontSize: 'var(--p-font-size-heading-lg)',
-          fontWeight: 'var(--p-font-weight-bold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-3) 0'
-        }}>
-          Forms
-        </h1>
-        <p style={{
-          fontSize: 'var(--p-font-size-body-lg)',
-          color: 'var(--p-color-text-secondary)',
-          margin: 0
-        }}>
-          Input fields, selects, checkboxes, and other form controls.
-        </p>
-      </div>
+    <Page
+      title="Forms"
+      subtitle="Input fields, selects, checkboxes, and other form controls."
+    >
+      <Layout>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Text Fields
+              </Text>
 
-      {/* Text Fields Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Text Fields
-        </h2>
+              <FormLayout>
+                <TextField
+                  label="Email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={emailValue}
+                  onChange={setEmailValue}
+                  helpText="We'll use this to contact you"
+                />
 
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Text Field Variants
-          </h3>
+                <TextField
+                  label="Password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={passwordValue}
+                  onChange={setPasswordValue}
+                />
 
-          <div style={{ marginBottom: 'var(--p-space-4)' }}>
-            <label style={{
-              display: 'block',
-              fontSize: 'var(--p-font-size-body-md)',
-              fontWeight: 'var(--p-font-weight-medium)',
-              color: 'var(--p-color-text)',
-              marginBottom: 'var(--p-space-2)'
-            }}>
-              Standard Text Field
-            </label>
-            <s-text-field
-              label="Email"
-              type="email"
-              placeholder="Enter your email"
-              value={textFieldValue}
-              on-input={(e) => setTextFieldValue(e.target.value)}
-              help-text="We'll use this to contact you"
-            />
-          </div>
+                <TextField
+                  label="Description"
+                  placeholder="Enter a description"
+                  value={descriptionValue}
+                  onChange={setDescriptionValue}
+                  multiline={4}
+                />
 
-          <div style={{ marginBottom: 'var(--p-space-4)' }}>
-            <label style={{
-              display: 'block',
-              fontSize: 'var(--p-font-size-body-md)',
-              fontWeight: 'var(--p-font-weight-medium)',
-              color: 'var(--p-color-text)',
-              marginBottom: 'var(--p-space-2)'
-            }}>
-              Password Field
-            </label>
-            <s-text-field
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
-            />
-          </div>
-
-          <div style={{ marginBottom: 'var(--p-space-4)' }}>
-            <label style={{
-              display: 'block',
-              fontSize: 'var(--p-font-size-body-md)',
-              fontWeight: 'var(--p-font-weight-medium)',
-              color: 'var(--p-color-text)',
-              marginBottom: 'var(--p-space-2)'
-            }}>
-              Multiline Text Field
-            </label>
-            <s-text-field
-              label="Description"
-              type="text"
-              multiline
-              rows={4}
-              placeholder="Enter a description"
-            />
-          </div>
-
-          <div>
-            <label style={{
-              display: 'block',
-              fontSize: 'var(--p-font-size-body-md)',
-              fontWeight: 'var(--p-font-weight-medium)',
-              color: 'var(--p-color-text)',
-              marginBottom: 'var(--p-space-2)'
-            }}>
-              Text Field with Error
-            </label>
-            <s-text-field
-              label="Username"
-              type="text"
-              placeholder="Enter a username"
-              error="Username must be at least 3 characters"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Select Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Select Dropdowns
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <div style={{ marginBottom: 'var(--p-space-4)' }}>
-            <label style={{
-              display: 'block',
-              fontSize: 'var(--p-font-size-body-md)',
-              fontWeight: 'var(--p-font-weight-medium)',
-              color: 'var(--p-color-text)',
-              marginBottom: 'var(--p-space-2)'
-            }}>
-              Standard Select
-            </label>
-            <s-select
-              label="Country"
-              placeholder="Select a country"
-              value={selectValue}
-              on-change={(e) => setSelectValue(e.target.value)}
-              options={[
-                { label: 'United States', value: 'us' },
-                { label: 'Canada', value: 'ca' },
-                { label: 'United Kingdom', value: 'uk' },
-                { label: 'Australia', value: 'au' },
-                { label: 'Germany', value: 'de' }
-              ]}
-            />
-          </div>
-
-          <div>
-            <label style={{
-              display: 'block',
-              fontSize: 'var(--p-font-size-body-md)',
-              fontWeight: 'var(--p-font-weight-medium)',
-              color: 'var(--p-color-text)',
-              marginBottom: 'var(--p-space-2)'
-            }}>
-              Multi-Select
-            </label>
-            <s-select
-              label="Tags"
-              placeholder="Select tags"
-              multiple
-              options={[
-                { label: 'Design', value: 'design' },
-                { label: 'Development', value: 'development' },
-                { label: 'Marketing', value: 'marketing' },
-                { label: 'Sales', value: 'sales' },
-                { label: 'Support', value: 'support' }
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Checkboxes Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Checkboxes
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <div style={{ marginBottom: 'var(--p-space-4)' }}>
-            <s-checkbox
-              label="I agree to the terms and conditions"
-              checked={checkboxChecked}
-              on-change={(e) => setCheckboxChecked(e.target.checked)}
-              help-text="You must agree to continue"
-            />
-          </div>
-
-          <div style={{ marginBottom: 'var(--p-space-4)' }}>
-            <s-checkbox
-              label="Email me updates"
-              checked={true}
-              help-text="We'll send you occasional updates about new features"
-            />
-          </div>
-
-          <div>
-            <s-checkbox
-              label="Enable notifications"
-              checked={true}
-              error="This feature is currently unavailable"
-              disabled
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Radio Buttons Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Radio Buttons
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Shipping Method
-          </h3>
-
-          <div style={{ marginBottom: 'var(--p-space-3)' }}>
-            <s-radio-button
-              label="Standard Shipping (5-7 days)"
-              value="standard"
-              name="shipping"
-              checked={radioValue === 'standard'}
-              on-change={(e) => setRadioValue(e.target.value)}
-            />
-          </div>
-
-          <div style={{ marginBottom: 'var(--p-space-3)' }}>
-            <s-radio-button
-              label="Express Shipping (2-3 days)"
-              value="express"
-              name="shipping"
-              checked={radioValue === 'express'}
-              on-change={(e) => setRadioValue(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <s-radio-button
-              label="Overnight Shipping (1 day)"
-              value="overnight"
-              name="shipping"
-              checked={radioValue === 'overnight'}
-              on-change={(e) => setRadioValue(e.target.value)}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Form Layout */}
-      <section>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Form Layout Example
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)'
-        }}>
-          <form>
-            <div style={{ marginBottom: 'var(--p-space-6)' }}>
-              <s-text-field
-                label="Full Name"
-                type="text"
-                placeholder="Enter your full name"
-                required
-              />
+                <TextField
+                  label="Username"
+                  placeholder="Enter a username"
+                  value={textFieldValue}
+                  onChange={setTextFieldValue}
+                  error="Username must be at least 3 characters"
+                />
+              </FormLayout>
             </div>
+          </Card>
+        </Layout.Section>
 
-            <div style={{ marginBottom: 'var(--p-space-6)' }}>
-              <s-text-field
-                label="Email Address"
-                type="email"
-                placeholder="Enter your email"
-                required
-              />
-            </div>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Select Dropdowns
+              </Text>
 
-            <div style={{ marginBottom: 'var(--p-space-6)' }}>
-              <s-select
-                label="Role"
-                placeholder="Select your role"
-                required
-                options={[
-                  { label: 'Developer', value: 'developer' },
-                  { label: 'Designer', value: 'designer' },
-                  { label: 'Manager', value: 'manager' },
-                  { label: 'Other', value: 'other' }
-                ]}
-              />
-            </div>
+              <FormLayout>
+                <Select
+                  label="Country"
+                  placeholder="Select a country"
+                  options={countryOptions}
+                  value={selectValue}
+                  onChange={setSelectValue}
+                />
 
-            <div style={{ marginBottom: 'var(--p-space-6)' }}>
-              <s-text-field
-                label="Bio"
-                type="text"
-                multiline
-                rows={3}
-                placeholder="Tell us about yourself"
-              />
+                <Select
+                  label="Tags"
+                  placeholder="Select tags"
+                  options={tagOptions}
+                  value={multiSelectValue}
+                  onChange={setMultiSelectValue}
+                  multiple
+                />
+              </FormLayout>
             </div>
+          </Card>
+        </Layout.Section>
 
-            <div style={{ marginBottom: 'var(--p-space-6)' }}>
-              <s-checkbox
-                label="I agree to the privacy policy"
-                required
-              />
-            </div>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Checkboxes
+              </Text>
 
-            <div style={{ display: 'flex', gap: 'var(--p-space-3)' }}>
-              <s-button variant="primary" type="submit">
-                Submit
-              </s-button>
-              <s-button variant="secondary" type="button">
-                Cancel
-              </s-button>
+              <BlockStack gap="400">
+                <Checkbox
+                  label="I agree to the terms and conditions"
+                  checked={checkboxChecked}
+                  onChange={setCheckboxChecked}
+                  helpText="You must agree to continue"
+                />
+
+                <Checkbox
+                  label="Email me updates"
+                  checked={emailUpdates}
+                  onChange={setEmailUpdates}
+                  helpText="We'll send you occasional updates about new features"
+                />
+
+                <Checkbox
+                  label="Enable notifications"
+                  checked={false}
+                  onChange={() => {}}
+                  error="This feature is currently unavailable"
+                  disabled
+                />
+              </BlockStack>
             </div>
-          </form>
-        </div>
-      </section>
-    </div>
+          </Card>
+        </Layout.Section>
+
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Radio Buttons
+              </Text>
+
+              <BlockStack gap="400">
+                <Text variant="headingSm" as="h3">
+                  Shipping Method
+                </Text>
+
+                <RadioButton
+                  label="Standard Shipping (5-7 days)"
+                  checked={radioValue === 'standard'}
+                  id="standard"
+                  name="shipping"
+                  onChange={() => setRadioValue('standard')}
+                />
+
+                <RadioButton
+                  label="Express Shipping (2-3 days)"
+                  checked={radioValue === 'express'}
+                  id="express"
+                  name="shipping"
+                  onChange={() => setRadioValue('express')}
+                />
+
+                <RadioButton
+                  label="Overnight Shipping (1 day)"
+                  checked={radioValue === 'overnight'}
+                  id="overnight"
+                  name="shipping"
+                  onChange={() => setRadioValue('overnight')}
+                />
+              </BlockStack>
+            </div>
+          </Card>
+        </Layout.Section>
+
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Form Layout Example
+              </Text>
+
+              <FormLayout>
+                <TextField
+                  label="Full Name"
+                  placeholder="Enter your full name"
+                  value={formName}
+                  onChange={setFormName}
+                  required
+                />
+
+                <TextField
+                  label="Email Address"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formEmail}
+                  onChange={setFormEmail}
+                  required
+                />
+
+                <Select
+                  label="Role"
+                  placeholder="Select your role"
+                  options={roleOptions}
+                  value={formRole}
+                  onChange={setFormRole}
+                  required
+                />
+
+                <TextField
+                  label="Bio"
+                  placeholder="Tell us about yourself"
+                  value={formBio}
+                  onChange={setFormBio}
+                  multiline={3}
+                />
+
+                <Checkbox
+                  label="I agree to the privacy policy"
+                  checked={privacyAccepted}
+                  onChange={setPrivacyAccepted}
+                  required
+                />
+
+                <InlineStack gap="300">
+                  <Button variant="primary" onClick={() => {}}>
+                    Submit
+                  </Button>
+                  <Button onClick={() => {}}>
+                    Cancel
+                  </Button>
+                </InlineStack>
+              </FormLayout>
+            </div>
+          </Card>
+        </Layout.Section>
+      </Layout>
+    </Page>
   )
 }
 

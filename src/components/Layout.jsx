@@ -1,98 +1,154 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Navigation, TopBar } from '@shopify/polaris'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   const location = useLocation()
+  const navigate = useNavigate()
 
-  const navigation = [
-    { name: 'Home', path: '/', icon: '🏠' },
-    { name: 'Actions', path: '/actions', icon: '🔘' },
-    { name: 'Forms', path: '/forms', icon: '📝' },
-    { name: 'Layout', path: '/layout', icon: '📐' },
-    { name: 'Navigation', path: '/navigation', icon: '🧭' },
-    { name: 'Feedback', path: '/feedback', icon: '💬' },
-    { name: 'Images & Media', path: '/images', icon: '🖼️' },
-    { name: 'Typography', path: '/typography', icon: '📝' },
-    { name: 'Colors', path: '/colors', icon: '🎨' },
-    { name: 'Spacing', path: '/spacing', icon: '📏' },
+  const navigationItems = [
+    {
+      label: 'Home',
+      icon: 'HomeMajor',
+      url: '/',
+      selected: location.pathname === '/'
+    },
+    {
+      label: 'Actions',
+      icon: 'ProductsMajor',
+      url: '/actions',
+      selected: location.pathname === '/actions'
+    },
+    {
+      label: 'Forms',
+      icon: 'FormsMajor',
+      url: '/forms',
+      selected: location.pathname === '/forms'
+    },
+    {
+      label: 'Layout',
+      icon: 'LayoutMajor',
+      url: '/layout',
+      selected: location.pathname === '/layout'
+    },
+    {
+      label: 'Navigation',
+      icon: 'NavigationMajor',
+      url: '/navigation',
+      selected: location.pathname === '/navigation'
+    },
+    {
+      label: 'Feedback',
+      icon: 'ChatMajor',
+      url: '/feedback',
+      selected: location.pathname === '/feedback'
+    },
+    {
+      label: 'Images & Media',
+      icon: 'ImageMajor',
+      url: '/images',
+      selected: location.pathname === '/images'
+    },
+    {
+      label: 'Typography',
+      icon: 'TextMajor',
+      url: '/typography',
+      selected: location.pathname === '/typography'
+    },
+    {
+      label: 'Colors',
+      icon: 'ColorMajor',
+      url: '/colors',
+      selected: location.pathname === '/colors'
+    },
+    {
+      label: 'Spacing',
+      icon: 'SpaceMajor',
+      url: '/spacing',
+      selected: location.pathname === '/spacing'
+    }
   ]
 
+  const topBarMarkup = (
+    <TopBar
+      showNavigationToggle
+      searchResultsVisible={false}
+      searchField={{
+        placeholder: 'Search components...',
+        onChange: () => {},
+        onBlur: () => {},
+        onFocus: () => {},
+        value: '',
+      }}
+      userMenu={{
+        initials: 'U',
+        actions: [
+          {
+            items: [
+              { content: 'Community forums' },
+              { content: 'Support' },
+            ],
+          },
+        ],
+      }}
+    />
+  )
+
+  const navigationMarkup = (
+    <Navigation location="/">
+      <Navigation.Section
+        items={navigationItems}
+        separator
+      />
+    </Navigation>
+  )
+
+  const logo = {
+    width: 124,
+    topBarSource:
+      'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
+    url: '/',
+    accessibilityLabel: 'Polaris Demo',
+  }
+
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      {/* Sidebar Navigation */}
-      <nav style={{
-        width: '240px',
-        backgroundColor: 'var(--p-color-bg-surface)',
-        borderRight: '1px solid var(--p-color-border)',
-        padding: 'var(--p-space-6)',
-        position: 'fixed',
-        height: '100vh',
-        overflow: 'auto'
-      }}>
-        <div style={{ marginBottom: 'var(--p-space-8)' }}>
-          <h1 style={{
-            fontSize: 'var(--p-font-size-heading-md)',
-            fontWeight: 'var(--p-font-weight-semibold)',
-            color: 'var(--p-color-text)',
-            margin: 0,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--p-space-2)'
-          }}>
-            <span>🛍️</span> Polaris Demo
-          </h1>
-          <p style={{
-            fontSize: 'var(--p-font-size-body-sm)',
-            color: 'var(--p-color-text-secondary)',
-            margin: 'var(--p-space-2) 0 0 0'
-          }}>
-            Shopify Design System
-          </p>
-        </div>
-
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          {navigation.map((item) => (
-            <li key={item.path} style={{ marginBottom: 'var(--p-space-1)' }}>
-              <Link
-                to={item.path}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--p-space-3)',
-                  padding: 'var(--p-space-3) var(--p-space-4)',
-                  borderRadius: 'var(--p-border-radius-base)',
-                  textDecoration: 'none',
-                  color: location.pathname === item.path
-                    ? 'var(--p-color-interactive)'
-                    : 'var(--p-color-text)',
-                  backgroundColor: location.pathname === item.path
-                    ? 'var(--p-color-surface-selected)'
-                    : 'transparent',
-                  fontWeight: location.pathname === item.path
-                    ? 'var(--p-font-weight-medium)'
-                    : 'var(--p-font-weight-regular)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <span style={{ fontSize: '1.2em' }}>{item.icon}</span>
-                <span>{item.name}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      {/* Main Content */}
-      <main style={{
-        flex: 1,
-        marginLeft: '240px',
-        backgroundColor: 'var(--p-color-bg)',
-        minHeight: '100vh'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: 'var(--p-space-8)' }}>
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <TopBar
+        showNavigationToggle
+        searchResultsVisible={false}
+        searchField={{
+          placeholder: 'Search components...',
+          onChange: () => {},
+          value: '',
+        }}
+        userMenu={{
+          initials: 'U',
+          actions: [
+            {
+              items: [
+                { content: 'Community forums' },
+                { content: 'Support' },
+              ],
+            },
+          ],
+        }}
+      />
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        <Navigation location="/">
+          <Navigation.Section
+            items={navigationItems}
+            separator
+          />
+        </Navigation>
+        <main style={{
+          flex: 1,
+          overflow: 'auto',
+          backgroundColor: 'var(--p-color-bg-surface)',
+          padding: 'var(--p-space-6)'
+        }}>
           {children}
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
