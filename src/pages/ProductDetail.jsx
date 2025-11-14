@@ -13,7 +13,7 @@ import {
   BlockStack,
   Grid,
   VerticalStack,
-  HorizontalStack,
+  InlineStack,
   Tabs,
   TextField,
   RadioButton,
@@ -131,7 +131,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Image Thumbnails */}
-          <HorizontalStack gap="200" justify="center">
+          <InlineStack gap="200" justify="center">
             {images.map((image, index) => (
               <button
                 key={index}
@@ -151,10 +151,10 @@ const ProductDetail = () => {
                 />
               </button>
             ))}
-          </HorizontalStack>
+          </InlineStack>
 
           {/* Image Navigation */}
-          <HorizontalStack gap="200" justify="center">
+          <InlineStack gap="200" justify="center">
             <Button
               icon={ChevronLeftIcon}
               onClick={() => setSelectedImage(Math.max(0, selectedImage - 1))}
@@ -168,7 +168,7 @@ const ProductDetail = () => {
               onClick={() => setSelectedImage(Math.min(images.length - 1, selectedImage + 1))}
               disabled={selectedImage === images.length - 1}
             />
-          </HorizontalStack>
+          </InlineStack>
         </VerticalStack>
       </div>
     </Card>
@@ -178,7 +178,7 @@ const ProductDetail = () => {
     <VerticalStack gap="600">
       {/* Title and Status */}
       <VerticalStack gap="200">
-        <HorizontalStack align="space-between">
+        <InlineStack align="space-between">
           <Text variant="headingLg" as="h1">{product.title}</Text>
           <InlineStack gap="200">
             <Button icon={EditIcon} onClick={() => console.log('Edit product')}>
@@ -188,23 +188,23 @@ const ProductDetail = () => {
               Duplicate
             </Button>
           </InlineStack>
-        </HorizontalStack>
-        <HorizontalStack gap="200">
+        </InlineStack>
+        <InlineStack gap="200">
           <Text tone="subdued" as="p">{product.vendor}</Text>
           <Text tone="subdued" as="p">•</Text>
           <Text tone="subdued" as="p">{product.type}</Text>
           <Badge tone="success">Active</Badge>
-        </HorizontalStack>
+        </InlineStack>
       </VerticalStack>
 
       {/* Price */}
-      <HorizontalStack gap="400" align="baseline">
+      <InlineStack gap="400" align="baseline">
         <Text variant="headingLg" as="span">{product.price}</Text>
         <Text variant="bodyMd" tone="subdued" textDecoration="line-through" as="span">
           {product.compareAtPrice}
         </Text>
         <Badge tone="success">Save 40%</Badge>
-      </HorizontalStack>
+      </InlineStack>
 
       {/* Description */}
       <Text as="p">{product.description}</Text>
@@ -253,7 +253,7 @@ const ProductDetail = () => {
       {/* Quantity */}
       <VerticalStack gap="400">
         <Text variant="headingMd" as="h3">Quantity</Text>
-        <HorizontalStack gap="200">
+        <InlineStack gap="200">
           <Button
             icon={MinusIcon}
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -270,7 +270,7 @@ const ProductDetail = () => {
             icon={PlusIcon}
             onClick={() => setQuantity(quantity + 1)}
           />
-        </HorizontalStack>
+        </InlineStack>
       </VerticalStack>
 
       {/* Action Buttons */}
@@ -281,14 +281,14 @@ const ProductDetail = () => {
         <Button size="large" onClick={() => console.log('Buy now')}>
           Buy now
         </Button>
-        <HorizontalStack gap="200">
+        <InlineStack gap="200">
           <Button icon={HeartIcon} onClick={() => console.log('Add to wishlist')}>
             Save for later
           </Button>
           <Button icon={ShareIcon} onClick={() => console.log('Share product')}>
             Share
           </Button>
-        </HorizontalStack>
+        </InlineStack>
       </VerticalStack>
 
       {/* Product Details */}
@@ -296,22 +296,22 @@ const ProductDetail = () => {
         <div style={{ padding: 'var(--p-space-6)' }}>
           <VerticalStack gap="400">
             <Text variant="headingMd" as="h3">Product Details</Text>
-            <HorizontalStack gap="400">
+            <InlineStack gap="400">
               <Text tone="subdued" as="p">SKU:</Text>
               <Text as="p">{product.sku}</Text>
-            </HorizontalStack>
-            <HorizontalStack gap="400">
+            </InlineStack>
+            <InlineStack gap="400">
               <Text tone="subdued" as="p">Weight:</Text>
               <Text as="p">{product.weight}</Text>
-            </HorizontalStack>
-            <HorizontalStack gap="400">
+            </InlineStack>
+            <InlineStack gap="400">
               <Text tone="subdued" as="p">Created:</Text>
               <Text as="p">{product.created}</Text>
-            </HorizontalStack>
-            <HorizontalStack gap="400">
+            </InlineStack>
+            <InlineStack gap="400">
               <Text tone="subdued" as="p">Last updated:</Text>
               <Text as="p">{product.updated}</Text>
-            </HorizontalStack>
+            </InlineStack>
           </VerticalStack>
         </div>
       </Card>
@@ -325,8 +325,8 @@ const ProductDetail = () => {
           <Text variant="headingMd" as="h3">Customer Reviews</Text>
 
           {/* Overall Rating */}
-          <HorizontalStack gap="200" align="center">
-            <HorizontalStack gap="100">
+          <InlineStack gap="200" align="center">
+            <InlineStack gap="100">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Icon
                   key={star}
@@ -334,18 +334,18 @@ const ProductDetail = () => {
                   tone="subdued"
                 />
               ))}
-            </HorizontalStack>
+            </InlineStack>
             <Text as="p">4.7 out of 5</Text>
             <Text tone="subdued" as="p">(127 reviews)</Text>
-          </HorizontalStack>
+          </InlineStack>
 
           <Divider />
 
           {/* Individual Reviews */}
           {reviews.map((review) => (
             <VerticalStack key={review.id} gap="200">
-              <HorizontalStack gap="200" align="center">
-                <HorizontalStack gap="100">
+              <InlineStack gap="200" align="center">
+                <InlineStack gap="100">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Icon
                       key={star}
@@ -353,10 +353,10 @@ const ProductDetail = () => {
                       tone={star <= review.rating ? 'warning' : 'subdued'}
                     />
                   ))}
-                </HorizontalStack>
+                </InlineStack>
                 <Text fontWeight="medium" as="p">{review.author}</Text>
                 <Text tone="subdued" as="p">{review.date}</Text>
-              </HorizontalStack>
+              </InlineStack>
               <Text as="p">{review.comment}</Text>
               <Divider />
             </VerticalStack>

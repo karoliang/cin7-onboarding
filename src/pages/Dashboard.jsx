@@ -15,7 +15,6 @@ import {
   BlockStack,
   Grid,
   VerticalStack,
-  HorizontalStack,
   Tabs,
   ButtonGroup,
 } from '@shopify/polaris'
@@ -137,12 +136,12 @@ const Dashboard = () => {
     <Card>
       <div style={{ padding: 'var(--p-space-6)' }}>
         <VerticalStack gap="400">
-          <HorizontalStack align="space-between">
+          <InlineStack align="space-between">
             <Text tone="subdued" as="p">{title}</Text>
             <Icon source={Icon} tone={color} />
-          </HorizontalStack>
+          </InlineStack>
           <Text variant="headingLg" as="h2">{value}</Text>
-          <HorizontalStack gap="200">
+          <InlineStack gap="200">
             <Icon
               source={changeDirection === 'up' ? ArrowUpIcon : ArrowDownIcon}
               tone={changeDirection === 'up' ? 'success' : 'critical'}
@@ -154,7 +153,7 @@ const Dashboard = () => {
               {change}
             </Text>
             <Text tone="subdued">vs last period</Text>
-          </HorizontalStack>
+          </InlineStack>
         </VerticalStack>
       </div>
     </Card>
@@ -189,7 +188,7 @@ const Dashboard = () => {
       <Layout>
         {/* Date Range Selector */}
         <Layout.Section>
-          <HorizontalStack align="space-between">
+          <InlineStack align="space-between">
             <div />
             <Select
               options={dateRanges}
@@ -198,7 +197,7 @@ const Dashboard = () => {
               label="Date range"
               labelHidden
             />
-          </HorizontalStack>
+          </InlineStack>
         </Layout.Section>
 
         {/* KPI Cards */}
@@ -376,25 +375,25 @@ const Dashboard = () => {
                 System Status
               </Text>
               <VerticalStack gap="400">
-                <HorizontalStack align="space-between">
+                <InlineStack align="space-between">
                   <Text as="p">API Status</Text>
                   <Badge tone="success">Operational</Badge>
-                </HorizontalStack>
-                <HorizontalStack align="space-between">
+                </InlineStack>
+                <InlineStack align="space-between">
                   <Text as="p">Database</Text>
                   <Badge tone="success">Healthy</Badge>
-                </HorizontalStack>
-                <HorizontalStack align="space-between">
+                </InlineStack>
+                <InlineStack align="space-between">
                   <Text as="p">Processing Queue</Text>
                   <Badge tone="attention">5 items</Badge>
-                </HorizontalStack>
+                </InlineStack>
                 <Divider />
-                <HorizontalStack gap="200">
+                <InlineStack gap="200">
                   <Icon source={ClockIcon} />
                   <Text tone="subdued" as="p">
                     Last updated: 2 minutes ago
                   </Text>
-                </HorizontalStack>
+                </InlineStack>
               </VerticalStack>
             </div>
           </Card>
