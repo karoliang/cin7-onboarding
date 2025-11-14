@@ -1,396 +1,215 @@
 import React from 'react'
+import {
+  Card,
+  Page,
+  Layout,
+  Text,
+  Button,
+  Badge,
+  InlineStack,
+  BlockStack,
+  Grid,
+} from '@shopify/polaris'
 
 const LayoutDemo = () => {
   return (
-    <div>
-      <div style={{ marginBottom: 'var(--p-space-8)' }}>
-        <h1 style={{
-          fontSize: 'var(--p-font-size-heading-lg)',
-          fontWeight: 'var(--p-font-weight-bold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-3) 0'
-        }}>
-          Layout
-        </h1>
-        <p style={{
-          fontSize: 'var(--p-font-size-body-lg)',
-          color: 'var(--p-color-text-secondary)',
-          margin: 0
-        }}>
-          Containers, grids, and structural components for organizing content.
-        </p>
-      </div>
+    <Page
+      title="Layout"
+      subtitle="Containers, grids, and structural components for organizing content."
+    >
+      <Layout>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Cards
+              </Text>
 
-      {/* Cards Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Cards
-        </h2>
+              <Text variant="headingSm" as="h3">
+                Card Variants
+              </Text>
+              <Grid columns={{ xs: 1, sm: 1, md: 2, lg: 2, xl: 2 }} gap="400">
+                <Card>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <BlockStack gap="400">
+                      <Text variant="headingSm" as="h4">
+                        Standard Card
+                      </Text>
+                      <Text tone="subdued">
+                        This is a standard card with a title, content, and actions.
+                      </Text>
+                      <Button variant="primary" size="small">Action</Button>
+                    </BlockStack>
+                  </div>
+                </Card>
 
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Card Variants
-          </h3>
+                <Card>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <BlockStack gap="400">
+                      <Text variant="headingSm" as="h4">
+                        Card with Subtitle
+                      </Text>
+                      <Text tone="subdued" as="span" italic>
+                        Secondary information
+                      </Text>
+                      <Text tone="subdued">
+                        This card includes a subtitle to provide additional context.
+                      </Text>
+                      <InlineStack gap="200">
+                        <Button variant="primary" size="small">Primary</Button>
+                        <Button variant="secondary" size="small">Secondary</Button>
+                      </InlineStack>
+                    </BlockStack>
+                  </div>
+                </Card>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--p-space-6)' }}>
-            <s-card>
-              <h4 style={{
-                fontSize: 'var(--p-font-size-heading-sm)',
-                fontWeight: 'var(--p-font-weight-semibold)',
-                color: 'var(--p-color-text)',
-                margin: '0 0 var(--p-space-3) 0'
-              }}>
-                Standard Card
-              </h4>
-              <p style={{
-                fontSize: 'var(--p-font-size-body-md)',
-                color: 'var(--p-color-text-secondary)',
-                margin: '0 0 var(--p-space-4) 0'
-              }}>
-                This is a standard card with a title, content, and actions.
-              </p>
-              <s-button variant="primary" size="small">Action</s-button>
-            </s-card>
+                <Card>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <BlockStack gap="400">
+                      <InlineStack gap="200">
+                        <Text variant="headingSm" as="h4">
+                          Card with Status
+                        </Text>
+                        <Badge tone="success">Active</Badge>
+                      </InlineStack>
+                      <Text tone="subdued">
+                        This card shows status information.
+                      </Text>
+                    </BlockStack>
+                  </div>
+                </Card>
 
-            <s-card>
-              <h4 style={{
-                fontSize: 'var(--p-font-size-heading-sm)',
-                fontWeight: 'var(--p-font-weight-semibold)',
-                color: 'var(--p-color-text)',
-                margin: '0 0 var(--p-space-3) 0'
-              }}>
-                Card with Subtitle
-              </h4>
-              <p style={{
-                fontSize: 'var(--p-font-size-body-sm)',
-                color: 'var(--p-color-text-secondary)',
-                margin: '0 0 var(--p-space-4) 0',
-                fontStyle: 'italic'
-              }}>
-                Secondary information
-              </p>
-              <p style={{
-                fontSize: 'var(--p-font-size-body-md)',
-                color: 'var(--p-color-text-secondary)',
-                margin: '0 0 var(--p-space-4) 0'
-              }}>
-                This card includes a subtitle to provide additional context.
-              </p>
-              <div style={{ display: 'flex', gap: 'var(--p-space-2)' }}>
-                <s-button variant="primary" size="small">Primary</s-button>
-                <s-button variant="secondary" size="small">Secondary</s-button>
-              </div>
-            </s-card>
-
-            <s-card>
-              <h4 style={{
-                fontSize: 'var(--p-font-size-heading-sm)',
-                fontWeight: 'var(--p-font-weight-semibold)',
-                color: 'var(--p-color-text)',
-                margin: '0 0 var(--p-space-3) 0'
-              }}>
-                Card with Status
-              </h4>
-              <div style={{
-                display: 'inline-block',
-                backgroundColor: 'var(--p-color-surface-success-subdued)',
-                color: 'var(--p-color-text-success)',
-                padding: 'var(--p-space-1) var(--p-space-3)',
-                borderRadius: 'var(--p-border-radius-full)',
-                fontSize: 'var(--p-font-size-body-sm)',
-                marginBottom: 'var(--p-space-3)'
-              }}>
-                ✅ Active
-              </div>
-              <p style={{
-                fontSize: 'var(--p-font-size-body-md)',
-                color: 'var(--p-color-text-secondary)',
-                margin: '0 0 var(--p-space-4) 0'
-              }}>
-                This card shows status information.
-              </p>
-            </s-card>
-          </div>
-        </div>
-      </section>
-
-      {/* Layout Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Layout Components
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Page Layout
-          </h3>
-
-          <div style={{
-            border: '1px dashed var(--p-color-border)',
-            borderRadius: 'var(--p-border-radius-base)',
-            padding: 'var(--p-space-6)',
-            marginBottom: 'var(--p-space-6)'
-          }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 'var(--p-space-4)',
-              paddingBottom: 'var(--p-space-4)',
-              borderBottom: '1px solid var(--p-color-border)'
-            }}>
-              <div>
-                <h4 style={{
-                  fontSize: 'var(--p-font-size-heading-md)',
-                  fontWeight: 'var(--p-font-weight-semibold)',
-                  color: 'var(--p-color-text)',
-                  margin: '0 0 var(--p-space-1) 0'
-                }}>
-                  Page Title
-                </h4>
-                <p style={{
-                  fontSize: 'var(--p-font-size-body-md)',
-                  color: 'var(--p-color-text-secondary)',
-                  margin: 0
-                }}>
-                  Page subtitle or description
-                </p>
-              </div>
-              <s-button variant="primary">Primary Action</s-button>
+                <Card>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <BlockStack gap="400">
+                      <Text variant="headingSm" as="h4">
+                        Interactive Card
+                      </Text>
+                      <Text tone="subdued">
+                        This card can be clicked or have interactive elements.
+                      </Text>
+                      <Button variant="plain" size="small">View Details</Button>
+                    </BlockStack>
+                  </div>
+                </Card>
+              </Grid>
             </div>
+          </Card>
+        </Layout.Section>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 300px',
-              gap: 'var(--p-space-6)'
-            }}>
-              <div>
-                <h5 style={{
-                  fontSize: 'var(--p-font-size-heading-sm)',
-                  fontWeight: 'var(--p-font-weight-medium)',
-                  color: 'var(--p-color-text)',
-                  margin: '0 0 var(--p-space-3) 0'
-                }}>
-                  Main Content
-                </h5>
-                <p style={{
-                  fontSize: 'var(--p-font-size-body-md)',
-                  color: 'var(--p-color-text-secondary)',
-                  margin: 0
-                }}>
-                  This is the main content area. It can contain forms, cards, lists, or any other components.
-                </p>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Layout Components
+              </Text>
+
+              <div style={{ margin: 'var(--p-space-6) 0' }}>
+                <Text variant="headingSm" as="h3">
+                  Page Layout Example
+                </Text>
+                <Card sectioned>
+                  <BlockStack gap="400">
+                    <div>
+                      <Text variant="headingMd" as="h4">
+                        Page Title
+                      </Text>
+                      <Text tone="subdued">
+                        Page subtitle or description
+                      </Text>
+                    </div>
+                    <InlineStack align="end">
+                      <Button variant="primary">Primary Action</Button>
+                    </InlineStack>
+                  </BlockStack>
+                </Card>
               </div>
-              <div>
-                <h5 style={{
-                  fontSize: 'var(--p-font-size-heading-sm)',
-                  fontWeight: 'var(--p-font-weight-medium)',
-                  color: 'var(--p-color-text)',
-                  margin: '0 0 var(--p-space-3) 0'
-                }}>
-                  Sidebar
-                </h5>
-                <p style={{
-                  fontSize: 'var(--p-font-size-body-md)',
-                  color: 'var(--p-color-text-secondary)',
-                  margin: 0
-                }}>
-                  Secondary content or navigation.
-                </p>
+
+              <div style={{ margin: 'var(--p-space-6) 0' }}>
+                <Text variant="headingSm" as="h3">
+                  Grid Layout
+                </Text>
+                <Grid columns={{ xs: 1, sm: 2, md: 3, lg: 3, xl: 3 }} gap="400">
+                  {[1, 2, 3, 4, 5, 6].map((item) => (
+                    <Card key={item}>
+                      <div style={{ padding: 'var(--p-space-4)' }}>
+                        <BlockStack gap="200" align="center">
+                          <Text variant="headingMd" as="div">
+                            Grid Item {item}
+                          </Text>
+                          <Text tone="subdued" as="span">
+                            Responsive grid item
+                          </Text>
+                        </BlockStack>
+                      </div>
+                    </Card>
+                  ))}
+                </Grid>
               </div>
             </div>
-          </div>
+          </Card>
+        </Layout.Section>
 
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Grid Layout
-          </h3>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Stack Layouts
+              </Text>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: 'var(--p-space-4)',
-            border: '1px dashed var(--p-color-border)',
-            borderRadius: 'var(--p-border-radius-base)',
-            padding: 'var(--p-space-6)'
-          }}>
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} style={{
-                backgroundColor: 'var(--p-color-bg-surface-hover)',
-                border: '1px solid var(--p-color-border)',
-                borderRadius: 'var(--p-border-radius-base)',
-                padding: 'var(--p-space-4)',
-                textAlign: 'center'
-              }}>
-                <div style={{
-                  fontSize: 'var(--p-font-size-heading-md)',
-                  fontWeight: 'var(--p-font-weight-semibold)',
-                  color: 'var(--p-color-text)',
-                  marginBottom: 'var(--p-space-2)'
-                }}>
-                  Grid Item {item}
-                </div>
-                <div style={{
-                  fontSize: 'var(--p-font-size-body-sm)',
-                  color: 'var(--p-color-text-secondary)'
-                }}>
-                  Responsive grid item
-                </div>
+              <div style={{ margin: 'var(--p-space-6) 0' }}>
+                <Text variant="headingSm" as="h3">
+                  Vertical Stack
+                </Text>
+                <Card sectioned>
+                  <BlockStack gap="400">
+                    <Button variant="primary">Button 1</Button>
+                    <Button variant="secondary">Button 2</Button>
+                    <Button variant="tertiary">Button 3</Button>
+                  </BlockStack>
+                </Card>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Stacks Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Stack Layouts
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Vertical Stack
-          </h3>
-
-          <div style={{
-            border: '1px dashed var(--p-color-border)',
-            borderRadius: 'var(--p-border-radius-base)',
-            padding: 'var(--p-space-6)',
-            marginBottom: 'var(--p-space-6)'
-          }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--p-space-4)' }}>
-              <s-button variant="primary">Button 1</s-button>
-              <s-button variant="secondary">Button 2</s-button>
-              <s-button variant="tertiary">Button 3</s-button>
-            </div>
-          </div>
-
-          <h3 style={{
-            fontSize: 'var(--p-font-size-heading-sm)',
-            fontWeight: 'var(--p-font-weight-medium)',
-            color: 'var(--p-color-text)',
-            margin: '0 0 var(--p-space-4) 0'
-          }}>
-            Horizontal Stack
-          </h3>
-
-          <div style={{
-            border: '1px dashed var(--p-color-border)',
-            borderRadius: 'var(--p-border-radius-base)',
-            padding: 'var(--p-space-6)'
-          }}>
-            <div style={{ display: 'flex', gap: 'var(--p-space-3)', alignItems: 'center' }}>
-              <s-button variant="primary">Button 1</s-button>
-              <s-button variant="secondary">Button 2</s-button>
-              <s-button variant="tertiary">Button 3</s-button>
-              <div style={{
-                padding: 'var(--p-space-2) var(--p-space-4)',
-                backgroundColor: 'var(--p-color-bg-surface-hover)',
-                borderRadius: 'var(--p-border-radius-base)',
-                fontSize: 'var(--p-font-size-body-sm)'
-              }}>
-                Additional content
+              <div style={{ margin: 'var(--p-space-6) 0' }}>
+                <Text variant="headingSm" as="h3">
+                  Horizontal Stack
+                </Text>
+                <Card sectioned>
+                  <InlineStack gap="400" align="center">
+                    <Button variant="primary">Button 1</Button>
+                    <Button variant="secondary">Button 2</Button>
+                    <Button variant="tertiary">Button 3</Button>
+                    <Badge>Additional content</Badge>
+                  </InlineStack>
+                </Card>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </Card>
+        </Layout.Section>
 
-      {/* Section Groups */}
-      <section>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Section Groups
-        </h2>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Section Groups
+              </Text>
 
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)'
-        }}>
-          <s-section>
-            <s-section-header>
-              <h3 style={{
-                fontSize: 'var(--p-font-size-heading-md)',
-                fontWeight: 'var(--p-font-weight-semibold)',
-                color: 'var(--p-color-text)',
-                margin: 0
-              }}>
-                Section Header
-              </h3>
-            </s-section-header>
-            <s-section-content>
-              <p style={{
-                fontSize: 'var(--p-font-size-body-md)',
-                color: 'var(--p-color-text-secondary)',
-                margin: '0 0 var(--p-space-4) 0'
-              }}>
-                This is the content of a section. Sections help organize related content and provide clear visual hierarchy.
-              </p>
-              <s-button variant="secondary" size="small">Learn More</s-button>
-            </s-section-content>
-          </s-section>
-        </div>
-      </section>
-    </div>
+              <Card sectioned>
+                <BlockStack gap="400">
+                  <Text variant="headingSm" as="h3">
+                    Section Header
+                  </Text>
+                  <Text>
+                    This is the content of a section. Sections help organize related content and provide clear visual hierarchy.
+                  </Text>
+                  <Button variant="secondary" size="small">Learn More</Button>
+                </BlockStack>
+              </Card>
+            </div>
+          </Card>
+        </Layout.Section>
+      </Layout>
+    </Page>
   )
 }
 

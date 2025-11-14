@@ -1,130 +1,94 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {
+  Card,
+  Page,
+  Layout,
+  Text,
+  Tabs,
+  Pagination,
+  InlineStack,
+  BlockStack,
+} from '@shopify/polaris'
 
 const NavigationDemo = () => {
+  const tabs = [
+    { id: 'all', content: 'All Products', accessibilityLabel: 'All products', panelID: 'all-products' },
+    { id: 'active', content: 'Active', accessibilityLabel: 'Active products', panelID: 'active-products' },
+    { id: 'draft', content: 'Draft', accessibilityLabel: 'Draft products', panelID: 'draft-products' },
+    { id: 'archived', content: 'Archived', accessibilityLabel: 'Archived products', panelID: 'archived-products' },
+  ]
+
+  const [selected, setSelected] = useState(0)
+
   return (
-    <div>
-      <div style={{ marginBottom: 'var(--p-space-8)' }}>
-        <h1 style={{
-          fontSize: 'var(--p-font-size-heading-lg)',
-          fontWeight: 'var(--p-font-weight-bold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-3) 0'
-        }}>
-          Navigation
-        </h1>
-        <p style={{
-          fontSize: 'var(--p-font-size-body-lg)',
-          color: 'var(--p-color-text-secondary)',
-          margin: 0
-        }}>
-          Navigation patterns and wayfinding components.
-        </p>
-      </div>
+    <Page
+      title="Navigation"
+      subtitle="Navigation patterns and wayfinding components."
+    >
+      <Layout>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Tabs
+              </Text>
+              <Tabs tabs={tabs} selected={selected} onSelect={setSelected}>
+                <Card.Section title={tabs[selected].content}>
+                  <Text>
+                    Tab content area for "{tabs[selected].content}"
+                  </Text>
+                </Card.Section>
+              </Tabs>
+            </div>
+          </Card>
+        </Layout.Section>
 
-      {/* Tabs Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Tabs
-        </h2>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Pagination
+              </Text>
+              <div style={{ margin: 'var(--p-space-6) 0' }}>
+                <InlineStack align="space-between">
+                  <Text tone="subdued">
+                    Showing 1-10 of 100 results
+                  </Text>
+                  <Pagination
+                    hasPrevious
+                    hasNext
+                    label="Previous page"
+                    onNext={() => {}}
+                    onPrevious={() => {}}
+                  />
+                </InlineStack>
+              </div>
+            </div>
+          </Card>
+        </Layout.Section>
 
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <s-tabs>
-            <s-tab selected>All Products</s-tab>
-            <s-tab>Active</s-tab>
-            <s-tab>Draft</s-tab>
-            <s-tab>Archived</s-tab>
-          </s-tabs>
-
-          <div style={{
-            marginTop: 'var(--p-space-6)',
-            padding: 'var(--p-space-6)',
-            backgroundColor: 'var(--p-color-bg)',
-            border: '1px solid var(--p-color-border)',
-            borderRadius: 'var(--p-border-radius-base)'
-          }}>
-            <p style={{
-              fontSize: 'var(--p-font-size-body-md)',
-              color: 'var(--p-color-text-secondary)',
-              margin: 0
-            }}>
-              Tab content area for "All Products"
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Pagination Section */}
-      <section style={{ marginBottom: 'var(--p-space-12)' }}>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Pagination
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)',
-          marginBottom: 'var(--p-space-6)'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--p-space-4)' }}>
-            <span style={{
-              fontSize: 'var(--p-font-size-body-sm)',
-              color: 'var(--p-color-text-secondary)'
-            }}>
-              Showing 1-10 of 100 results
-            </span>
-            <s-pagination
-              has-previous
-              has-next
-              previous-tooltip="Previous page"
-              next-tooltip="Next page"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Breadcrumb Section */}
-      <section>
-        <h2 style={{
-          fontSize: 'var(--p-font-size-heading-md)',
-          fontWeight: 'var(--p-font-weight-semibold)',
-          color: 'var(--p-color-text)',
-          margin: '0 0 var(--p-space-6) 0'
-        }}>
-          Breadcrumbs
-        </h2>
-
-        <div style={{
-          backgroundColor: 'var(--p-color-bg-surface)',
-          border: '1px solid var(--p-color-border)',
-          borderRadius: 'var(--p-border-radius-base)',
-          padding: 'var(--p-space-6)'
-        }}>
-          <s-breadcrumb>
-            <s-breadcrumb-item>Home</s-breadcrumb-item>
-            <s-breadcrumb-item>Products</s-breadcrumb-item>
-            <s-breadcrumb-item>T-Shirts</s-breadcrumb-item>
-            <s-breadcrumb-item selected>Classic Tee</s-breadcrumb-item>
-          </s-breadcrumb>
-        </div>
-      </section>
-    </div>
+        <Layout.Section>
+          <Card>
+            <div style={{ padding: 'var(--p-space-6)' }}>
+              <Text variant="headingMd" as="h2">
+                Breadcrumbs
+              </Text>
+              <div style={{ margin: 'var(--p-space-4) 0' }}>
+                <InlineStack gap="200">
+                  <Text>Home</Text>
+                  <Text>/</Text>
+                  <Text>Products</Text>
+                  <Text>/</Text>
+                  <Text>T-Shirts</Text>
+                  <Text>/</Text>
+                  <Text fontWeight="medium">Classic Tee</Text>
+                </InlineStack>
+              </div>
+            </div>
+          </Card>
+        </Layout.Section>
+      </Layout>
+    </Page>
   )
 }
 
