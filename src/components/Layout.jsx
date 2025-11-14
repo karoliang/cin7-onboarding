@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigation, TopBar } from '@shopify/polaris'
+import { Navigation, TopBar, Frame } from '@shopify/polaris'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Layout = ({ children }) => {
@@ -112,44 +112,45 @@ const Layout = ({ children }) => {
   }
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <TopBar
-        showNavigationToggle
-        searchResultsVisible={false}
-        searchField={{
-          placeholder: 'Search components...',
-          onChange: () => {},
-          value: '',
-        }}
-        userMenu={{
-          initials: 'U',
-          actions: [
-            {
-              items: [
-                { content: 'Community forums' },
-                { content: 'Support' },
-              ],
-            },
-          ],
-        }}
-      />
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+    <Frame
+      topBar={
+        <TopBar
+          showNavigationToggle
+          searchResultsVisible={false}
+          searchField={{
+            placeholder: 'Search components...',
+            onChange: () => {},
+            value: '',
+          }}
+          userMenu={{
+            initials: 'U',
+            actions: [
+              {
+                items: [
+                  { content: 'Community forums' },
+                  { content: 'Support' },
+                ],
+              },
+            ],
+          }}
+        />
+      }
+      navigation={
         <Navigation location="/">
           <Navigation.Section
             items={navigationItems}
             separator
           />
         </Navigation>
-        <main style={{
-          flex: 1,
-          overflow: 'auto',
-          backgroundColor: 'var(--p-color-bg-surface)',
-          padding: 'var(--p-space-6)'
-        }}>
-          {children}
-        </main>
-      </div>
-    </div>
+      }
+      showMobileNavigation={true}
+    >
+      <main style={{
+        padding: 'var(--p-space-6)'
+      }}>
+        {children}
+      </main>
+    </Frame>
   )
 }
 
