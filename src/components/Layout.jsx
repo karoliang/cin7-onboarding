@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   const location = useLocation()
-  const navigate = useNavigate()
 
   const navigationItems = [
     {
@@ -103,46 +102,10 @@ const Layout = ({ children }) => {
     </Navigation>
   )
 
-  const logo = {
-    width: 124,
-    topBarSource:
-      'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
-    url: '/',
-    accessibilityLabel: 'Polaris Demo',
-  }
-
   return (
     <Frame
-      topBar={
-        <TopBar
-          showNavigationToggle
-          searchResultsVisible={false}
-          searchField={{
-            placeholder: 'Search components...',
-            onChange: () => {},
-            value: '',
-          }}
-          userMenu={{
-            initials: 'U',
-            actions: [
-              {
-                items: [
-                  { content: 'Community forums' },
-                  { content: 'Support' },
-                ],
-              },
-            ],
-          }}
-        />
-      }
-      navigation={
-        <Navigation location="/">
-          <Navigation.Section
-            items={navigationItems}
-            separator
-          />
-        </Navigation>
-      }
+      topBar={topBarMarkup}
+      navigation={navigationMarkup}
       showMobileNavigation={true}
     >
       <main style={{
