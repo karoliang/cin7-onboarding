@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigation, TopBar, Frame } from '@shopify/polaris'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   const location = useLocation()
@@ -72,24 +72,6 @@ const Layout = ({ children }) => {
     <TopBar
       showNavigationToggle
       searchResultsVisible={false}
-      searchField={{
-        placeholder: 'Search components...',
-        onChange: () => {},
-        onBlur: () => {},
-        onFocus: () => {},
-        value: '',
-      }}
-      userMenu={{
-        initials: 'U',
-        actions: [
-          {
-            items: [
-              { content: 'Community forums' },
-              { content: 'Support' },
-            ],
-          },
-        ],
-      }}
     />
   )
 
