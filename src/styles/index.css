@@ -1,0 +1,174 @@
+/* Global styles and Polaris theme configuration */
+
+:root {
+  /* Polaris Light Theme Colors */
+  --p-color-bg: #ffffff;
+  --p-color-bg-surface: #f6f6f7;
+  --p-color-bg-surface-hover: #f1f1f2;
+  --p-color-bg-surface-active: #e1e1e2;
+  --p-color-bg-inverse: #212b36;
+  --p-color-bg-surface-inverse: #454f5b;
+  --p-color-bg-surface-inverse-hover: #637381;
+  --p-color-bg-surface-inverse-active: #919eab;
+
+  --p-color-text: #212b36;
+  --p-color-text-secondary: #637381;
+  --p-color-text-disabled: #c4cdd5;
+  --p-color-text-inverse: #ffffff;
+  --p-color-text-secondary-inverse: #c4cdd5;
+
+  --p-color-border: #dfe3e8;
+  --p-color-border-hover: #c4cdd5;
+  --p-color-border-active: #919eab;
+  --p-color-border-inverse: #637381;
+  --p-color-border-critical: #de3618;
+  --p-color-border-warning: #fcd116;
+  --p-color-border-highlight: #4b7a00;
+  --p-color-border-success: #008060;
+
+  --p-color-icon-primary: #5c6ac4;
+  --p-color-icon-secondary: #637381;
+  --p-color-icon-tertiary: #919eab;
+  --p-color-icon-disabled: #c4cdd5;
+  --p-color-icon-inverse: #ffffff;
+  --p-color-icon-on-interactive: #ffffff;
+  --p-color-icon-critical: #de3618;
+  --p-color-icon-warning: #fcd116;
+  --p-color-icon-highlight: #4b7a00;
+  --p-color-icon-success: #008060;
+
+  --p-color-interactive: #5c6ac4;
+  --p-color-interactive-hover: #4650c2;
+  --p-color-interactive-pressed: #3348d3;
+  --p-color-interactive-disabled: #c4cdd5;
+  --p-color-interactive-on-interactive: #ffffff;
+
+  --p-color-primary: #212b36;
+  --p-color-secondary: #637381;
+  --p-color-tertiary: #919eab;
+  --p-color-quaternary: #dfe3e8;
+
+  --p-color-surface-selected: #ebf2ff;
+  --p-color-surface-neutral: #f6f6f7;
+  --p-color-surface-neutral-hover: #f1f1f2;
+  --p-color-surface-neutral-selected: #e1e2e4;
+  --p-color-surface-neutral-disabled: #f9fafb;
+
+  --p-color-surface-critical-subdued: #fbeae5;
+  --p-color-surface-warning-subdued: #fff8e6;
+  --p-color-surface-highlight-subdued: #f0f4e3;
+  --p-color-surface-success-subdued: #e4f3ec;
+
+  --p-color-top-bar: #f6f6f7;
+  --p-color-top-bar-backdrop: rgba(245, 246, 247, 0.8);
+  --p-color-top-bar-border: #e1e3e5;
+  --p-color-top-bar-icon: #637381;
+  --p-color-top-bar-icon-hover: #212b36;
+  --p-color-top-bar-icon-pressed: #212b36;
+
+  --p-color-modal-backdrop: rgba(0, 0, 0, 0.5);
+  --p-color-popover-backdrop: rgba(0, 0, 0, 0.2);
+
+  /* Polaris Typography */
+  --p-font-family-sans: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --p-font-family-mono: "SF Mono", Consolas, Menlo, Monaco, monospace;
+
+  --p-font-size-heading-lg: 2rem;
+  --p-font-size-heading-md: 1.5rem;
+  --p-font-size-heading-sm: 1.25rem;
+  --p-font-size-heading-xs: 1rem;
+
+  --p-font-size-body-lg: 1rem;
+  --p-font-size-body-md: 0.875rem;
+  --p-font-size-body-sm: 0.75rem;
+
+  --p-font-size-caption-lg: 0.875rem;
+  --p-font-size-caption-md: 0.75rem;
+  --p-font-size-caption-sm: 0.625rem;
+
+  --p-line-height-heading: 1.25;
+  --p-line-height-body: 1.5;
+  --p-line-height-caption: 1.33;
+
+  --p-font-weight-regular: 400;
+  --p-font-weight-medium: 500;
+  --p-font-weight-semibold: 600;
+  --p-font-weight-bold: 700;
+
+  /* Polaris Spacing */
+  --p-space-0: 0;
+  --p-space-1: 0.25rem;
+  --p-space-2: 0.5rem;
+  --p-space-3: 0.75rem;
+  --p-space-4: 1rem;
+  --p-space-5: 1.25rem;
+  --p-space-6: 1.5rem;
+  --p-space-8: 2rem;
+  --p-space-10: 2.5rem;
+  --p-space-12: 3rem;
+  --p-space-16: 4rem;
+  --p-space-20: 5rem;
+  --p-space-24: 6rem;
+
+  /* Polaris Border Radius */
+  --p-border-radius-base: 0.375rem;
+  --p-border-radius-wide: 0.5rem;
+  --p-border-radius-full: 9999px;
+
+  /* Polaris Shadows */
+  --p-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --p-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --p-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --p-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Polaris Breakpoints */
+  --p-breakpoint-sm: 30em;
+  --p-breakpoint-md: 48em;
+  --p-breakpoint-lg: 64em;
+  --p-breakpoint-xl: 80em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--p-color-bg);
+  color: var(--p-color-text);
+  font-family: var(--p-font-family-sans);
+  font-size: var(--p-font-size-body-md);
+  line-height: var(--p-line-height-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --p-color-bg: #1c1c1e;
+    --p-color-bg-surface: #2c2c2e;
+    --p-color-bg-surface-hover: #3a3a3c;
+    --p-color-bg-surface-active: #48484a;
+    --p-color-bg-inverse: #ffffff;
+    --p-color-bg-surface-inverse: #f6f6f7;
+    --p-color-bg-surface-inverse-hover: #e1e1e2;
+    --p-color-bg-surface-inverse-active: #c4cdd5;
+
+    --p-color-text: #ffffff;
+    --p-color-text-secondary: #c4cdd5;
+    --p-color-text-disabled: #637381;
+    --p-color-text-inverse: #212b36;
+    --p-color-text-secondary-inverse: #637381;
+
+    --p-color-border: #48484a;
+    --p-color-border-hover: #637381;
+    --p-color-border-active: #919eab;
+    --p-color-border-inverse: #dfe3e8;
+  }
+}
