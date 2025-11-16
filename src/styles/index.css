@@ -1,78 +1,79 @@
 /* Global styles and Polaris theme configuration */
 
 :root {
-  /* Polaris Light Theme Colors */
+  /* Cin7 Core Brand Theme Colors */
   --p-color-bg: #ffffff;
-  --p-color-bg-surface: #f6f6f7;
-  --p-color-bg-surface-hover: #f1f1f2;
-  --p-color-bg-surface-active: #e1e1e2;
-  --p-color-bg-inverse: #212b36;
-  --p-color-bg-surface-inverse: #454f5b;
-  --p-color-bg-surface-inverse-hover: #637381;
-  --p-color-bg-surface-inverse-active: #919eab;
+  --p-color-bg-surface: #f8f9fb;
+  --p-color-bg-surface-hover: #f1f3f7;
+  --p-color-bg-surface-active: #e9ecef;
+  --p-color-bg-inverse: #1a2b47; /* Cin7 Navy */
+  --p-color-bg-surface-inverse: #2c3e5f;
+  --p-color-bg-surface-inverse-hover: #3d5a78;
+  --p-color-bg-surface-inverse-active: #4e7396;
 
-  --p-color-text: #212b36;
-  --p-color-text-secondary: #637381;
-  --p-color-text-disabled: #c4cdd5;
+  --p-color-text: #2c3e50;
+  --p-color-text-secondary: #6c757d;
+  --p-color-text-disabled: #adb5bd;
   --p-color-text-inverse: #ffffff;
-  --p-color-text-secondary-inverse: #c4cdd5;
+  --p-color-text-secondary-inverse: #e9ecef;
 
-  --p-color-border: #dfe3e8;
-  --p-color-border-hover: #c4cdd5;
-  --p-color-border-active: #919eab;
-  --p-color-border-inverse: #637381;
-  --p-color-border-critical: #de3618;
-  --p-color-border-warning: #fcd116;
-  --p-color-border-highlight: #4b7a00;
-  --p-color-border-success: #008060;
+  --p-color-border: #e9ecef;
+  --p-color-border-hover: #dee2e6;
+  --p-color-border-active: #adb5bd;
+  --p-color-border-inverse: #6c757d;
+  --p-color-border-critical: #dc3545;
+  --p-color-border-warning: #ffc107;
+  --p-color-border-highlight: #28a745;
+  --p-color-border-success: #28a745;
 
-  --p-color-icon-primary: #5c6ac4;
-  --p-color-icon-secondary: #637381;
-  --p-color-icon-tertiary: #919eab;
-  --p-color-icon-disabled: #c4cdd5;
+  --p-color-icon-primary: #0066cc; /* Cin7 Blue */
+  --p-color-icon-secondary: #6c757d;
+  --p-color-icon-tertiary: #adb5bd;
+  --p-color-icon-disabled: #dee2e6;
   --p-color-icon-inverse: #ffffff;
   --p-color-icon-on-interactive: #ffffff;
-  --p-color-icon-critical: #de3618;
-  --p-color-icon-warning: #fcd116;
-  --p-color-icon-highlight: #4b7a00;
-  --p-color-icon-success: #008060;
+  --p-color-icon-critical: #dc3545;
+  --p-color-icon-warning: #ffc107;
+  --p-color-icon-highlight: #28a745;
+  --p-color-icon-success: #28a745;
 
-  --p-color-interactive: #0070f3; /* Cin7 Primary Blue */
-  --p-color-interactive-hover: #0051cc;
-  --p-color-interactive-pressed: #003d99;
-  --p-color-interactive-disabled: #c4cdd5;
+  --p-color-interactive: #0066cc; /* Cin7 Primary Blue */
+  --p-color-interactive-hover: #0052a3;
+  --p-color-interactive-pressed: #003d7a;
+  --p-color-interactive-disabled: #adb5bd;
   --p-color-interactive-on-interactive: #ffffff;
 
-  --p-color-primary: #1a365d; /* Cin7 Dark Blue */
-  --p-color-secondary: #637381;
-  --p-color-tertiary: #919eab;
-  --p-color-quaternary: #dfe3e8;
+  --p-color-primary: #1a2b47; /* Cin7 Navy Dark */
+  --p-color-secondary: #6c757d;
+  --p-color-tertiary: #adb5bd;
+  --p-color-quaternary: #e9ecef;
 
-  /* Cin7-specific colors */
-  --cin7-brand-primary: #0070f3;
-  --cin7-brand-secondary: #1a365d;
+  /* Cin7 Core Brand Colors */
+  --cin7-brand-primary: #0066cc; /* Cin7 Blue */
+  --cin7-brand-secondary: #1a2b47; /* Cin7 Navy */
+  --cin7-brand-accent: #00a86b; /* Cin7 Green */
   --cin7-success: #28a745;
   --cin7-warning: #ffc107;
   --cin7-danger: #dc3545;
   --cin7-info: #17a2b8;
 
-  --p-color-surface-selected: #ebf2ff;
-  --p-color-surface-neutral: #f6f6f7;
-  --p-color-surface-neutral-hover: #f1f1f2;
-  --p-color-surface-neutral-selected: #e1e2e4;
-  --p-color-surface-neutral-disabled: #f9fafb;
+  --p-color-surface-selected: #e6f3ff; /* Cin7 Light Blue */
+  --p-color-surface-neutral: #f8f9fb;
+  --p-color-surface-neutral-hover: #f1f3f7;
+  --p-color-surface-neutral-selected: #e9ecef;
+  --p-color-surface-neutral-disabled: #f8f9fa;
 
-  --p-color-surface-critical-subdued: #fbeae5;
-  --p-color-surface-warning-subdued: #fff8e6;
-  --p-color-surface-highlight-subdued: #f0f4e3;
-  --p-color-surface-success-subdued: #e4f3ec;
+  --p-color-surface-critical-subdued: #f8d7da;
+  --p-color-surface-warning-subdued: #fff3cd;
+  --p-color-surface-highlight-subdued: #d1ecf1;
+  --p-color-surface-success-subdued: #d4edda;
 
-  --p-color-top-bar: #f6f6f7;
-  --p-color-top-bar-backdrop: rgba(245, 246, 247, 0.8);
-  --p-color-top-bar-border: #e1e3e5;
-  --p-color-top-bar-icon: #637381;
-  --p-color-top-bar-icon-hover: #212b36;
-  --p-color-top-bar-icon-pressed: #212b36;
+  --p-color-top-bar: #ffffff;
+  --p-color-top-bar-backdrop: rgba(255, 255, 255, 0.9);
+  --p-color-top-bar-border: #e9ecef;
+  --p-color-top-bar-icon: #6c757d;
+  --p-color-top-bar-icon-hover: #1a2b47;
+  --p-color-top-bar-icon-pressed: #0066cc;
 
   --p-color-modal-backdrop: rgba(0, 0, 0, 0.5);
   --p-color-popover-backdrop: rgba(0, 0, 0, 0.2);
@@ -154,6 +155,102 @@ html, body {
 
 #root {
   min-height: 100vh;
+}
+
+/* Cin7 Core Custom Styles */
+.Polaris-Icon {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.Polaris-Icon--sizeSmall {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.Polaris-Icon--sizeLarge {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+.Polaris-Icon--sizeExtraLarge {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+/* Fix icon sizing in cards and badges */
+.Polaris-Card .Polaris-Icon {
+  width: 1.125rem !important;
+  height: 1.125rem !important;
+}
+
+.Polaris-Badge .Polaris-Icon {
+  width: 0.875rem !important;
+  height: 0.875rem !important;
+}
+
+/* KPI Card Icon Styling */
+.kpi-card .Polaris-Icon {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+/* Navigation Icon Styling */
+.Polaris-Navigation-Item .Polaris-Icon {
+  width: 1.125rem !important;
+  height: 1.125rem !important;
+}
+
+/* Top Bar Icon Styling */
+.Polaris-TopBar .Polaris-Icon {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+/* Cin7 Brand Button Styling */
+.cin7-primary-button {
+  background-color: var(--cin7-brand-primary) !important;
+  border-color: var(--cin7-brand-primary) !important;
+  color: white !important;
+}
+
+.cin7-primary-button:hover {
+  background-color: var(--p-color-interactive-hover) !important;
+  border-color: var(--p-color-interactive-hover) !important;
+}
+
+/* Cin7 Brand Header Styling */
+.cin7-page-header {
+  border-bottom: 2px solid var(--cin7-brand-primary);
+  padding-bottom: var(--p-space-4);
+}
+
+.cin7-page-title {
+  color: var(--cin7-brand-secondary);
+  font-weight: var(--p-font-weight-semibold);
+}
+
+/* Cin7 Card Enhancements */
+.cin7-enhanced-card {
+  border-left: 4px solid var(--cin7-brand-primary);
+  transition: box-shadow 0.2s ease;
+}
+
+.cin7-enhanced-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+}
+
+/* Cin7 Status Indicators */
+.cin7-status-online {
+  color: var(--cin7-success);
+}
+
+.cin7-status-warning {
+  color: var(--cin7-warning);
+}
+
+.cin7-status-error {
+  color: var(--cin7-danger);
 }
 
 /* Dark theme support */

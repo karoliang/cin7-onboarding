@@ -489,7 +489,7 @@ const ProductListing = () => {
 
   return (
     <Page
-      title="Inventory Management"
+      title="Cin7 Core - Inventory Management"
       subtitle="Track stock levels, manage locations, and optimize inventory"
       primaryAction={{
         content: 'Adjust Stock',
@@ -502,45 +502,46 @@ const ProductListing = () => {
           onExport={(data) => console.log('Export completed:', data)}
         />
       ]}
+      className="cin7-page-header"
     >
       <Layout>
         {/* Inventory Summary Cards */}
         <Layout.Section>
           <Grid columns={{ xs: 1, sm: 2, md: 4 }}>
-            <Card>
+            <Card className="cin7-enhanced-card">
               <BlockStack gap="200">
                 <Text variant="bodySm" tone="subdued">Total Value</Text>
-                <Text variant="heading2xl" as="h2">
+                <Text variant="heading2xl" as="h2" className="cin7-page-title">
                   {formatCurrency(inventoryStats.totalValue)}
                 </Text>
               </BlockStack>
             </Card>
-            <Card>
+            <Card className="cin7-enhanced-card">
               <BlockStack gap="200">
                 <Text variant="bodySm" tone="subdued">Total Available</Text>
-                <Text variant="heading2xl" as="h2">
+                <Text variant="heading2xl" as="h2" className="cin7-page-title">
                   {inventoryStats.totalAvailable.toLocaleString()}
                 </Text>
               </BlockStack>
             </Card>
-            <Card>
+            <Card className="cin7-enhanced-card">
               <BlockStack gap="200">
                 <InlineStack gap="200" align="center">
                   <Text variant="bodySm" tone="subdued">Low Stock</Text>
                   <Badge tone="warning">{inventoryStats.lowStockCount}</Badge>
                 </InlineStack>
-                <Text variant="heading2xl" as="h2" tone="warning">
+                <Text variant="heading2xl" as="h2" tone="warning" className="cin7-page-title">
                   {inventoryStats.lowStockCount}
                 </Text>
               </BlockStack>
             </Card>
-            <Card>
+            <Card className="cin7-enhanced-card">
               <BlockStack gap="200">
                 <InlineStack gap="200" align="center">
                   <Text variant="bodySm" tone="subdued">Out of Stock</Text>
                   <Badge tone="critical">{inventoryStats.outOfStockCount}</Badge>
                 </InlineStack>
-                <Text variant="heading2xl" as="h2" tone="critical">
+                <Text variant="heading2xl" as="h2" tone="critical" className="cin7-page-title">
                   {inventoryStats.outOfStockCount}
                 </Text>
               </BlockStack>

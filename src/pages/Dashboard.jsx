@@ -133,14 +133,14 @@ const Dashboard = () => {
   ]
 
   const KPICard = ({ title, value, change, changeDirection, icon: Icon, color }) => (
-    <Card>
+    <Card className="cin7-enhanced-card kpi-card">
       <div style={{ padding: 'var(--p-space-6)' }}>
         <BlockStack gap="400">
           <InlineStack align="space-between">
             <Text tone="subdued" as="p">{title}</Text>
             <Icon tone={color} />
           </InlineStack>
-          <Text variant="headingLg" as="h2">{value}</Text>
+          <Text variant="headingLg" as="h2" className="cin7-page-title">{value}</Text>
           <InlineStack gap="200">
             <Icon
               source={changeDirection === 'up' ? ArrowUpIcon : ArrowDownIcon}
@@ -181,9 +181,10 @@ const Dashboard = () => {
       title="Cin7 Core Dashboard"
       subtitle="Inventory management and business operations overview"
       primaryAction={{
-        content: 'Export report',
+        content: 'Export Report',
         onAction: () => console.log('Export report clicked'),
       }}
+      className="cin7-page-header"
     >
       <Layout>
         {/* Date Range Selector */}

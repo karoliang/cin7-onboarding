@@ -414,20 +414,21 @@ const CustomerManagement = () => {
 
   return (
     <Page
-      title="Customer Management"
+      title="Cin7 Core - Customer Management"
       subtitle="Manage your customer relationships and data"
       primaryAction={{
-        content: 'Add customer',
+        content: 'Add Customer',
         icon: PlusIcon,
         onAction: () => navigate('/customers/new'),
       }}
       secondaryActions={[
         {
-          content: 'Import customers',
+          content: 'Import Customers',
           icon: ImportIcon,
           onAction: () => console.log('Import customers clicked'),
         }
       ]}
+      className="cin7-page-header"
     >
       <Layout>
         <Layout.Section>

@@ -286,10 +286,10 @@ const SalesOrders = () => {
 
   return (
     <Page
-      title="Sales Orders"
+      title="Cin7 Core - Sales Orders"
       subtitle="Manage and track all customer orders"
       primaryAction={{
-        content: 'Create order',
+        content: 'Create Order',
         icon: PlusIcon,
         onAction: () => setCreateOrderVisible(true)
       }}
@@ -300,6 +300,7 @@ const SalesOrders = () => {
           onAction: () => console.log('Export orders')
         }
       ]}
+      className="cin7-page-header"
     >
       <Layout>
         {/* Search and Filters */}

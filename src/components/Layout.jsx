@@ -97,6 +97,17 @@ const Layout = ({ children }) => {
     <TopBar
       showNavigationToggle
       searchResultsVisible={false}
+      searchField={
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          color: 'var(--cin7-brand-secondary)',
+          fontWeight: 'var(--p-font-weight-semibold)',
+          fontSize: '1.125rem'
+        }}>
+          Cin7 Core
+        </div>
+      }
     />
   )
 
