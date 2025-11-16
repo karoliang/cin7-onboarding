@@ -14,7 +14,6 @@ import {
   InlineStack,
   BlockStack,
   Grid,
-  VerticalStack,
   Tabs,
   ButtonGroup,
 } from '@shopify/polaris'
@@ -27,7 +26,10 @@ import {
   PackageIcon,
   ViewIcon,
   ClockIcon,
-  AlertCircleIcon
+  AlertCircleIcon,
+  OrdersIcon,
+  CustomersIcon,
+  TrendingUpIcon
 } from '@shopify/polaris-icons'
 
 const Dashboard = () => {
@@ -64,39 +66,39 @@ const Dashboard = () => {
     {label: 'Last year', value: 'lastyear'},
   ]
 
-  // Mock KPI data
+  // Enhanced KPI data with sales focus
   const kpiData = [
     {
-      title: 'Total Sales',
-      value: '$24,567',
-      change: '+12.5%',
+      title: 'Total Revenue',
+      value: '$28,476',
+      change: '+18.2%',
       changeDirection: 'up',
       icon: CashDollarIcon,
       color: 'success',
     },
     {
-      title: 'Orders',
+      title: 'Total Orders',
       value: '156',
-      change: '+8.2%',
+      change: '+24',
       changeDirection: 'up',
-      icon: ProductIcon,
+      icon: OrdersIcon,
       color: 'success',
     },
     {
-      title: 'Customers',
-      value: '1,234',
-      change: '-2.1%',
-      changeDirection: 'down',
-      icon: PersonIcon,
-      color: 'attention',
+      title: 'Average Order Value',
+      value: '$182.54',
+      change: '+$12.30',
+      changeDirection: 'up',
+      icon: TrendingUpIcon,
+      color: 'success',
     },
     {
-      title: 'Conversion Rate',
-      value: '3.2%',
-      change: '+0.5%',
+      title: 'New Customers',
+      value: '42',
+      change: '+15',
       changeDirection: 'up',
-      icon: ViewIcon,
-      color: 'success',
+      icon: CustomersIcon,
+      color: 'info',
     },
   ]
 
@@ -135,7 +137,7 @@ const Dashboard = () => {
   const KPICard = ({ title, value, change, changeDirection, icon: Icon, color }) => (
     <Card>
       <div style={{ padding: 'var(--p-space-6)' }}>
-        <VerticalStack gap="400">
+        <BlockStack gap="400">
           <InlineStack align="space-between">
             <Text tone="subdued" as="p">{title}</Text>
             <Icon source={Icon} tone={color} />
@@ -154,7 +156,7 @@ const Dashboard = () => {
             </Text>
             <Text tone="subdued">vs last period</Text>
           </InlineStack>
-        </VerticalStack>
+        </BlockStack>
       </div>
     </Card>
   )
@@ -178,8 +180,8 @@ const Dashboard = () => {
 
   return (
     <Page
-      title="Dashboard"
-      subtitle="Business overview and analytics"
+      title="Cin7 Core Dashboard"
+      subtitle="Inventory management and business operations overview"
       primaryAction={{
         content: 'Export report',
         onAction: () => console.log('Export report clicked'),
@@ -213,7 +215,7 @@ const Dashboard = () => {
         <Layout.Section>
           <Tabs tabs={tabs} selected={selectedTab} onSelect={setSelectedTab}>
             {selectedTab === 0 && (
-              <VerticalStack gap="600">
+              <BlockStack gap="600">
                 {/* Sales Chart */}
                 <Card>
                   <div style={{ padding: 'var(--p-space-6)' }}>
@@ -298,20 +300,140 @@ const Dashboard = () => {
                     </div>
                   </Card>
                 </InlineStack>
-              </VerticalStack>
+              </BlockStack>
             )}
 
             {selectedTab === 1 && (
-              <Card>
-                <div style={{ padding: 'var(--p-space-6)' }}>
-                  <Text variant="headingMd" as="h2">
-                    Sales Analytics
-                  </Text>
-                  <Text as="p">
-                    Detailed sales performance metrics and trends will be displayed here.
-                  </Text>
-                </div>
-              </Card>
+              <BlockStack gap="600">
+                {/* Sales Overview */}
+                <Card>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <Text variant="headingMd" as="h2" marginBottom="400">
+                      Sales Performance Overview
+                    </Text>
+                    <DataTable
+                      columnContentTypes={['text', 'numeric', 'numeric', 'numeric']}
+                      headings={['Period', 'Revenue', 'Orders', 'Avg Order Value']}
+                      rows={[
+                        ['This Week', '$8,234', '45', '$183.00'],
+                        ['Last Week', '$6,987', '38', '$183.87'],
+                        ['This Month', '$28,476', '156', '$182.54'],
+                        ['Last Month', '$24,123', '142', '$169.88'],
+                        ['YTD', '$156,432', '892', '$175.37']
+                      ]}
+                    />
+                  </div>
+                </Card>
+
+                {/* Sales by Category and Customer Segments */}
+                <InlineStack gap="400">
+                  <Card>
+                    <div style={{ padding: 'var(--p-space-6)', width: '100%' }}>
+                      <Text variant="headingMd" as="h2" marginBottom="400">
+                        Sales by Category
+                      </Text>
+                      <DataTable
+                        columnContentTypes={['text', 'numeric', 'numeric']}
+                        headings={['Category', 'Revenue', 'Orders']}
+                        rows={[
+                          ['Clothing', '$12,345', '67'],
+                          ['Accessories', '$5,234', '34'],
+                          ['Footwear', '$6,897', '28'],
+                          ['Electronics', '$4,000', '27']
+                        ]}
+                      />
+                    </div>
+                  </Card>
+
+                  <Card>
+                    <div style={{ padding: 'var(--p-space-6)', width: '100%' }}>
+                      <Text variant="headingMd" as="h2" marginBottom="400">
+                        Customer Segments
+                      </Text>
+                      <DataTable
+                        columnContentTypes={['text', 'numeric', 'numeric']}
+                        headings={['Segment', 'Revenue', 'Customers']}
+                        rows={[
+                          ['New Customers', '$8,234', '42'],
+                          ['Returning', '$15,678', '89'],
+                          ['VIP', '$4,564', '12'],
+                          ['Wholesale', '$0', '0']
+                        ]}
+                      />
+                    </div>
+                  </Card>
+                </InlineStack>
+
+                {/* Top Products by Revenue and Quantity */}
+                <InlineStack gap="400">
+                  <Card>
+                    <div style={{ padding: 'var(--p-space-6)', width: '100%' }}>
+                      <Text variant="headingMd" as="h2" marginBottom="400">
+                        Top Products by Revenue
+                      </Text>
+                      <DataTable
+                        columnContentTypes={['text', 'numeric', 'numeric']}
+                        headings={['Product', 'Revenue', 'Units Sold']}
+                        rows={[
+                          ['Premium Leather Jacket', '$3,456', '23'],
+                          ['Classic T-Shirt (Bulk)', '$2,890', '145'],
+                          ['Designer Sunglasses', '$2,345', '18'],
+                          ['Wireless Earbuds', '$2,100', '35']
+                        ]}
+                      />
+                    </div>
+                  </Card>
+
+                  <Card>
+                    <div style={{ padding: 'var(--p-space-6)', width: '100%' }}>
+                      <Text variant="headingMd" as="h2" marginBottom="400">
+                        Order Status Breakdown
+                      </Text>
+                      <DataTable
+                        columnContentTypes={['text', 'numeric', 'numeric']}
+                        headings={['Status', 'Count', 'Revenue']}
+                        rows={[
+                          ['Delivered', '89', '$16,234'],
+                          ['Processing', '34', '$6,234'],
+                          ['Shipped', '28', '$5,456'],
+                          ['Pending', '5', '$552']
+                        ]}
+                      />
+                    </div>
+                  </Card>
+                </InlineStack>
+
+                {/* Customer Acquisition and Retention */}
+                <Card>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <Text variant="headingMd" as="h2" marginBottom="400">
+                      Customer Acquisition & Retention
+                    </Text>
+                    <InlineStack gap="800">
+                      <div style={{ flex: 1 }}>
+                        <Text as="p" tone="subdued">New Customers This Month</Text>
+                        <Text variant="headingLg" as="h3">42</Text>
+                        <Text tone="success">+15 from last month</Text>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <Text as="p" tone="subdued">Customer Retention Rate</Text>
+                        <Text variant="headingLg" as="h3">73.2%</Text>
+                        <Text tone="success">+2.1% from last month</Text>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <Text as="p" tone="subdued">Repeat Customer Rate</Text>
+                        <Text variant="headingLg" as="h3">68.5%</Text>
+                        <Text tone="success">+4.2% from last month</Text>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <Text as="p" tone="subdued">Customer Lifetime Value</Text>
+                        <Text variant="headingLg" as="h3">$423.50</Text>
+                        <Text tone="success">+$45.20 from last month</Text>
+                      </div>
+                    </InlineStack>
+                  </div>
+                </Card>
+              </BlockStack>
             )}
 
             {selectedTab === 2 && (
@@ -347,22 +469,22 @@ const Dashboard = () => {
           <Card>
             <div style={{ padding: 'var(--p-space-6)' }}>
               <Text variant="headingMd" as="h2" marginBottom="400">
-                Quick Actions
+                Sales Quick Actions
               </Text>
-              <VerticalStack gap="300">
+              <BlockStack gap="300">
                 <Button fullWidth onClick={() => console.log('New order clicked')}>
                   Create new order
                 </Button>
-                <Button fullWidth onClick={() => console.log('Add product clicked')}>
-                  Add product
+                <Button fullWidth onClick={() => console.log('Add customer clicked')}>
+                  Add customer
                 </Button>
-                <Button fullWidth onClick={() => console.log('View reports clicked')}>
-                  View reports
+                <Button fullWidth onClick={() => console.log('Process orders clicked')}>
+                  Process pending orders
                 </Button>
-                <Button fullWidth onClick={() => console.log('Manage inventory clicked')}>
-                  Manage inventory
+                <Button fullWidth onClick={() => console.log('Generate invoice clicked')}>
+                  Generate invoice
                 </Button>
-              </VerticalStack>
+              </BlockStack>
             </div>
           </Card>
         </Layout.Section>
@@ -374,7 +496,7 @@ const Dashboard = () => {
               <Text variant="headingMd" as="h2" marginBottom="400">
                 System Status
               </Text>
-              <VerticalStack gap="400">
+              <BlockStack gap="400">
                 <InlineStack align="space-between">
                   <Text as="p">API Status</Text>
                   <Badge tone="success">Operational</Badge>
@@ -394,7 +516,7 @@ const Dashboard = () => {
                     Last updated: 2 minutes ago
                   </Text>
                 </InlineStack>
-              </VerticalStack>
+              </BlockStack>
             </div>
           </Card>
         </Layout.Section>

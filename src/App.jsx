@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { AppProvider } from '@shopify/polaris'
 import enTranslations from '@shopify/polaris/locales/en.json'
@@ -15,34 +15,85 @@ import CustomerManagement from './pages/CustomerManagement'
 import CustomerDetail from './pages/CustomerDetail'
 // Cin7 Core modules - reuse existing components initially
 import FormsDemo from './pages/FormsDemo' // Will be repurposed for Settings
+import ErrorDashboard from './components/ErrorDashboard'
+import ErrorBoundary from './components/ErrorBoundary'
+
+// Import monitoring services
+import errorMonitor from './services/ErrorMonitor'
+import performanceLogger from './utils/PerformanceLogger'
+import devConsole from './services/DevConsole'
 
 function App() {
+  useEffect(() => {
+    // Initialize monitoring systems
+    errorMonitor.log('info', 'Cin7 Core Application starting', {
+      version: '1.0.0',
+      environment: process.env.NODE_ENV
+    });
+
+    // Initialize DevConsole in development
+    if (process.env.NODE_ENV === 'development') {
+      devConsole.initialize();
+    }
+
+    // Start performance monitoring for the entire app
+    performanceLogger.startMeasure('app_lifecycle', {
+      component: 'App',
+      phase: 'initialization'
+    });
+
+    return () => {
+      performanceLogger.endMeasure('app_lifecycle', {
+        component: 'App',
+        phase: 'cleanup'
+      });
+    };
+  }, []);
+
   return (
-    <AppProvider i18n={enTranslations}>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} /> {/* Redirect root to dashboard */}
-          <Route path="/dashboard" element={<Dashboard />} />
+    <ErrorBoundary componentName="AppRoot">
+      <AppProvider i18n={enTranslations}>
+        <Layout>
+          <ErrorBoundary componentName="AppRoutes">
+            <Routes>
+              <Route path="/" element={<Dashboard />} /> {/* Redirect root to dashboard */}
+              <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Cin7 Core Modules */}
-          <Route path="/sales" element={<SalesOrders />} />
-          <Route path="/sales/orders/:orderId" element={<OrderDetail />} />
-          <Route path="/inventory" element={<ProductListing />} /> {/* Reuse product listing */}
-          <Route path="/inventory/:id" element={<InventoryDetail />} />
-          <Route path="/products" element={<ProductListing />} /> {/* Reuse product listing */}
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/customers" element={<CustomerManagement />} />
-          <Route path="/customers/:customerId" element={<CustomerDetail />} />
-          <Route path="/reports" element={<Dashboard />} /> {/* Reuse dashboard temporarily */}
-          <Route path="/settings" element={<FormsDemo />} /> {/* Reuse forms demo temporarily */}
+              {/* Monitoring & Debugging Routes */}
+              <Route path="/debug/dashboard" element={<ErrorDashboard />} />
 
-          {/* Legacy demo routes - keep for development */}
-          <Route path="/demo" element={<Home />} />
-          <Route path="/demo/product-listing" element={<ProductListing />} />
-          <Route path="/demo/product-detail" element={<ProductDetail />} />
-        </Routes>
-      </Layout>
-    </AppProvider>
+              {/* Cin7 Core Modules */}
+              <Route path="/sales" element={<SalesOrders />} />
+              <Route path="/sales/orders/:orderId" element={<OrderDetail />} />
+              <Route path="/inventory" element={<ProductListing />} /> {/* Reuse product listing */}
+              <Route path="/inventory/:id" element={<InventoryDetail />} />
+              <Route path="/products" element={<ProductListing />} /> {/* Reuse product listing */}
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/customers" element={<CustomerManagement />} />
+              <Route path="/customers/:customerId" element={<CustomerDetail />} />
+              <Route path="/reports" element={<Dashboard />} /> {/* Reuse dashboard temporarily */}
+              <Route path="/settings" element={<FormsDemo />} /> {/* Reuse forms demo temporarily */}
+
+              {/* Legacy demo routes - keep for development */}
+              <Route path="/demo" element={<Home />} />
+              <Route path="/demo/product-listing" element={<ProductListing />} />
+              <Route path="/demo/product-detail" element={<ProductDetail />} />
+            </Routes>
+          </ErrorBoundary>
+        </Layout>
+
+        {/* Development Console (only in development) */}
+        {process.env.NODE_ENV === 'development' && (
+          <React.Suspense fallback={null}>
+            {React.createElement(
+              React.lazy(() => import('./services/DevConsole').then(mod => ({
+                default: mod.DevConsoleUI
+              })))
+            )}
+          </React.Suspense>
+        )}
+      </AppProvider>
+    </ErrorBoundary>
   )
 }
 
