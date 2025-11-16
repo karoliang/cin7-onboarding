@@ -16,6 +16,7 @@ import {
   DropZone,
   Grid,
   Divider,
+  Icon,
 } from '@shopify/polaris'
 import {
   ImportIcon,
@@ -23,7 +24,7 @@ import {
   NoteIcon,
   CheckIcon,
   XCircleIcon,
-  AlertIcon,
+  AlertCircleIcon,
 } from '@shopify/polaris-icons'
 
 const InventoryImportExport = ({ onClose, onImport, onExport }) => {
@@ -253,7 +254,7 @@ const InventoryImportExport = ({ onClose, onImport, onExport }) => {
                     borderRadius: 'var(--p-border-radius-200)'
                   }}>
                     <InlineStack gap="200">
-                      <Icon source={AlertIcon} tone="critical" />
+                      <Icon source={AlertCircleIcon} tone="critical" />
                       <Text variant="bodySm">
                         Row {error.row}: {error.field} - {error.message}
                       </Text>

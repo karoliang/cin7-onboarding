@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Card,
   Text,
   Checkbox,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
@@ -13,14 +13,15 @@ import {
   Divider
 } from '@shopify/polaris'
 import {
-  ChartBarIcon,
-  TrendingUpIcon,
-  DollarCircleIcon,
+  ChartVerticalIcon,
+  ArrowUpIcon,
+  CashDollarIcon,
   PackageIcon,
-  CustomersIcon,
+  PersonIcon,
+  CheckCircleIcon,
   ClockIcon,
-  AlertIcon,
-  BuildingIcon
+  AlertCircleIcon,
+  StoreIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../../contexts/OnboardingContext'
@@ -32,7 +33,7 @@ const REPORT_TEMPLATES = [
     description: 'Track sales performance, trends, and revenue metrics',
     category: 'sales',
     frequency: 'daily',
-    icon: TrendingUpIcon,
+    icon: ArrowUpIcon,
     essential: true
   },
   {
@@ -50,7 +51,7 @@ const REPORT_TEMPLATES = [
     description: 'Daily report of products needing reordering',
     category: 'inventory',
     frequency: 'daily',
-    icon: AlertIcon,
+    icon: AlertCircleIcon,
     essential: true
   },
   {
@@ -59,7 +60,7 @@ const REPORT_TEMPLATES = [
     description: 'Customer behavior, segmentation, and lifetime value',
     category: 'customers',
     frequency: 'weekly',
-    icon: CustomersIcon,
+    icon: PersonIcon,
     essential: false
   },
   {
@@ -68,7 +69,7 @@ const REPORT_TEMPLATES = [
     description: 'Revenue, costs, and profit analysis',
     category: 'financial',
     frequency: 'monthly',
-    icon: DollarCircleIcon,
+    icon: CashDollarIcon,
     essential: false
   },
   {
@@ -77,7 +78,7 @@ const REPORT_TEMPLATES = [
     description: 'Top performing products and categories',
     category: 'sales',
     frequency: 'weekly',
-    icon: TrendingUpIcon,
+    icon: ArrowUpIcon,
     essential: false
   },
   {
@@ -95,7 +96,7 @@ const REPORT_TEMPLATES = [
     description: 'Supplier reliability, costs, and delivery times',
     category: 'procurement',
     frequency: 'monthly',
-    icon: BuildingIcon,
+    icon: StoreIcon,
     essential: false
   }
 ]
@@ -176,10 +177,10 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
   }
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Set Up Your Reports
             </Text>
@@ -192,14 +193,14 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                 Reports will be automatically generated based on your data and can be accessed anytime from the dashboard.
               </Text>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Essential Reports */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Essential Reports
             </Text>
@@ -221,26 +222,26 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                     cursor="pointer"
                     onClick={() => handleReportToggle(report.id)}
                   >
-                    <VerticalStack gap="300">
-                      <HorizontalStack align="space-between">
-                        <HorizontalStack gap="200">
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between">
+                        <InlineStack gap="200">
                           <Icon source={report.icon} size="small" />
                           <Text variant="bodySm" fontWeight="medium">
                             {report.name}
                           </Text>
-                        </HorizontalStack>
+                        </InlineStack>
                         <Checkbox
                           label=""
                           checked={isSelected}
                           onChange={() => {}}
                         />
-                      </HorizontalStack>
+                      </InlineStack>
 
                       <Text variant="bodyXs" tone="subdued">
                         {report.description}
                       </Text>
 
-                      <HorizontalStack gap="200" wrap>
+                      <InlineStack gap="200" wrap>
                         <Badge size="small" tone={getCategoryColor(report.category)}>
                           {report.category}
                         </Badge>
@@ -252,20 +253,20 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                             Selected
                           </Badge>
                         )}
-                      </HorizontalStack>
-                    </VerticalStack>
+                      </InlineStack>
+                    </BlockStack>
                   </Card>
                 )
               })}
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Optional Reports */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Optional Reports
             </Text>
@@ -287,26 +288,26 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                     cursor="pointer"
                     onClick={() => handleReportToggle(report.id)}
                   >
-                    <VerticalStack gap="300">
-                      <HorizontalStack align="space-between">
-                        <HorizontalStack gap="200">
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between">
+                        <InlineStack gap="200">
                           <Icon source={report.icon} size="small" />
                           <Text variant="bodySm" fontWeight="medium">
                             {report.name}
                           </Text>
-                        </HorizontalStack>
+                        </InlineStack>
                         <Checkbox
                           label=""
                           checked={isSelected}
                           onChange={() => {}}
                         />
-                      </HorizontalStack>
+                      </InlineStack>
 
                       <Text variant="bodyXs" tone="subdued">
                         {report.description}
                       </Text>
 
-                      <HorizontalStack gap="200" wrap>
+                      <InlineStack gap="200" wrap>
                         <Badge size="small" tone={getCategoryColor(report.category)}>
                           {report.category}
                         </Badge>
@@ -318,30 +319,30 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                             Selected
                           </Badge>
                         )}
-                      </HorizontalStack>
-                    </VerticalStack>
+                      </InlineStack>
+                    </BlockStack>
                   </Card>
                 )
               })}
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Report Settings */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Report Preferences
             </Text>
 
             <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-              <VerticalStack gap="300">
+              <BlockStack gap="300">
                 <Text variant="bodySm" fontWeight="medium">
                   How often would you like to receive automated reports?
                 </Text>
-                <HorizontalStack gap="200">
+                <InlineStack gap="200">
                   {['daily', 'weekly', 'monthly'].map((frequency) => (
                     <Badge
                       key={frequency}
@@ -353,30 +354,30 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                       {frequency.charAt(0).toUpperCase() + frequency.slice(1)}
                     </Badge>
                   ))}
-                </HorizontalStack>
-              </VerticalStack>
+                </InlineStack>
+              </BlockStack>
             </Box>
 
             <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Text variant="bodySm" tone="subdued">
                   <strong>Note:</strong> You can always access reports manually from the dashboard, regardless of the automated delivery schedule.
                 </Text>
-              </VerticalStack>
+              </BlockStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Summary */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Report Configuration Summary
             </Text>
 
-            <HorizontalStack gap="400">
+            <InlineStack gap="400">
               <Box>
                 <Text variant="bodySm" tone="subdued">Selected Reports:</Text>
                 <Text variant="headingLg">{selectedReports.length}</Text>
@@ -393,33 +394,33 @@ const ReportsStep = ({ onValidationChange, onSave }) => {
                   ))].length}
                 </Text>
               </Box>
-            </HorizontalStack>
+            </InlineStack>
 
             {selectedReports.length > 0 && (
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Text variant="bodySm" fontWeight="medium">
                   Reports to be configured:
                 </Text>
-                <VerticalStack gap="100">
+                <BlockStack gap="100">
                   {selectedReports.map((reportId) => {
                     const report = REPORT_TEMPLATES.find(r => r.id === reportId)
                     return report ? (
-                      <HorizontalStack key={reportId} gap="200">
+                      <InlineStack key={reportId} gap="200">
                         <Icon source={CheckCircleIcon} size="small" tone="success" />
                         <Text variant="bodySm">{report.name}</Text>
                         <Badge size="small" tone={getCategoryColor(report.category)}>
                           {report.category}
                         </Badge>
-                      </HorizontalStack>
+                      </InlineStack>
                     ) : null
                   })}
-                </VerticalStack>
-              </VerticalStack>
+                </BlockStack>
+              </BlockStack>
             )}
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

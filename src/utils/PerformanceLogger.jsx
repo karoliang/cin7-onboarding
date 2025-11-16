@@ -413,7 +413,7 @@ class PerformanceLogger {
   }
 
   isDebugMode() {
-    return process.env.NODE_ENV === 'development';
+    return (typeof process !== 'undefined' && process.env?.NODE_ENV) === 'development';
   }
 
   destroy() {

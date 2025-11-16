@@ -494,7 +494,7 @@ function onboardingReducer(state, action) {
 }
 
 // Create the context
-const OnboardingContext = createContext<OnboardingContextType | undefined>(undefined)
+const OnboardingContext = createContext(undefined)
 
 // Provider component
 export function OnboardingProvider({ children }) {

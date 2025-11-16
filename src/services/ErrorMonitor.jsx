@@ -8,8 +8,8 @@ class ErrorMonitor {
   constructor() {
     this.config = {
       enabled: true,
-      environment: process.env.NODE_ENV || 'development',
-      debugMode: process.env.NODE_ENV === 'development',
+      environment: (typeof process !== 'undefined' && process.env?.NODE_ENV) || 'development',
+      debugMode: (typeof process !== 'undefined' && process.env?.NODE_ENV) === 'development',
       maxErrors: 100,
       maxMetrics: 1000,
       reportingInterval: 30000,
@@ -552,7 +552,7 @@ class ErrorMonitor {
       url: typeof window !== 'undefined' ? window.location.href : 'unknown',
       timestamp: Date.now(),
       sessionId: this.sessionId,
-      buildVersion: process.env.REACT_APP_VERSION || '1.0.0',
+      buildVersion: (typeof process !== 'undefined' && process.env?.REACT_APP_VERSION) || '1.0.0',
       environment: this.config.environment,
       deviceInfo: {
         screen: `${screen.width}x${screen.height}`,

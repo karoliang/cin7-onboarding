@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Card,
-  PageLayout,
+  Layout,
   Text,
   Button,
   Badge,
@@ -316,7 +316,7 @@ const ErrorDashboard = () => {
                 <Text>Dev Console: Available</Text>
               </InlineStack>
               <InlineStack gap="200">
-                <Badge status="info">Environment: {process.env.NODE_ENV}</Badge>
+                <Badge status="info">Environment: {(typeof process !== 'undefined' && process.env?.NODE_ENV) || 'development'}</Badge>
               </InlineStack>
             </BlockStack>
           </BlockStack>
@@ -471,10 +471,7 @@ const ErrorDashboard = () => {
   );
 
   return (
-    <PageLayout
-      title="Error & Performance Dashboard"
-      subtitle="Monitor and analyze application errors and performance metrics"
-    >
+    <Layout>
       <BlockStack gap="400">
         {errorStats.critical > 0 && (
           <Banner
@@ -514,7 +511,7 @@ const ErrorDashboard = () => {
           </div>
         </Tabs>
       </BlockStack>
-    </PageLayout>
+    </Layout>
   );
 };
 

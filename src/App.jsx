@@ -32,11 +32,11 @@ function App() {
     // Initialize monitoring systems
     errorMonitor.log('info', 'Cin7 Core Application starting', {
       version: '1.0.0',
-      environment: process.env.NODE_ENV
+      environment: (typeof process !== 'undefined' && process.env?.NODE_ENV) || 'development'
     });
 
     // Initialize DevConsole in development
-    if (process.env.NODE_ENV === 'development') {
+    if ((typeof process !== 'undefined' && process.env?.NODE_ENV) === 'development') {
       devConsole.initialize();
     }
 
@@ -98,7 +98,7 @@ function App() {
           </Routes>
 
           {/* Development Console (only in development) */}
-          {process.env.NODE_ENV === 'development' && (
+          {(typeof process !== 'undefined' && process.env?.NODE_ENV) === 'development' && (
             <React.Suspense fallback={null}>
               {React.createElement(
                 React.lazy(() => import('./services/DevConsole').then(mod => ({

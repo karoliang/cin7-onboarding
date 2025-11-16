@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { Card, PageLayout, Text, Button, Banner, InlineStack, BlockStack } from '@shopify/polaris';
+import { Card, Layout, Text, Button, Banner, InlineStack, BlockStack } from '@shopify/polaris';
 import { ViewIcon, RefreshIcon, HomeIcon } from '@shopify/polaris-icons';
 import errorMonitor from '../services/ErrorMonitor';
 
@@ -62,7 +62,7 @@ class ErrorBoundary extends Component {
     }
 
     // In development, expose more details to the console
-    if (process.env.NODE_ENV === 'development') {
+    if ((typeof process !== 'undefined' && process.env?.NODE_ENV) === 'development') {
       console.group(`🔥 Error Boundary - ${this.props.componentName || 'Component'}`);
       console.error('Error:', error);
       console.error('Error Info:', errorInfo);
@@ -158,7 +158,7 @@ class ErrorBoundary extends Component {
     const retryAttempts = `${retryCount}/${retryLimit}`;
 
     return (
-      <PageLayout>
+      <Layout>
         <div style={{ padding: '2rem' }}>
           <Card>
             <BlockStack gap="400">
@@ -291,7 +291,7 @@ class ErrorBoundary extends Component {
             </BlockStack>
           </Card>
         </div>
-      </PageLayout>
+      </Layout>
     );
   }
 

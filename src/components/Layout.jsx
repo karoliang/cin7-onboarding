@@ -22,7 +22,7 @@ import { useOnboarding, onboardingSteps } from '../contexts/OnboardingContext'
 const Layout = ({ children }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const isDevelopment = process.env.NODE_ENV === 'development'
+  const isDevelopment = (typeof process !== 'undefined' && process.env?.NODE_ENV) === 'development'
   const { state: onboardingState } = useOnboarding()
   // const { actions: nolanActions } = useNolan()
 

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Card,
   Text,
   Button,
   Checkbox,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
@@ -18,7 +18,8 @@ import {
   CreditCardIcon,
   DeliveryIcon,
   ArchiveIcon,
-  MobileIcon
+  MobileIcon,
+  CheckCircleIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../../contexts/OnboardingContext'
@@ -120,10 +121,10 @@ const IntegrationsStep = ({ onValidationChange, onSave }) => {
   }, [onValidationChange])
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Connect Your Tools
             </Text>
@@ -136,20 +137,20 @@ const IntegrationsStep = ({ onValidationChange, onSave }) => {
                 Don't worry if you don't see your favorite tool here - we support many more integrations and can set up custom connections as needed.
               </Text>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {INTEGRATION_OPTIONS.map((category) => (
         <Card key={category.category}>
           <Box padding="500">
-            <VerticalStack gap="400">
-              <HorizontalStack gap="300">
+            <BlockStack gap="400">
+              <InlineStack gap="300">
                 <Icon source={category.icon} size="medium" />
                 <Text variant="headingMd" as="h2">
                   {category.category}
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
               <Grid columns={{ xs: 1, sm: 2, md: 3 }}>
                 {category.integrations.map((integration) => {
@@ -165,8 +166,8 @@ const IntegrationsStep = ({ onValidationChange, onSave }) => {
                       cursor="pointer"
                       onClick={() => handleIntegrationToggle(integration.id)}
                     >
-                      <VerticalStack gap="300">
-                        <HorizontalStack align="space-between">
+                      <BlockStack gap="300">
+                        <InlineStack align="space-between">
                           <Text variant="bodySm" fontWeight="medium">
                             {integration.name}
                           </Text>
@@ -175,7 +176,7 @@ const IntegrationsStep = ({ onValidationChange, onSave }) => {
                             checked={isSelected}
                             onChange={() => {}}
                           />
-                        </HorizontalStack>
+                        </InlineStack>
 
                         <Text variant="bodyXs" tone="subdued">
                           {integration.description}
@@ -186,48 +187,48 @@ const IntegrationsStep = ({ onValidationChange, onSave }) => {
                             Will Connect
                           </Badge>
                         )}
-                      </VerticalStack>
+                      </BlockStack>
                     </Card>
                   )
                 })}
               </Grid>
-            </VerticalStack>
+            </BlockStack>
           </Box>
         </Card>
       ))}
 
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Selected Integrations ({selectedIntegrations.length})
             </Text>
 
             {selectedIntegrations.length > 0 ? (
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 {selectedIntegrations.map((integrationId) => {
                   const integration = INTEGRATION_OPTIONS
                     .flatMap(cat => cat.integrations)
                     .find(i => i.id === integrationId)
 
                   return integration ? (
-                    <HorizontalStack key={integrationId} gap="200">
+                    <InlineStack key={integrationId} gap="200">
                       <Icon source={CheckCircleIcon} size="small" tone="success" />
                       <Text variant="bodySm">{integration.name}</Text>
                       <Badge size="small" tone="info">Setup Later</Badge>
-                    </HorizontalStack>
+                    </InlineStack>
                   ) : null
                 })}
-              </VerticalStack>
+              </BlockStack>
             ) : (
               <Text variant="bodySm" tone="subdued">
                 No integrations selected. You can always add them later from the settings.
               </Text>
             )}
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

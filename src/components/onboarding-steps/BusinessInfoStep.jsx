@@ -6,17 +6,17 @@ import {
   Select,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
-  FormLayout
+  FormLayout,
+  Box
 } from '@shopify/polaris'
 import {
-  BusinessIcon,
-  UserIcon,
+  StoreIcon,
+  PersonIcon,
   EmailIcon,
-  PhoneIcon,
-  BuildingIcon
+  PhoneIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../../contexts/OnboardingContext'
@@ -103,11 +103,11 @@ const BusinessInfoStep = ({ onValidationChange, onSave }) => {
   ]
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Company Information */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Tell us about your business
             </Text>
@@ -150,14 +150,14 @@ const BusinessInfoStep = ({ onValidationChange, onSave }) => {
                 />
               </Grid>
             </FormLayout>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Contact Information */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Your contact information
             </Text>
@@ -206,14 +206,14 @@ const BusinessInfoStep = ({ onValidationChange, onSave }) => {
                 />
               </Grid>
             </FormLayout>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Current Systems */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Current systems (optional)
             </Text>
@@ -230,14 +230,14 @@ const BusinessInfoStep = ({ onValidationChange, onSave }) => {
                 multiline={3}
               />
             </FormLayout>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Business Goals */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What are you hoping to achieve?
             </Text>
@@ -262,7 +262,7 @@ const BusinessInfoStep = ({ onValidationChange, onSave }) => {
                 multiline={3}
               />
             </FormLayout>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
@@ -275,7 +275,7 @@ const BusinessInfoStep = ({ onValidationChange, onSave }) => {
           </Text>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 
