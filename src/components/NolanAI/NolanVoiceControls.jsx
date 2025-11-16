@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {
   Button,
-  Stack,
+  BlockStack,
+  InlineStack,
   Text,
   Icon,
   ProgressBar,
@@ -208,14 +209,14 @@ const NolanVoiceControls = ({
       border: '1px solid #e1e3e5',
       borderRadius: '8px'
     }}>
-      <Stack vertical spacing="tight">
+      <BlockStack gap="200">
         {/* Main voice controls */}
-        <Stack distribution="equalSpacing" alignment="center">
+        <InlineStack gap="400" align="space-between">
           <Text variant="bodySm" fontWeight="500">
             Voice Control
           </Text>
 
-          <Stack spacing="tight">
+          <InlineStack gap="200">
             {/* Listening toggle */}
             <Button
               size="small"
@@ -234,14 +235,14 @@ const NolanVoiceControls = ({
               onClick={() => setShowSettings(!showSettings)}
               pressed={showSettings}
             />
-          </Stack>
-        </Stack>
+          </InlineStack>
+        </BlockStack>
 
         {/* Status indicators */}
-        <Stack spacing="tight" wrap>
+        <InlineStack gap="200" wrap={true}>
           {isListening && (
             <Badge status="info" tone="attention">
-              <Stack spacing="tight" alignment="center">
+              <InlineStack gap="200" align="center">
                 <div style={{
                   width: '8px',
                   height: '8px',
@@ -256,13 +257,13 @@ const NolanVoiceControls = ({
 
           {isSpeaking && (
             <Badge status="info">
-              <Stack spacing="tight" alignment="center">
+              <InlineStack gap="200" align="center">
                 <Icon source={MeasurementVolumeIcon} />
                 <span>Speaking</span>
-              </Stack>
+              </InlineStack>
             </Badge>
           )}
-        </Stack>
+        </InlineStack>
 
         {/* Voice settings panel */}
         {showSettings && (
@@ -273,7 +274,7 @@ const NolanVoiceControls = ({
             border: '1px solid #e1e3e5',
             borderRadius: '6px'
           }}>
-            <Stack vertical spacing="tight">
+            <BlockStack gap="200">
               <Text variant="bodySm" fontWeight="500">
                 Voice Settings
               </Text>
@@ -345,7 +346,7 @@ const NolanVoiceControls = ({
               >
                 Test Voice
               </Button>
-            </Stack>
+            </BlockStack>
           </div>
         )}
 
@@ -357,7 +358,7 @@ const NolanVoiceControls = ({
         }}>
           <strong>Voice commands:</strong> Try saying "help", "explain inventory", "what's next", or "show me reports"
         </div>
-      </Stack>
+      </BlockStack>
 
       {/* Pulse animation */}
       <style jsx>{`

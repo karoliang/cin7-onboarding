@@ -9,9 +9,8 @@ import {
   ProgressBar,
   Badge,
   Modal,
-  Stack,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Divider,
   Bleed,
   Box,
@@ -319,17 +318,17 @@ const OnboardingWizard = ({
         <Layout.Section>
           <Card>
             <Box padding="400">
-              <VerticalStack gap="400">
+              <BlockStack gap="400">
                 {/* Progress Bar */}
                 <div>
-                  <HorizontalStack align="space-between" gap="200">
+                  <InlineStack align="space-between" gap="200">
                     <Text variant="headingSm" as="h3">
                       Overall Progress
                     </Text>
                     <Text variant="headingSm" as="span">
                       {progressPercentage}%
                     </Text>
-                  </HorizontalStack>
+                  </InlineStack>
                   <ProgressBar
                     progress={progressPercentage}
                     size="small"
@@ -338,7 +337,7 @@ const OnboardingWizard = ({
                 </div>
 
                 {/* Step Indicators */}
-                <HorizontalStack gap="200">
+                <InlineStack gap="200">
                   {onboardingSteps.map((step, index) => (
                     <Box key={step.id} position="relative">
                       {getStepIndicator(index)}
@@ -355,11 +354,11 @@ const OnboardingWizard = ({
                       )}
                     </Box>
                   ))}
-                </HorizontalStack>
+                </InlineStack>
 
                 {/* Current Step Info */}
                 <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-                  <HorizontalStack gap="200">
+                  <InlineStack gap="200">
                     <Icon source={ClockIcon} tone="subdued" />
                     <Text variant="bodySm" tone="subdued">
                       {currentStepData.description}
@@ -370,12 +369,12 @@ const OnboardingWizard = ({
                     <Text variant="bodySm" tone="subdued">
                       ~{currentStepData.estimatedDuration} min
                     </Text>
-                  </HorizontalStack>
+                  </InlineStack>
                 </Box>
 
                 {/* Milestone Progress */}
                 <OnboardingProgress compact />
-              </VerticalStack>
+              </BlockStack>
             </Box>
           </Card>
         </Layout.Section>
@@ -384,7 +383,7 @@ const OnboardingWizard = ({
         <Layout.Section>
           <Card>
             <Box padding="600" minHeight="500px">
-              <VerticalStack gap="600">
+              <BlockStack gap="600">
                 {/* Error Display */}
                 {!currentStepValid && (
                   <InlineError
@@ -399,7 +398,7 @@ const OnboardingWizard = ({
                 </div>
 
                 {/* Navigation Buttons */}
-                <HorizontalStack align="space-between" gap="200">
+                <InlineStack align="space-between" gap="200">
                   <ButtonGroup>
                     <Button
                       icon={ChevronLeftIcon}
@@ -424,25 +423,25 @@ const OnboardingWizard = ({
                   >
                     {state.currentStep === onboardingSteps.length - 1 ? 'Complete' : 'Next'}
                   </Button>
-                </HorizontalStack>
-              </VerticalStack>
+                </InlineStack>
+              </BlockStack>
             </Box>
           </Card>
         </Layout.Section>
 
         {/* Sidebar */}
         <Layout.Section variant="oneThird">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             {/* Quick Tips */}
             <Card>
               <Box padding="400">
-                <VerticalStack gap="300">
-                  <HorizontalStack gap="200">
+                <BlockStack gap="300">
+                  <InlineStack gap="200">
                     <Icon source={InfoIcon} tone="primary" />
                     <Text variant="headingSm" as="h3">
                       Quick Tips
                     </Text>
-                  </HorizontalStack>
+                  </InlineStack>
                   <Text variant="bodySm" as="p">
                     {currentStepData.id === 'welcome' &&
                       "Take your time to provide accurate information. This helps us tailor Cin7 Core to your specific needs."}
@@ -461,21 +460,21 @@ const OnboardingWizard = ({
                     {currentStepData.id === 'review' &&
                       "Review your configuration and make any final adjustments before completing setup."}
                   </Text>
-                </VerticalStack>
+                </BlockStack>
               </Box>
             </Card>
 
             {/* Help Section */}
             <Card>
               <Box padding="400">
-                <VerticalStack gap="300">
-                  <HorizontalStack gap="200">
+                <BlockStack gap="300">
+                  <InlineStack gap="200">
                     <Icon source={PlusIcon} tone="primary" />
                     <Text variant="headingSm" as="h3">
                       Need Help?
                     </Text>
-                  </HorizontalStack>
-                  <VerticalStack gap="200">
+                  </InlineStack>
+                  <BlockStack gap="200">
                     <Button variant="plain" onClick={() => window.open('#', '_blank')}>
                       Documentation
                     </Button>
@@ -485,8 +484,8 @@ const OnboardingWizard = ({
                     <Button variant="plain" onClick={() => window.open('#', '_blank')}>
                       Contact Support
                     </Button>
-                  </VerticalStack>
-                </VerticalStack>
+                  </BlockStack>
+                </BlockStack>
               </Box>
             </Card>
 
@@ -494,28 +493,28 @@ const OnboardingWizard = ({
             {state.progress.currentMilestone.rewards.length > 0 && (
               <Card>
                 <Box padding="400">
-                  <VerticalStack gap="300">
-                    <HorizontalStack gap="200">
+                  <BlockStack gap="300">
+                    <InlineStack gap="200">
                       <Icon source={StarIcon} tone="warning" />
                       <Text variant="headingSm" as="h3">
                         Next Reward
                       </Text>
-                    </HorizontalStack>
+                    </InlineStack>
                     {state.progress.currentMilestone.rewards[0] && (
-                      <VerticalStack gap="100">
+                      <BlockStack gap="100">
                         <Text variant="bodySm" fontWeight="medium">
                           {state.progress.currentMilestone.rewards[0].name}
                         </Text>
                         <Text variant="bodySm" tone="subdued">
                           {state.progress.currentMilestone.rewards[0].description}
                         </Text>
-                      </VerticalStack>
+                      </BlockStack>
                     )}
-                  </VerticalStack>
+                  </BlockStack>
                 </Box>
               </Card>
             )}
-          </VerticalStack>
+          </BlockStack>
         </Layout.Section>
       </Layout>
 

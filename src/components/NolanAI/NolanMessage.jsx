@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
-  Stack,
+  BlockStack,
+  InlineStack,
   Text,
   Avatar,
   Button,
@@ -161,7 +162,7 @@ const NolanMessage = ({ message }) => {
             borderTopLeftRadius: '4px',
             border: '1px solid #e1e3e5'
           }}>
-            <Stack vertical spacing="tight">
+            <BlockStack gap="200">
               <div style={{
                 fontSize: '14px',
                 lineHeight: '1.5',
@@ -190,7 +191,7 @@ const NolanMessage = ({ message }) => {
                   )}
                 </div>
               )}
-            </Stack>
+            </BlockStack>
           </div>
 
           {/* Message footer with timestamp and actions */}
@@ -243,7 +244,7 @@ const NolanMessage = ({ message }) => {
               marginTop: '8px',
               padding: '0 4px'
             }}>
-              <Stack spacing="tight">
+              <InlineStack gap="200">
                 {message.suggestions.slice(0, 2).map((suggestion, index) => (
                   <div
                     key={index}
@@ -270,7 +271,7 @@ const NolanMessage = ({ message }) => {
                     {suggestion.text}
                   </div>
                 ))}
-              </Stack>
+              </InlineStack>
             </div>
           )}
         </div>

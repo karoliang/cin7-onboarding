@@ -3,7 +3,8 @@ import {
   Card,
   Button,
   Icon,
-  Stack,
+  BlockStack,
+  InlineStack,
   Badge,
   Text,
   Divider,
@@ -216,9 +217,9 @@ const NolanChatWidget = () => {
             backgroundColor: '#f8f9fa',
             borderBottom: '1px solid #e1e3e5'
           }}>
-            <Stack vertical spacing="tight">
+            <BlockStack gap="200">
               <Text variant="bodySm" as="p">Response Style:</Text>
-              <Stack>
+              <InlineStack gap="200">
                 <Button
                   size="small"
                   pressed={state.userPreferences.responseStyle === 'professional'}
@@ -240,10 +241,10 @@ const NolanChatWidget = () => {
                 >
                   Detailed
                 </Button>
-              </Stack>
+              </InlineStack>
 
               <div style={{ marginTop: '8px' }}>
-                <Stack spacing="tight">
+                <InlineStack gap="200">
                   <input
                     type="checkbox"
                     id="autoSuggestions"
@@ -253,9 +254,9 @@ const NolanChatWidget = () => {
                   <label htmlFor="autoSuggestions">
                     <Text variant="bodySm">Auto-suggestions</Text>
                   </label>
-                </Stack>
+                </InlineStack>
 
-                <Stack spacing="tight">
+                <InlineStack gap="200">
                   <input
                     type="checkbox"
                     id="proactiveHelp"
@@ -275,7 +276,7 @@ const NolanChatWidget = () => {
               >
                 Clear Conversation
               </Button>
-            </Stack>
+            </BlockStack>
           </div>
         )}
 
@@ -315,7 +316,7 @@ const NolanChatWidget = () => {
                       </Text>
                     </div>
                   ) : (
-                    <Stack vertical spacing="loose">
+                    <BlockStack gap="400">
                       {state.messages.map((message) => (
                         <NolanMessage
                           key={message.id}
@@ -372,7 +373,7 @@ const NolanChatWidget = () => {
                           </div>
                         </div>
                       )}
-                    </Stack>
+                    </BlockStack>
                   )}
                   <div ref={messagesEndRef} />
                 </div>

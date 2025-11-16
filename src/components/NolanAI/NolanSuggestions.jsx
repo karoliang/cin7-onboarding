@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Stack,
+  BlockStack,
   Button,
   Text,
   Icon,
@@ -105,7 +105,7 @@ const NolanSuggestions = ({ suggestions, onSuggestionClick }) => {
         Suggested actions:
       </Text>
 
-      <Stack vertical spacing="tight">
+      <BlockStack gap="200">
         {activeSuggestions.map((suggestion, index) => (
           <div
             key={index}
@@ -222,7 +222,7 @@ const NolanSuggestions = ({ suggestions, onSuggestionClick }) => {
             </button>
           </div>
         ))}
-      </Stack>
+      </BlockStack>
 
       {/* Quick action suggestions */}
       {activeSuggestions.length >= 3 && (

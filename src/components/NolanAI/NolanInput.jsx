@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import {
   TextField,
   Button,
-  Stack,
+  BlockStack,
+  InlineStack,
   Icon,
   Tooltip
 } from '@shopify/polaris'
@@ -126,7 +127,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
   return (
     <div style={{ position: 'relative' }}>
       <form onSubmit={handleSubmit}>
-        <Stack spacing="tight" vertical>
+        <BlockStack gap="200">
           {/* Quick suggestions (only show when empty) */}
           {message.length === 0 && (
             <div style={{
@@ -195,7 +196,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
             </div>
 
             {/* Action buttons */}
-            <Stack spacing="tight">
+            <InlineStack gap="200">
               {/* Attachment button */}
               <Tooltip content="Attach file">
                 <Button
@@ -243,7 +244,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
                   }}
                 />
               </Tooltip>
-            </Stack>
+            </InlineStack>
           </div>
 
           {/* Recording indicator */}
@@ -280,7 +281,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
               {message.length}/1000 characters
             </div>
           )}
-        </Stack>
+        </BlockStack>
       </form>
 
       {/* Hidden file input */}
