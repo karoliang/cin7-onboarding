@@ -82,11 +82,11 @@ const Layout = ({ children }) => {
         actions: [
           {
             items: [
-              { content: 'Start Onboarding', icon: PlusCircleIcon, onAction: () => console.log('Navigate to onboarding') },
+              { content: 'Start Onboarding', icon: HomeIcon, onAction: () => console.log('Navigate to onboarding') },
               { content: 'Settings', icon: SettingsIcon, onAction: () => console.log('Open settings') },
               ...(isDevelopment ? [
-                { content: 'Debug Dashboard', icon: AnalyticsIcon, onAction: () => window.location.href = '/debug/dashboard' },
-                { content: 'Export Debug Data', icon: AnalyticsIcon, onAction: () => {
+                { content: 'Debug Dashboard', icon: ViewIcon, onAction: () => window.location.href = '/debug/dashboard' },
+                { content: 'Export Debug Data', icon: ViewIcon, onAction: () => {
                   const errorMonitor = require('../services/ErrorMonitor').default;
                   errorMonitor.generateReport();
                 } }
