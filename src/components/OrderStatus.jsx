@@ -93,7 +93,7 @@ const OrderStatus = ({ status, showLabel = true, size = 'medium', editable = fal
         </Badge>
       )}
       <Icon
-        source={currentStatusConfig.icon}
+        source={currentStatusConfig.IconComponent}
         tone={currentStatusConfig.tone}
         accessibilityLabel={currentStatusConfig.description}
       />
@@ -187,7 +187,7 @@ export const PaymentStatus = ({ status, showLabel = true, size = 'medium', edita
         </Badge>
       )}
       <Icon
-        source={currentStatusConfig.icon}
+        source={currentStatusConfig.IconComponent}
         tone={currentStatusConfig.tone}
         accessibilityLabel={currentStatusConfig.description}
       />
@@ -261,7 +261,7 @@ export const FulfillmentStatus = ({ status, showLabel = true, size = 'medium', e
         </Badge>
       )}
       <Icon
-        source={currentStatusConfig.icon}
+        source={currentStatusConfig.IconComponent}
         tone={currentStatusConfig.tone}
         accessibilityLabel={currentStatusConfig.description}
       />
@@ -331,7 +331,7 @@ export const OrderStatusProgress = ({ currentStatus, onStatusClick }) => {
                   marginBottom: 'var(--p-space-2)'
                 }}>
                   <Icon
-                    source={status.icon}
+                    source={status.IconComponent}
                     tone={tone}
                   />
                 </div>

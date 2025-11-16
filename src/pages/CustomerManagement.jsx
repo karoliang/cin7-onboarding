@@ -12,8 +12,7 @@ import {
   Icon,
   DataTable,
   Pagination,
-  Filters,
-  ResourceList,
+    ResourceList,
   Avatar,
   InlineStack,
   BlockStack,
@@ -174,73 +173,7 @@ const CustomerManagement = () => {
     {label: 'Last order: Oldest first', value: 'LAST_ORDER_ASC'},
   ]
 
-  const statusFilters = [
-    {key: 'active', label: 'Active'},
-    {key: 'inactive', label: 'Inactive'},
-    {key: 'prospect', label: 'Prospect'},
-    {key: 'blocked', label: 'Blocked'},
-  ]
-
-  const tierFilters = [
-    {key: 'standard', label: 'Standard'},
-    {key: 'premium', label: 'Premium'},
-    {key: 'vip', label: 'VIP'},
-    {key: 'wholesale', label: 'Wholesale'},
-  ]
-
-  const segmentFilters = [
-    {key: 'new', label: 'New'},
-    {key: 'repeat', label: 'Repeat'},
-    {key: 'loyal', label: 'Loyal'},
-    {key: 'vip', label: 'VIP'},
-    {key: 'at_risk', label: 'At Risk'},
-    {key: 'churned', label: 'Churned'},
-  ]
-
-  const filters = [
-    {
-      key: 'status',
-      label: 'Status',
-      filter: (
-        <Select
-          label="Status"
-          options={statusFilters}
-          onChange={() => {}}
-          value=""
-          labelHidden
-        />
-      ),
-    },
-    {
-      key: 'tier',
-      label: 'Customer Tier',
-      filter: (
-        <Select
-          label="Customer Tier"
-          options={tierFilters}
-          onChange={() => {}}
-          value=""
-          labelHidden
-        />
-      ),
-    },
-    {
-      key: 'segment',
-      label: 'Segment',
-      filter: (
-        <Select
-          label="Segment"
-          options={segmentFilters}
-          onChange={() => {}}
-          value=""
-          labelHidden
-        />
-      ),
-    },
-  ]
-
-  const appliedFilters = []
-
+  
   const bulkActions = [
     {
       content: 'Export customers',
@@ -263,10 +196,7 @@ const CustomerManagement = () => {
     }
   ]
 
-  const handleFiltersChange = (filters) => {
-    console.log('Filters changed:', filters)
-  }
-
+  
   const handleSearchChange = (value) => {
     setQueryValue(value)
   }
@@ -520,20 +450,13 @@ const CustomerManagement = () => {
                     label="Sort by"
                     labelHidden
                   />
+                  <Button
+                    icon={FilterIcon}
+                    onClick={() => console.log('Filters clicked')}
+                  >
+                    Filter
+                  </Button>
                 </InlineStack>
-
-                <Filters
-                  queryValue={queryValue}
-                  filters={filters}
-                  appliedFilters={appliedFilters}
-                  onFiltersChange={handleFiltersChange}
-                  onQueryChange={handleSearchChange}
-                  onQueryBlur={handleSearchBlur}
-                  filterAction={{
-                    label: 'Filter',
-                    icon: FilterIcon,
-                  }}
-                />
               </BlockStack>
             </div>
           </Card>
