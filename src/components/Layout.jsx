@@ -16,30 +16,30 @@ import {
 } from '@shopify/polaris-icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useOnboarding, onboardingSteps } from '../contexts/OnboardingContext'
-import { useNolan } from '../contexts/NolanContext'
-import NolanChatWidget from './NolanAI/NolanChatWidget'
+// import { useNolan } from '../contexts/NolanContext'
+// import NolanChatWidget from './NolanAI/NolanChatWidget'
 
 const Layout = ({ children }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const isDevelopment = process.env.NODE_ENV === 'development'
   const { state: onboardingState } = useOnboarding()
-  const { actions: nolanActions } = useNolan()
+  // const { actions: nolanActions } = useNolan()
 
   // Update Nolan AI context based on current page and onboarding state
-  useEffect(() => {
-    const onboardingStep = location.pathname === '/onboarding'
-      ? onboardingSteps[onboardingState.currentStep]?.id
-      : null
+  // useEffect(() => {
+  //   const onboardingStep = location.pathname === '/onboarding'
+  //     ? onboardingSteps[onboardingState.currentStep]?.id
+  //     : null
 
-    nolanActions.updateContext({
-      currentPage: location.pathname,
-      onboardingStep,
-      userIndustry: onboardingState.businessInfo.industry,
-      businessSize: onboardingState.businessInfo.businessSize,
-      completedSteps: onboardingState.progress.completedSteps.map(step => step.id)
-    })
-  }, [location.pathname, onboardingState.currentStep, onboardingState.businessInfo, onboardingState.progress, nolanActions])
+  //   nolanActions.updateContext({
+  //     currentPage: location.pathname,
+  //     onboardingStep,
+  //     userIndustry: onboardingState.businessInfo.industry,
+  //     businessSize: onboardingState.businessInfo.businessSize,
+  //     completedSteps: onboardingState.progress.completedSteps.map(step => step.id)
+  //   })
+  // }, [location.pathname, onboardingState.currentStep, onboardingState.businessInfo, onboardingState.progress, nolanActions])
 
   const navigationItems = [
     {
@@ -145,7 +145,7 @@ const Layout = ({ children }) => {
       </Frame>
 
       {/* Nolan AI Chat Widget */}
-      <NolanChatWidget />
+      {/* <NolanChatWidget /> */}
     </>
   )
 }

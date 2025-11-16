@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { AppProvider } from '@shopify/polaris'
 import enTranslations from '@shopify/polaris/locales/en.json'
 import { OnboardingProvider } from './contexts/OnboardingContext'
-import { NolanProvider } from './contexts/NolanContext'
+// import { NolanProvider } from './contexts/NolanContext'
 import Layout from './components/Layout'
 import OnboardingWizard from './components/OnboardingWizard'
 import Home from './pages/Home'
@@ -58,7 +58,7 @@ function App() {
     <ErrorBoundary componentName="AppRoot">
       <AppProvider i18n={enTranslations}>
         <OnboardingProvider>
-          <NolanProvider>
+          {/* <NolanProvider> */}
           <Routes>
             {/* Onboarding Wizard */}
             <Route path="/onboarding" element={<OnboardingWizard />} />
@@ -107,7 +107,7 @@ function App() {
               )}
             </React.Suspense>
           )}
-          </NolanProvider>
+          {/* </NolanProvider> */}
         </OnboardingProvider>
       </AppProvider>
     </ErrorBoundary>

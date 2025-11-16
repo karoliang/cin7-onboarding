@@ -1,8 +1,8 @@
-import { knowledgeBase } from './knowledgeBase'
-import { contextAwareness } from './contextAwareness'
-import { personalityEngine } from './personalityEngine'
+import { knowledgeBase } from './knowledgeBase.js'
+import { contextAwareness } from './contextAwareness.js'
+import { personalityEngine } from './personalityEngine.js'
 
-export class NolanAIService {
+class NolanAIService {
   constructor() {
     this.isInitialized = false
     this.callbacks = {
@@ -353,5 +353,7 @@ export class NolanAIService {
     }
   }
 }
+
+export default NolanAIService
 
 export const NolanAIServiceInstance = new NolanAIService()
