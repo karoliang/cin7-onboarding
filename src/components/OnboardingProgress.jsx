@@ -38,7 +38,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'quick-starter',
     title: 'Quick Starter',
     description: 'Complete first 3 steps within 30 minutes',
-    icon: StarIcon,
+    IconComponent: StarIcon,
     category: 'setup',
     rarity: 'common',
     points: 10,
@@ -53,7 +53,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'industry-expert',
     title: 'Industry Expert',
     description: 'Complete all recommended features for your industry',
-    icon: StarIcon,
+    IconComponent: StarIcon,
     category: 'configuration',
     rarity: 'epic',
     points: 50,
@@ -67,7 +67,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'integration-master',
     title: 'Integration Master',
     description: 'Set up 3 or more integrations',
-    icon: AlertDiamondIcon,
+    IconComponent: AlertDiamondIcon,
     category: 'integration',
     rarity: 'rare',
     points: 30,
@@ -79,7 +79,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'workflow-wizard',
     title: 'Workflow Wizard',
     description: 'Create and configure 2 automated workflows',
-    icon: PlusIcon,
+    IconComponent: PlusIcon,
     category: 'configuration',
     rarity: 'rare',
     points: 35,
@@ -96,7 +96,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'data-driven',
     title: 'Data Driven',
     description: 'Set up 5 or more reports and dashboards',
-    icon: ChartVerticalIcon,
+    IconComponent: ChartVerticalIcon,
     category: 'exploration',
     rarity: 'common',
     points: 15,
@@ -113,7 +113,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'speed-demon',
     title: 'Speed Demon',
     description: 'Complete onboarding in under 45 minutes',
-    icon: StarIcon,
+    IconComponent: StarIcon,
     category: 'setup',
     rarity: 'legendary',
     points: 100,
@@ -125,7 +125,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'perfectionist',
     title: 'Perfectionist',
     description: 'Complete every single step without skipping',
-    icon: StarIcon,
+    IconComponent: StarIcon,
     category: 'setup',
     rarity: 'rare',
     points: 40,
@@ -141,7 +141,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'early-adopter',
     title: 'Early Adopter',
     description: 'Start onboarding within 24 hours of account creation',
-    icon: GiftCardIcon,
+    IconComponent: GiftCardIcon,
     category: 'setup',
     rarity: 'common',
     points: 20,
@@ -154,7 +154,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'explorer',
     title: 'Explorer',
     description: 'Try out the guided tour feature',
-    icon: SmileyHappyIcon,
+    IconComponent: SmileyHappyIcon,
     category: 'exploration',
     rarity: 'common',
     points: 10,
@@ -211,7 +211,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
           id: achievement.id,
           title: achievement.title,
           description: achievement.description,
-          icon: achievement.icon,
+          IconComponent: achievement.icon,
           unlockedAt: new Date().toISOString(),
           category: achievement.category,
           rarity: achievement.rarity,
@@ -443,7 +443,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                       const rarityConfig = getRarityConfig(achievement.rarity)
                       return (
                         <InlineStack key={index} gap="200">
-                          <Icon source={achievement.icon} size="small" tone="success" />
+                          <achievement.IconComponent size="small" tone="success" />
                           <Text variant="bodySm" fontWeight="medium">
                             {achievement.title}
                           </Text>
@@ -497,7 +497,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                         <BlockStack gap="200">
                           <Box>
                             {isUnlocked ? (
-                              <Icon source={achievement.icon} size="large" tone={rarityConfig.color} />
+                              <achievement.IconComponent size="large" tone={rarityConfig.color} />
                             ) : (
                               <Icon source={LockIcon} size="large" tone="subdued" />
                             )}

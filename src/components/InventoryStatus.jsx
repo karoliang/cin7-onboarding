@@ -72,8 +72,8 @@ const InventoryStatus = ({
     }
   }
 
-  const getStatusIcon = (icon) => {
-    return <Icon source={icon} tone={stockInfo.tone} />
+  const getStatusIcon = (IconComponent) => {
+    return <IconComponent tone={stockInfo.tone} />
   }
 
   const badgeContent = showText

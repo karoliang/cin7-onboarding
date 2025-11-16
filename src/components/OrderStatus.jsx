@@ -15,43 +15,43 @@ const OrderStatus = ({ status, showLabel = true, size = 'medium', editable = fal
     pending: {
       label: 'Pending',
       tone: 'warning',
-      icon: ClockIcon,
+      IconComponent: ClockIcon,
       description: 'Order is pending confirmation'
     },
     confirmed: {
       label: 'Confirmed',
       tone: 'info',
-      icon: CheckCircleIcon,
+      IconComponent: CheckCircleIcon,
       description: 'Order has been confirmed'
     },
     processing: {
       label: 'Processing',
       tone: 'attention',
-      icon: PackageIcon,
+      IconComponent: PackageIcon,
       description: 'Order is being processed'
     },
     shipped: {
       label: 'Shipped',
       tone: 'success',
-      icon: DeliveryIcon,
+      IconComponent: DeliveryIcon,
       description: 'Order has been shipped'
     },
     delivered: {
       label: 'Delivered',
       tone: 'success',
-      icon: CheckCircleIcon,
+      IconComponent: CheckCircleIcon,
       description: 'Order has been delivered'
     },
     cancelled: {
       label: 'Cancelled',
       tone: 'critical',
-      icon: XCircleIcon,
+      IconComponent: XCircleIcon,
       description: 'Order has been cancelled'
     },
     refunded: {
       label: 'Refunded',
       tone: 'critical',
-      icon: CashDollarIcon,
+      IconComponent: CashDollarIcon,
       description: 'Order has been refunded'
     }
   }
@@ -80,7 +80,7 @@ const OrderStatus = ({ status, showLabel = true, size = 'medium', editable = fal
           label="Order Status"
           labelHidden
         />
-        <Icon source={currentStatusConfig.icon} tone={currentStatusConfig.tone} />
+        <currentStatusConfig.IconComponent tone={currentStatusConfig.tone} />
       </InlineStack>
     )
   }
@@ -109,43 +109,43 @@ export const PaymentStatus = ({ status, showLabel = true, size = 'medium', edita
     pending: {
       label: 'Pending',
       tone: 'warning',
-      icon: ClockIcon,
+      IconComponent: ClockIcon,
       description: 'Payment is pending'
     },
     authorized: {
       label: 'Authorized',
       tone: 'info',
-      icon: CheckCircleIcon,
+      IconComponent: CheckCircleIcon,
       description: 'Payment has been authorized'
     },
     partially_paid: {
       label: 'Partially Paid',
       tone: 'attention',
-      icon: CashDollarIcon,
+      IconComponent: CashDollarIcon,
       description: 'Payment is partially complete'
     },
     paid: {
       label: 'Paid',
       tone: 'success',
-      icon: CashDollarIcon,
+      IconComponent: CashDollarIcon,
       description: 'Payment is complete'
     },
     partially_refunded: {
       label: 'Partially Refunded',
       tone: 'attention',
-      icon: CashDollarIcon,
+      IconComponent: CashDollarIcon,
       description: 'Payment is partially refunded'
     },
     refunded: {
       label: 'Refunded',
       tone: 'critical',
-      icon: CashDollarIcon,
+      IconComponent: CashDollarIcon,
       description: 'Payment has been refunded'
     },
     voided: {
       label: 'Voided',
       tone: 'critical',
-      icon: XCircleIcon,
+      IconComponent: XCircleIcon,
       description: 'Payment has been voided'
     }
   }
@@ -174,7 +174,7 @@ export const PaymentStatus = ({ status, showLabel = true, size = 'medium', edita
           label="Payment Status"
           labelHidden
         />
-        <Icon source={currentStatusConfig.icon} tone={currentStatusConfig.tone} />
+        <currentStatusConfig.IconComponent tone={currentStatusConfig.tone} />
       </InlineStack>
     )
   }
@@ -201,25 +201,25 @@ export const FulfillmentStatus = ({ status, showLabel = true, size = 'medium', e
     unfulfilled: {
       label: 'Unfulfilled',
       tone: 'warning',
-      icon: ClockIcon,
+      IconComponent: ClockIcon,
       description: 'Order has not been fulfilled yet'
     },
     partially_fulfilled: {
       label: 'Partially Fulfilled',
       tone: 'attention',
-      icon: PackageIcon,
+      IconComponent: PackageIcon,
       description: 'Order is partially fulfilled'
     },
     fulfilled: {
       label: 'Fulfilled',
       tone: 'success',
-      icon: CheckCircleIcon,
+      IconComponent: CheckCircleIcon,
       description: 'Order has been fulfilled'
     },
     restocked: {
       label: 'Restocked',
       tone: 'info',
-      icon: PackageIcon,
+      IconComponent: PackageIcon,
       description: 'Items have been restocked'
     }
   }
@@ -248,7 +248,7 @@ export const FulfillmentStatus = ({ status, showLabel = true, size = 'medium', e
           label="Fulfillment Status"
           labelHidden
         />
-        <Icon source={currentStatusConfig.icon} tone={currentStatusConfig.tone} />
+        <currentStatusConfig.IconComponent tone={currentStatusConfig.tone} />
       </InlineStack>
     )
   }
@@ -272,11 +272,11 @@ export const FulfillmentStatus = ({ status, showLabel = true, size = 'medium', e
 // Status Progress Tracker Component
 export const OrderStatusProgress = ({ currentStatus, onStatusClick }) => {
   const statusFlow = [
-    { key: 'pending', label: 'Pending', icon: ClockIcon },
-    { key: 'confirmed', label: 'Confirmed', icon: CheckCircleIcon },
-    { key: 'processing', label: 'Processing', icon: PackageIcon },
-    { key: 'shipped', label: 'Shipped', icon: DeliveryIcon },
-    { key: 'delivered', label: 'Delivered', icon: CheckCircleIcon }
+    { key: 'pending', label: 'Pending', IconComponent: ClockIcon },
+    { key: 'confirmed', label: 'Confirmed', IconComponent: CheckCircleIcon },
+    { key: 'processing', label: 'Processing', IconComponent: PackageIcon },
+    { key: 'shipped', label: 'Shipped', IconComponent: DeliveryIcon },
+    { key: 'delivered', label: 'Delivered', IconComponent: CheckCircleIcon }
   ]
 
   const currentStatusIndex = statusFlow.findIndex(status => status.key === currentStatus)
