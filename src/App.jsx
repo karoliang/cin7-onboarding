@@ -5,6 +5,7 @@ import enTranslations from '@shopify/polaris/locales/en.json'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
+import ReportsDashboard from './pages/ReportsDashboard'
 import ProductListing from './pages/ProductListing'
 import ProductDetail from './pages/ProductDetail'
 import InventoryDetail from './pages/InventoryDetail'
@@ -71,7 +72,7 @@ function App() {
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/customers" element={<CustomerManagement />} />
               <Route path="/customers/:customerId" element={<CustomerDetail />} />
-              <Route path="/reports" element={<Dashboard />} /> {/* Reuse dashboard temporarily */}
+              <Route path="/reports" element={<ReportsDashboard />} />
               <Route path="/settings" element={<FormsDemo />} /> {/* Reuse forms demo temporarily */}
 
               {/* Legacy demo routes - keep for development */}
