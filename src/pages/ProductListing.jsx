@@ -457,19 +457,7 @@ const ProductListing = () => {
     }).format(amount)
   }
 
-  const getIndexTableRows = () => {
-    return filteredProducts.map((product, index) => ({
-      id: product.id,
-      title: product.title,
-      sku: product.sku,
-      vendor: product.vendor,
-      inventory: product.inventory,
-      price: product.price,
-      type: product.type,
-      status: product.status,
-    }))
-  }
-
+  
   const tableHeadings = [
     { title: 'Product' },
     { title: 'SKU' },
@@ -642,60 +630,60 @@ const ProductListing = () => {
                 },
               ]}
             >
-              {getIndexTableRows().map(({ id, title, sku, inventory, price, status }, index) => (
+              {filteredProducts.map((product, index) => (
                 <IndexTable.Row
-                  id={id}
-                  key={id}
+                  id={product.id}
+                  key={product.id}
                   position={index}
-                  selected={selected.includes(id)}
+                  selected={selected.includes(product.id)}
                 >
                   <IndexTable.Cell>
                     <InlineStack gap="300" align="center">
                       <Thumbnail
                         source="https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg"
                         size="small"
-                        alt={title}
+                        alt={product.title}
                       />
                       <BlockStack gap="100">
                         <Text variant="bodyMd" fontWeight="semibold" as="span">
-                          {title}
+                          {product.title}
                         </Text>
                         <Text variant="bodySm" tone="subdued" as="span">
-                          SKU: {sku}
+                          SKU: {product.sku}
                         </Text>
                       </BlockStack>
                     </InlineStack>
                   </IndexTable.Cell>
                   <IndexTable.Cell>
-                    <Text variant="bodyMd" as="span">{sku}</Text>
+                    <Text variant="bodyMd" as="span">{product.sku}</Text>
                   </IndexTable.Cell>
                   <IndexTable.Cell>
                     <InventoryStatus
-                      quantity={inventory.available}
-                      reorderPoint={inventory.reorderPoint}
-                      maxStock={inventory.maxStock}
+                      quantity={product.inventory.available}
+                      reorderPoint={product.inventory.reorderPoint}
+                      maxStock={product.inventory.maxStock}
                       showText={true}
                       showTooltip={true}
                     />
                   </IndexTable.Cell>
                   <IndexTable.Cell>
-                    <Text variant="bodyMd" as="span">{inventory.available}</Text>
+                    <Text variant="bodyMd" as="span">{product.inventory.available}</Text>
                   </IndexTable.Cell>
                   <IndexTable.Cell>
-                    <Text variant="bodyMd" as="span">{inventory.committed}</Text>
+                    <Text variant="bodyMd" as="span">{product.inventory.committed}</Text>
                   </IndexTable.Cell>
                   <IndexTable.Cell>
                     <Text variant="bodyMd" as="span">
-                      {formatCurrency(inventory.totalValue)}
+                      {formatCurrency(product.inventory.totalValue)}
                     </Text>
                   </IndexTable.Cell>
                   <IndexTable.Cell>
                     <Text variant="bodyMd" as="span">
-                      {formatCurrency(price)}
+                      {formatCurrency(product.price)}
                     </Text>
                   </IndexTable.Cell>
                   <IndexTable.Cell>
-                    {getStatusBadge(status)}
+                    {getStatusBadge(product.status)}
                   </IndexTable.Cell>
                 </IndexTable.Row>
               ))}
