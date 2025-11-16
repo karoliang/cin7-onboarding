@@ -138,7 +138,7 @@ const Dashboard = () => {
         <BlockStack gap="400">
           <InlineStack align="space-between">
             <Text tone="subdued" as="p">{title}</Text>
-            <Icon source={Icon} tone={color} />
+            <Icon tone={color} />
           </InlineStack>
           <Text variant="headingLg" as="h2">{value}</Text>
           <InlineStack gap="200">
