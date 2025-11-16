@@ -30,8 +30,8 @@ import {
   XCircleIcon,
   ArrowLeftIcon,
   QuestionCircleIcon,
-  SmileIcon,
-  TrophyIcon,
+  SmileyHappyIcon,
+  StarIcon,
   ClockIcon,
   PlusIcon,
   ExternalIcon

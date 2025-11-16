@@ -17,7 +17,7 @@ import {
   RadioButton,
 } from '@shopify/polaris'
 import {
-  TagIcon,
+  LabelPrinterIcon,
   PlusIcon,
   EditIcon,
   DeleteIcon,

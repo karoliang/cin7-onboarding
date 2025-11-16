@@ -15,13 +15,13 @@ import {
 } from '@shopify/polaris'
 import {
   PlusIcon,
-  TrophyIcon,
+  StarIcon,
   ClockIcon,
   CheckCircleIcon,
-  StarIcon,
+  StarFilledIcon,
   ChartBarIcon,
   PackageIcon,
-  TruckIcon,
+  DeliveryIcon,
   UsersIcon
 } from '@shopify/polaris-icons'
 
@@ -47,7 +47,7 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
       description: 'Automated stock management with AI-powered forecasting and low stock alerts'
     },
     {
-      icon: TruckIcon,
+      icon: DeliveryIcon,
       title: 'Multi-channel Selling',
       description: 'Sell seamlessly across retail, online, and wholesale channels'
     },
@@ -192,7 +192,7 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
               </HorizontalStack>
 
               <HorizontalStack gap="300">
-                <Icon source={TrophyIcon} size="small" tone="subdued" />
+                <Icon source={StarFilledIcon} size="small" tone="subdued" />
                 <Text variant="bodySm">
                   <strong>Instant value</strong> - start seeing benefits immediately
                 </Text>

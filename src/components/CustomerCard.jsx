@@ -16,7 +16,7 @@ import {
   EditIcon,
   EmailIcon,
   PhoneIcon,
-  DollarDiscountIcon,
+  CashDollarIcon,
   ClockIcon,
   NoteIcon,
 } from '@shopify/polaris-icons'

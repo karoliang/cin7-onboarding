@@ -34,11 +34,11 @@ import {
   EmailIcon,
   PackageIcon,
   CashDollarIcon,
-  TruckIcon,
+  DeliveryIcon,
   DocumentIcon,
   CreditCardIcon,
   NoteIcon,
-  TagIcon
+  LabelPrinterIcon
 } from '@shopify/polaris-icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import OrderStatus, { PaymentStatus, FulfillmentStatus, OrderStatusProgress } from '../components/OrderStatus'
@@ -380,7 +380,7 @@ const OrderDetail = () => {
                 {/* Tags */}
                 {order.tags.length > 0 && (
                   <InlineStack gap="200" wrap>
-                    <Icon source={TagIcon} tone="subdued" />
+                    <Icon source={LabelPrinterIcon} tone="subdued" />
                     {order.tags.map((tag, index) => (
                       <Badge key={index}>{tag}</Badge>
                     ))}

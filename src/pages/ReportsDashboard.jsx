@@ -20,7 +20,7 @@ import {
   Spinner,
 } from '@shopify/polaris'
 import {
-  AnalyticsIcon,
+  ChartCohortIcon,
   PlusIcon,
   DownloadIcon,
   RefreshIcon,
@@ -30,7 +30,7 @@ import {
   TrendingDownIcon,
   InventoryIcon,
   CustomersIcon,
-  DollarDiscountIcon,
+  CashDollarIcon,
   PackageIcon,
   ClockIcon,
   CheckCircleIcon,
@@ -732,7 +732,7 @@ const ReportsDashboard = () => {
                   <BlockStack gap="300">
                     <InlineStack align="space-between">
                       <Text as="h3" variant="headingSm">{template.name}</Text>
-                      <Icon source={AnalyticsIcon} tone="info" />
+                      <Icon source={ChartCohortIcon} tone="info" />
                     </InlineStack>
                     <Text as="p" tone="subdued" variant="bodySm">
                       {template.description}

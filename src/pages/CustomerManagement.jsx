@@ -33,12 +33,12 @@ import {
   ViewIcon,
   EmailIcon,
   PhoneIcon,
-  DollarDiscountIcon,
+  CashDollarIcon,
   ClockIcon,
   PersonIcon,
   ExportIcon,
   ImportIcon,
-  TagIcon,
+  LabelPrinterIcon,
 } from '@shopify/polaris-icons'
 import { CustomerStatus, CustomerTier, CustomerSegment } from '../types/customer'
 
@@ -249,7 +249,7 @@ const CustomerManagement = () => {
     },
     {
       content: 'Add tags',
-      icon: TagIcon,
+      icon: LabelPrinterIcon,
       onAction: () => handleBulkAction('tag')
     },
     {

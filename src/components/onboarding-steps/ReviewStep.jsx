@@ -17,12 +17,12 @@ import {
   CheckCircleIcon,
   EditIcon,
   PackageIcon,
-  StorefrontIcon,
+  StoreIcon,
   TrendingUpIcon,
   ChartBarIcon,
   GlobeIcon,
-  TruckIcon,
-  BuildingIcon
+  DeliveryIcon,
+  ArchiveIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../../contexts/OnboardingContext'
@@ -40,13 +40,13 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
   const getFeatureIcon = (featureId) => {
     const iconMap = {
       'inventory-management': PackageIcon,
-      'order-management': StorefrontIcon,
+      'order-management': StoreIcon,
       'customer-management': TrendingUpIcon,
       'reporting-analytics': ChartBarIcon,
       'ecommerce-integration': GlobeIcon,
-      'pos-integration': StorefrontIcon,
-      'accounting-integration': BuildingIcon,
-      'supplier-management': TruckIcon
+      'pos-integration': StoreIcon,
+      'accounting-integration': ArchiveIcon,
+      'supplier-management': DeliveryIcon
     }
     return iconMap[featureId] || PackageIcon
   }

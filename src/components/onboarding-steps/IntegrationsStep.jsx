@@ -16,8 +16,8 @@ import {
   StoreIcon,
   GlobeIcon,
   CreditCardIcon,
-  TruckIcon,
-  BuildingIcon,
+  DeliveryIcon,
+  ArchiveIcon,
   MobileIcon
 } from '@shopify/polaris-icons'
 
@@ -45,7 +45,7 @@ const INTEGRATION_OPTIONS = [
   },
   {
     category: 'Shipping',
-    icon: TruckIcon,
+    icon: DeliveryIcon,
     integrations: [
       { id: 'fedex', name: 'FedEx', description: 'Real-time rates and label printing' },
       { id: 'ups', name: 'UPS', description: 'Package shipping and tracking' },

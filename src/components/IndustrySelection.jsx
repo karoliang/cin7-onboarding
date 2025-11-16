@@ -21,20 +21,18 @@ import {
   FormLayout
 } from '@shopify/polaris'
 import {
-  StorefrontIcon,
-  FactoryIcon,
-  ShoppingCartIcon,
-  BuildingIcon,
-  GiftIcon,
-  ShirtIcon,
-  DevicePhoneIcon,
-  HospitalIcon,
-  PuzzleIcon,
-  CreditCardIcon,
-  PackageIcon,
-  TruckIcon,
-  GlobeIcon,
   StoreIcon,
+  ArchiveIcon,
+  CartIcon,
+  HomeIcon,
+  GiftCardIcon,
+  PackageIcon,
+  MobileIcon,
+  PlusCircleIcon,
+  AppExtensionIcon,
+  CreditCardIcon,
+  DeliveryIcon,
+  GlobeIcon,
   ChatIcon,
   MegaphoneIcon
 } from '@shopify/polaris-icons'
@@ -46,63 +44,63 @@ const INDUSTRY_OPTIONS = [
     value: 'retail',
     label: 'Retail',
     description: 'Physical stores, showrooms, and in-person sales',
-    icon: StorefrontIcon,
+    icon: StoreIcon,
     subcategories: ['fashion', 'electronics', 'home-garden', 'specialty', 'convenience']
   },
   {
     value: 'manufacturing',
     label: 'Manufacturing',
     description: 'Production, assembly, and product creation',
-    icon: FactoryIcon,
+    icon: ArchiveIcon,
     subcategories: ['food-beverage', 'textiles', 'electronics', 'furniture', 'custom']
   },
   {
     value: 'wholesale',
     label: 'Wholesale & Distribution',
     description: 'B2B sales, bulk ordering, and distribution',
-    icon: BuildingIcon,
+    icon: HomeIcon,
     subcategories: ['general', 'specialty', 'dropshipping', 'import-export']
   },
   {
     value: 'ecommerce',
     label: 'E-commerce',
     description: 'Online stores and digital marketplaces',
-    icon: ShoppingCartIcon,
+    icon: CartIcon,
     subcategories: ['own-website', 'marketplace', 'multi-channel', 'subscription']
   },
   {
     value: 'food-beverage',
     label: 'Food & Beverage',
     description: 'Restaurants, cafes, and food production',
-    icon: GiftIcon,
+    icon: GiftCardIcon,
     subcategories: ['restaurant', 'cafe', 'food-production', 'beverage', 'catering']
   },
   {
     value: 'apparel',
     label: 'Apparel & Fashion',
     description: 'Clothing, accessories, and fashion items',
-    icon: ShirtIcon,
+    icon: PackageIcon,
     subcategories: ['clothing', 'accessories', 'footwear', 'jewelry', 'luxury']
   },
   {
     value: 'electronics',
     label: 'Electronics',
     description: 'Consumer electronics, gadgets, and tech products',
-    icon: DevicePhoneIcon,
+    icon: MobileIcon,
     subcategories: ['consumer', 'industrial', 'components', 'accessories']
   },
   {
     value: 'healthcare',
     label: 'Healthcare & Medical',
     description: 'Medical supplies, equipment, and healthcare products',
-    icon: HospitalIcon,
+    icon: PlusCircleIcon,
     subcategories: ['medical-supplies', 'equipment', 'pharmaceutical', 'wellness']
   },
   {
     value: 'other',
     label: 'Other',
     description: 'Businesses not in the above categories',
-    icon: PuzzleIcon,
+    icon: AppExtensionIcon,
     subcategories: []
   }
 ]
@@ -157,13 +155,13 @@ const SALES_CHANNELS = [
     value: 'marketplace',
     label: 'Online Marketplaces',
     description: 'Amazon, eBay, Etsy, etc.',
-    icon: ShoppingCartIcon
+    icon: CartIcon
   },
   {
     value: 'b2b-portal',
     label: 'B2B Customer Portal',
     description: 'Wholesale ordering portal for business customers',
-    icon: BuildingIcon
+    icon: HomeIcon
   },
   {
     value: 'phone-sales',
@@ -181,7 +179,7 @@ const SALES_CHANNELS = [
     value: 'wholesale-distributors',
     label: 'Wholesale Distributors',
     description: 'Selling through distribution networks',
-    icon: TruckIcon
+    icon: DeliveryIcon
   }
 ]
 
@@ -196,31 +194,31 @@ const OPERATIONAL_NEEDS = [
     value: 'order-processing',
     label: 'Order Processing',
     description: 'Manage orders from creation to fulfillment',
-    icon: ShoppingCartIcon
+    icon: CartIcon
   },
   {
     value: 'shipping-fulfillment',
     label: 'Shipping & Fulfillment',
     description: 'Coordinate shipping and order fulfillment',
-    icon: TruckIcon
+    icon: DeliveryIcon
   },
   {
     value: 'supplier-management',
     label: 'Supplier Management',
     description: 'Manage vendor relationships and purchase orders',
-    icon: BuildingIcon
+    icon: HomeIcon
   },
   {
     value: 'production-tracking',
     label: 'Production Tracking',
     description: 'Monitor manufacturing and assembly processes',
-    icon: FactoryIcon
+    icon: ArchiveIcon
   },
   {
     value: 'quality-control',
     label: 'Quality Control',
     description: 'Product quality inspections and compliance',
-    icon: HospitalIcon
+    icon: PlusCircleIcon
   },
   {
     value: 'reporting-analytics',

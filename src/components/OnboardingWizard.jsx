@@ -29,7 +29,7 @@ import {
   ClockIcon,
   InfoIcon,
   PlusIcon,
-  TrophyIcon
+  StarIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding, onboardingSteps } from '../contexts/OnboardingContext'
@@ -496,7 +496,7 @@ const OnboardingWizard = ({
                 <Box padding="400">
                   <VerticalStack gap="300">
                     <HorizontalStack gap="200">
-                      <Icon source={TrophyIcon} tone="warning" />
+                      <Icon source={StarIcon} tone="warning" />
                       <Text variant="headingSm" as="h3">
                         Next Reward
                       </Text>

@@ -26,14 +26,13 @@ import {
 } from '@shopify/polaris'
 import {
   PackageIcon,
-  ShoppingCartIcon,
+  CartIcon,
   CustomersIcon,
-  BuildingIcon,
+  ArchiveIcon,
   ChartBarIcon,
   StoreIcon,
   GlobeIcon,
   CreditCardIcon,
-  WarehouseIcon,
   BarcodeIcon,
   ClockIcon,
   AlertCircleIcon,
@@ -43,7 +42,7 @@ import {
   MobileIcon,
   CurrencyIcon,
   LockIcon,
-  ActivityIcon
+  ChartCohortIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../contexts/OnboardingContext'
@@ -78,7 +77,7 @@ const CORE_FEATURES = [
     id: 'order-management',
     title: 'Order Management',
     description: 'Process orders from multiple channels in one unified system',
-    icon: ShoppingCartIcon,
+    icon: CartIcon,
     category: 'essential',
     estimatedSetupTime: 20,
     prerequisites: ['inventory-management'],
@@ -253,7 +252,7 @@ const CORE_FEATURES = [
     id: 'warehouse-management',
     title: 'Warehouse Management',
     description: 'Advanced warehouse operations and layout optimization',
-    icon: WarehouseIcon,
+    icon: ArchiveIcon,
     category: 'advanced',
     estimatedSetupTime: 25,
     prerequisites: ['inventory-management'],

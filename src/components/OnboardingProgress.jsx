@@ -20,18 +20,16 @@ import {
   Banner
 } from '@shopify/polaris'
 import {
-  TrophyIcon,
+  StarIcon,
   CheckCircleIcon,
   ClockIcon,
   PlusIcon,
-  StarIcon,
-  GiftIcon,
-  LightningBoltIcon,
+  GiftCardIcon,
   FlagIcon,
-  DiamondIcon,
+  AlertDiamondIcon,
   LockIcon,
   ChartBarIcon,
-  SmileIcon,
+  SmileyHappyIcon,
   ExternalIcon
 } from '@shopify/polaris-icons'
 
@@ -42,7 +40,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'quick-starter',
     title: 'Quick Starter',
     description: 'Complete first 3 steps within 30 minutes',
-    icon: LightningBoltIcon,
+    icon: StarIcon,
     category: 'setup',
     rarity: 'common',
     points: 10,
@@ -57,7 +55,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'industry-expert',
     title: 'Industry Expert',
     description: 'Complete all recommended features for your industry',
-    icon: TrophyIcon,
+    icon: StarIcon,
     category: 'configuration',
     rarity: 'epic',
     points: 50,
@@ -71,7 +69,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'integration-master',
     title: 'Integration Master',
     description: 'Set up 3 or more integrations',
-    icon: DiamondIcon,
+    icon: AlertDiamondIcon,
     category: 'integration',
     rarity: 'rare',
     points: 30,
@@ -117,7 +115,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'speed-demon',
     title: 'Speed Demon',
     description: 'Complete onboarding in under 45 minutes',
-    icon: LightningBoltIcon,
+    icon: StarIcon,
     category: 'setup',
     rarity: 'legendary',
     points: 100,
@@ -145,7 +143,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'early-adopter',
     title: 'Early Adopter',
     description: 'Start onboarding within 24 hours of account creation',
-    icon: GiftIcon,
+    icon: GiftCardIcon,
     category: 'setup',
     rarity: 'common',
     points: 20,
@@ -158,7 +156,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'explorer',
     title: 'Explorer',
     description: 'Try out the guided tour feature',
-    icon: SmileIcon,
+    icon: SmileyHappyIcon,
     category: 'exploration',
     rarity: 'common',
     points: 10,
@@ -254,7 +252,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
     return (
       <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
         <HorizontalStack gap="300" align="center">
-          <Icon source={currentMilestone.progress === 100 ? TrophyIcon : ClockIcon} size="small" />
+          <Icon source={currentMilestone.progress === 100 ? StarIcon : ClockIcon} size="small" />
           <VerticalStack gap="100">
             <Text variant="bodySm" fontWeight="medium">
               {currentMilestone.title}
@@ -277,7 +275,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
           <Box padding="500">
             <VerticalStack gap="400">
               <HorizontalStack gap="300">
-                <Icon source={currentMilestone.progress === 100 ? TrophyIcon : FlagIcon} size="large" />
+                <Icon source={currentMilestone.progress === 100 ? StarIcon : FlagIcon} size="large" />
                 <VerticalStack gap="200">
                   <Text variant="headingLg" as="h2">
                     {currentMilestone.title}
@@ -344,7 +342,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                     </Text>
                     {currentMilestone.rewards.map((reward, index) => (
                       <HorizontalStack key={index} gap="200" align="start">
-                        <Icon source={GiftIcon} size="small" tone="attention" />
+                        <Icon source={GiftCardIcon} size="small" tone="attention" />
                         <VerticalStack gap="100">
                           <Text variant="bodySm" fontWeight="medium">
                             {reward.name}
@@ -398,7 +396,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
 
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
                 <VerticalStack gap="200">
-                  <Icon source={LightningBoltIcon} tone="primary" />
+                  <Icon source={StarIcon} tone="primary" />
                   <Text variant="bodySm" tone="subdued">Est. Remaining</Text>
                   <Text variant="headingLg">{Math.floor(timeRemaining / 60)}h {timeRemaining % 60}m</Text>
                 </VerticalStack>
@@ -427,7 +425,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
           <Box padding="500">
             <VerticalStack gap="400">
               <HorizontalStack gap="300">
-                <Icon source={TrophyIcon} size="large" />
+                <Icon source={StarIcon} size="large" />
                 <Text variant="headingLg" as="h2">
                   Achievements
                 </Text>
@@ -585,7 +583,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                       <VerticalStack gap="300">
                         <HorizontalStack align="space-between">
                           <Icon
-                            source={isCompleted ? TrophyIcon : FlagIcon}
+                            source={isCompleted ? StarIcon : FlagIcon}
                             tone={isCompleted ? 'success' : isCurrent ? 'primary' : 'subdued'}
                           />
                           {isCompleted && (
@@ -612,7 +610,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
 
                         {milestone.rewards.length > 0 && (
                           <HorizontalStack gap="200">
-                            <Icon source={GiftIcon} size="small" tone="attention" />
+                            <Icon source={GiftCardIcon} size="small" tone="attention" />
                             <Text variant="bodyXs" tone="subdued">
                               {milestone.rewards.length} reward{milestone.rewards.length > 1 ? 's' : ''}
                             </Text>
