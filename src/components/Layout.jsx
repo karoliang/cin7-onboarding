@@ -1,18 +1,25 @@
 import React from 'react'
 import { Navigation, TopBar, Frame } from '@shopify/polaris'
-import { HomeIcon, ProductIcon, FormsIcon, ViewIcon, MenuIcon, ChatIcon, ImageIcon, TextIcon, ColorIcon, GlobeIcon } from '@shopify/polaris-icons'
+import {
+  HomeIcon,
+  ProductIcon,
+  ViewIcon,
+  MenuIcon,
+  ChatIcon,
+  ImageIcon,
+  TextIcon,
+  ColorIcon,
+  GlobeIcon,
+  SettingsIcon,
+  PackageIcon
+} from '@shopify/polaris-icons'
 import { useLocation } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   const location = useLocation()
+  const isDevelopment = process.env.NODE_ENV === 'development'
 
   const navigationItems = [
-    {
-      label: 'Home',
-      icon: HomeIcon,
-      url: '/',
-      selected: location.pathname === '/'
-    },
     {
       label: 'Dashboard',
       icon: ViewIcon,
@@ -20,71 +27,75 @@ const Layout = ({ children }) => {
       selected: location.pathname === '/dashboard'
     },
     {
-      label: 'Product Listing',
+      label: 'Sales',
+      icon: PackageIcon,
+      url: '/sales',
+      selected: location.pathname === '/sales'
+    },
+    {
+      label: 'Inventory',
+      icon: PackageIcon,
+      url: '/inventory',
+      selected: location.pathname === '/inventory'
+    },
+    {
+      label: 'Products',
       icon: ProductIcon,
-      url: '/product-listing',
-      selected: location.pathname === '/product-listing'
+      url: '/products',
+      selected: location.pathname === '/products'
     },
     {
-      label: 'Product Detail',
-      icon: ImageIcon,
-      url: '/product-detail',
-      selected: location.pathname === '/product-detail'
-    },
-    {
-      label: 'Forms',
-      icon: FormsIcon,
-      url: '/forms',
-      selected: location.pathname === '/forms'
-    },
-    {
-      label: 'Layout',
-      icon: ViewIcon,
-      url: '/layout',
-      selected: location.pathname === '/layout'
-    },
-    {
-      label: 'Navigation',
-      icon: MenuIcon,
-      url: '/navigation',
-      selected: location.pathname === '/navigation'
-    },
-    {
-      label: 'Feedback',
+      label: 'Customers',
       icon: ChatIcon,
-      url: '/feedback',
-      selected: location.pathname === '/feedback'
+      url: '/customers',
+      selected: location.pathname === '/customers'
     },
     {
-      label: 'Images & Media',
-      icon: ImageIcon,
-      url: '/images',
-      selected: location.pathname === '/images'
+      label: 'Reports',
+      icon: ViewIcon,
+      url: '/reports',
+      selected: location.pathname === '/reports'
     },
     {
-      label: 'Typography',
-      icon: TextIcon,
-      url: '/typography',
-      selected: location.pathname === '/typography'
+      label: 'Settings',
+      icon: SettingsIcon,
+      url: '/settings',
+      selected: location.pathname === '/settings'
     },
-    {
-      label: 'Colors',
-      icon: ColorIcon,
-      url: '/colors',
-      selected: location.pathname === '/colors'
-    },
-    {
-      label: 'Spacing',
-      icon: GlobeIcon,
-      url: '/spacing',
-      selected: location.pathname === '/spacing'
-    }
+    ...(isDevelopment ? [{
+      label: 'Debug Dashboard',
+      icon: ViewIcon,
+      url: '/debug/dashboard',
+      selected: location.pathname === '/debug/dashboard',
+      badge: 'DEV'
+    }] : [])
   ]
 
   const topBarMarkup = (
     <TopBar
       showNavigationToggle
       searchResultsVisible={false}
+      userMenu={{
+        initials: 'C7',
+        name: 'Cin7 Core',
+        detail: 'Admin',
+        actions: [
+          {
+            items: [
+              { content: 'Start Onboarding', icon: PlusCircleIcon, onAction: () => console.log('Navigate to onboarding') },
+              { content: 'Settings', icon: SettingsIcon, onAction: () => console.log('Open settings') },
+              ...(isDevelopment ? [
+                { content: 'Debug Dashboard', icon: AnalyticsIcon, onAction: () => window.location.href = '/debug/dashboard' },
+                { content: 'Export Debug Data', icon: AnalyticsIcon, onAction: () => {
+                  const errorMonitor = require('../services/ErrorMonitor').default;
+                  errorMonitor.generateReport();
+                } }
+              ] : []),
+              { content: 'Help & Support', icon: ChatIcon, onAction: () => console.log('Open help') }
+            ]
+          }
+        ]
+      }}
     />
   )
 

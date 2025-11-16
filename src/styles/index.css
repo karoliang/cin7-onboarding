@@ -37,16 +37,24 @@
   --p-color-icon-highlight: #4b7a00;
   --p-color-icon-success: #008060;
 
-  --p-color-interactive: #5c6ac4;
-  --p-color-interactive-hover: #4650c2;
-  --p-color-interactive-pressed: #3348d3;
+  --p-color-interactive: #0070f3; /* Cin7 Primary Blue */
+  --p-color-interactive-hover: #0051cc;
+  --p-color-interactive-pressed: #003d99;
   --p-color-interactive-disabled: #c4cdd5;
   --p-color-interactive-on-interactive: #ffffff;
 
-  --p-color-primary: #212b36;
+  --p-color-primary: #1a365d; /* Cin7 Dark Blue */
   --p-color-secondary: #637381;
   --p-color-tertiary: #919eab;
   --p-color-quaternary: #dfe3e8;
+
+  /* Cin7-specific colors */
+  --cin7-brand-primary: #0070f3;
+  --cin7-brand-secondary: #1a365d;
+  --cin7-success: #28a745;
+  --cin7-warning: #ffc107;
+  --cin7-danger: #dc3545;
+  --cin7-info: #17a2b8;
 
   --p-color-surface-selected: #ebf2ff;
   --p-color-surface-neutral: #f6f6f7;

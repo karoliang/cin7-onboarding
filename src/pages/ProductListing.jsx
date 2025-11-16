@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import {
   Card,
   Page,
@@ -19,94 +19,259 @@ import {
   BlockStack,
   Grid,
   EmptyState,
+  Modal,
+  OptionList,
+  Tabs,
+  IndexTable,
+  useIndexResourceState,
+  Spinner,
+  Banner,
+  Popover,
+  ActionList,
 } from '@shopify/polaris'
-import { SearchIcon, FilterIcon, PlusIcon, EditIcon, DeleteIcon } from '@shopify/polaris-icons'
+import { useNavigate } from 'react-router-dom'
+import {
+  SearchIcon,
+  FilterIcon,
+  PlusIcon,
+  EditIcon,
+  DeleteIcon,
+  InventoryIcon,
+  PackageIcon,
+  WarningIcon,
+  ImportIcon,
+  ExportIcon,
+  AdjustIcon,
+  TransferIcon,
+  BarcodeIcon,
+  LocationIcon,
+} from '@shopify/polaris-icons'
+import InventoryStatus from '../components/InventoryStatus'
+import InventoryImportExport from '../components/InventoryImportExport'
 
 const ProductListing = () => {
+  const navigate = useNavigate()
   const [searchValue, setSearchValue] = useState('')
   const [selected, setSelected] = useState([])
-  const [sortValue, setSortValue] = useState('DATE_MODIFIED_DESC')
-  const [queryValue, setQueryValue] = useState(null)
+  const [sortValue, setSortValue] = useState('INVENTORY_DESC')
+  const [queryValue, setQueryValue] = useState('')
   const [page, setPage] = useState(1)
+  const [selectedTab, setSelectedTab] = useState(0)
+  const [showBulkActions, setShowBulkActions] = useState(false)
+  const [transferModalActive, setTransferModalActive] = useState(false)
+  const [adjustmentModalActive, setAdjustmentModalActive] = useState(false)
+  const [selectedLocation, setSelectedLocation] = useState('all')
 
-  // Mock product data
+  // Mock inventory locations
+  const locations = [
+    { id: 'all', name: 'All Locations', totalProducts: 5 },
+    { id: 'loc_1', name: 'Main Warehouse', totalProducts: 5 },
+    { id: 'loc_2', name: 'East Coast Store', totalProducts: 3 },
+    { id: 'loc_3', name: 'West Coast Store', totalProducts: 4 },
+  ]
+
+  // Enhanced product data with inventory details
   const products = [
     {
       id: '1',
       title: 'Classic T-Shirt',
       vendor: 'Apparel Co',
       status: 'active',
-      inventory: 150,
-      price: '$29.99',
+      sku: 'TSH-001',
+      barcode: '1234567890123',
+      price: 29.99,
       type: 'Clothing',
       image: 'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
-      dateModified: '2024-01-15'
+      dateModified: '2024-01-15',
+      inventory: {
+        total: 150,
+        available: 125,
+        committed: 25,
+        onOrder: 50,
+        reorderPoint: 30,
+        maxStock: 200,
+        averageCost: 15.50,
+        totalValue: 2325.00,
+        locations: [
+          { locationId: 'loc_1', locationName: 'Main Warehouse', quantity: 100, reorderPoint: 20 },
+          { locationId: 'loc_2', locationName: 'East Coast Store', quantity: 30, reorderPoint: 5 },
+          { locationId: 'loc_3', locationName: 'West Coast Store', quantity: 20, reorderPoint: 5 }
+        ]
+      }
     },
     {
       id: '2',
       title: 'Denim Jeans',
       vendor: 'Fashion Brand',
       status: 'active',
-      inventory: 85,
-      price: '$89.99',
+      sku: 'JEA-002',
+      barcode: '2345678901234',
+      price: 89.99,
       type: 'Clothing',
       image: 'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
-      dateModified: '2024-01-14'
+      dateModified: '2024-01-14',
+      inventory: {
+        total: 85,
+        available: 75,
+        committed: 10,
+        onOrder: 25,
+        reorderPoint: 25,
+        maxStock: 150,
+        averageCost: 45.00,
+        totalValue: 3825.00,
+        locations: [
+          { locationId: 'loc_1', locationName: 'Main Warehouse', quantity: 60, reorderPoint: 15 },
+          { locationId: 'loc_2', locationName: 'East Coast Store', quantity: 15, reorderPoint: 5 },
+          { locationId: 'loc_3', locationName: 'West Coast Store', quantity: 10, reorderPoint: 5 }
+        ]
+      }
     },
     {
       id: '3',
       title: 'Leather Wallet',
       vendor: 'Accessories Inc',
-      status: 'draft',
-      inventory: 0,
-      price: '$49.99',
+      status: 'active',
+      sku: 'WAL-003',
+      barcode: '3456789012345',
+      price: 49.99,
       type: 'Accessories',
       image: 'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
-      dateModified: '2024-01-13'
+      dateModified: '2024-01-13',
+      inventory: {
+        total: 0,
+        available: 0,
+        committed: 0,
+        onOrder: 100,
+        reorderPoint: 15,
+        maxStock: 100,
+        averageCost: 25.00,
+        totalValue: 0.00,
+        locations: [
+          { locationId: 'loc_1', locationName: 'Main Warehouse', quantity: 0, reorderPoint: 10 },
+          { locationId: 'loc_2', locationName: 'East Coast Store', quantity: 0, reorderPoint: 5 }
+        ]
+      }
     },
     {
       id: '4',
       title: 'Wireless Headphones',
       vendor: 'Tech Gear',
       status: 'active',
-      inventory: 45,
-      price: '$199.99',
+      sku: 'HEA-004',
+      barcode: '4567890123456',
+      price: 199.99,
       type: 'Electronics',
       image: 'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
-      dateModified: '2024-01-12'
+      dateModified: '2024-01-12',
+      inventory: {
+        total: 45,
+        available: 35,
+        committed: 10,
+        onOrder: 20,
+        reorderPoint: 20,
+        maxStock: 80,
+        averageCost: 120.00,
+        totalValue: 5400.00,
+        locations: [
+          { locationId: 'loc_1', locationName: 'Main Warehouse', quantity: 30, reorderPoint: 15 },
+          { locationId: 'loc_3', locationName: 'West Coast Store', quantity: 15, reorderPoint: 5 }
+        ]
+      }
     },
     {
       id: '5',
       title: 'Coffee Mug',
       vendor: 'Home Goods',
-      status: 'archived',
-      inventory: 200,
-      price: '$14.99',
+      status: 'active',
+      sku: 'MUG-005',
+      barcode: '5678901234567',
+      price: 14.99,
       type: 'Home & Garden',
       image: 'https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg',
-      dateModified: '2024-01-11'
+      dateModified: '2024-01-11',
+      inventory: {
+        total: 200,
+        available: 185,
+        committed: 15,
+        onOrder: 0,
+        reorderPoint: 50,
+        maxStock: 250,
+        averageCost: 8.00,
+        totalValue: 1600.00,
+        locations: [
+          { locationId: 'loc_1', locationName: 'Main Warehouse', quantity: 120, reorderPoint: 30 },
+          { locationId: 'loc_2', locationName: 'East Coast Store', quantity: 40, reorderPoint: 10 },
+          { locationId: 'loc_3', locationName: 'West Coast Store', quantity: 40, reorderPoint: 10 }
+        ]
+      }
     }
   ]
 
+  // Enhanced sort options for inventory
   const sortOptions = [
-    {label: 'Newest update', value: 'DATE_MODIFIED_DESC'},
-    {label: 'Oldest update', value: 'DATE_MODIFIED_ASC'},
-    {label: 'Title A-Z', value: 'ALPHABETICAL_ASC'},
-    {label: 'Title Z-A', value: 'ALPHABETICAL_DESC'},
-    {label: 'Highest price', value: 'PRICE_DESC'},
-    {label: 'Lowest price', value: 'PRICE_ASC'},
+    { label: 'Most inventory', value: 'INVENTORY_DESC' },
+    { label: 'Least inventory', value: 'INVENTORY_ASC' },
+    { label: 'Highest value', value: 'VALUE_DESC' },
+    { label: 'Lowest value', value: 'VALUE_ASC' },
+    { label: 'Newest update', value: 'DATE_MODIFIED_DESC' },
+    { label: 'Oldest update', value: 'DATE_MODIFIED_ASC' },
+    { label: 'Title A-Z', value: 'ALPHABETICAL_ASC' },
+    { label: 'Title Z-A', value: 'ALPHABETICAL_DESC' },
+    { label: 'SKU A-Z', value: 'SKU_ASC' },
+    { label: 'Highest price', value: 'PRICE_DESC' },
+    { label: 'Lowest price', value: 'PRICE_ASC' },
   ]
 
   const statusFilters = [
-    {key: 'active', label: 'Active'},
-    {key: 'draft', label: 'Draft'},
-    {key: 'archived', label: 'Archived'},
+    { key: 'active', label: 'Active' },
+    { key: 'draft', label: 'Draft' },
+    { key: 'archived', label: 'Archived' },
   ]
 
   const inventoryFilters = [
-    {key: 'in_stock', label: 'In stock'},
-    {key: 'out_of_stock', label: 'Out of stock'},
-    {key: 'low_stock', label: 'Low stock'},
+    { key: 'in_stock', label: 'In stock' },
+    { key: 'out_of_stock', label: 'Out of stock' },
+    { key: 'low_stock', label: 'Low stock' },
+    { key: 'overstocked', label: 'Overstocked' },
+  ]
+
+  const locationFilters = locations.map(loc => ({
+    key: loc.id,
+    label: loc.name,
+  }))
+
+  const productTypeFilters = [
+    { key: 'clothing', label: 'Clothing' },
+    { key: 'electronics', label: 'Electronics' },
+    { key: 'accessories', label: 'Accessories' },
+    { key: 'home', label: 'Home & Garden' },
+  ]
+
+  // Tab configuration
+  const tabs = [
+    {
+      id: 'all',
+      content: 'All Products',
+      panelID: 'all-products-panel',
+    },
+    {
+      id: 'low-stock',
+      content: 'Low Stock',
+      panelID: 'low-stock-panel',
+      badge: products.filter(p => p.inventory.available <= p.inventory.reorderPoint && p.inventory.available > 0).length,
+    },
+    {
+      id: 'out-of-stock',
+      content: 'Out of Stock',
+      panelID: 'out-of-stock-panel',
+      badge: products.filter(p => p.inventory.available === 0).length,
+    },
+    {
+      id: 'overstocked',
+      content: 'Overstocked',
+      panelID: 'overstocked-panel',
+      badge: products.filter(p => p.inventory.total >= p.inventory.maxStock * 0.9).length,
+    },
   ]
 
   const filters = [
@@ -136,9 +301,102 @@ const ProductListing = () => {
         />
       ),
     },
+    {
+      key: 'location',
+      label: 'Location',
+      filter: (
+        <Select
+          label="Location"
+          options={locationFilters}
+          onChange={() => {}}
+          value=""
+          labelHidden
+        />
+      ),
+    },
+    {
+      key: 'type',
+      label: 'Product Type',
+      filter: (
+        <Select
+          label="Product Type"
+          options={productTypeFilters}
+          onChange={() => {}}
+          value=""
+          labelHidden
+        />
+      ),
+    },
   ]
 
   const appliedFilters = []
+
+  // Filter products based on selected tab and filters
+  const filteredProducts = useMemo(() => {
+    let filtered = [...products]
+
+    // Apply tab filtering
+    const currentTab = tabs[selectedTab]
+    if (currentTab.id === 'low-stock') {
+      filtered = filtered.filter(p =>
+        p.inventory.available > 0 && p.inventory.available <= p.inventory.reorderPoint
+      )
+    } else if (currentTab.id === 'out-of-stock') {
+      filtered = filtered.filter(p => p.inventory.available === 0)
+    } else if (currentTab.id === 'overstocked') {
+      filtered = filtered.filter(p => p.inventory.total >= p.inventory.maxStock * 0.9)
+    }
+
+    // Apply search filtering
+    if (queryValue) {
+      const searchLower = queryValue.toLowerCase()
+      filtered = filtered.filter(p =>
+        p.title.toLowerCase().includes(searchLower) ||
+        p.sku.toLowerCase().includes(searchLower) ||
+        p.vendor.toLowerCase().includes(searchLower) ||
+        p.type.toLowerCase().includes(searchLower)
+      )
+    }
+
+    // Apply location filtering
+    if (selectedLocation !== 'all') {
+      filtered = filtered.filter(p =>
+        p.inventory.locations.some(loc => loc.locationId === selectedLocation)
+      )
+    }
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      switch (sortValue) {
+        case 'INVENTORY_DESC':
+          return b.inventory.available - a.inventory.available
+        case 'INVENTORY_ASC':
+          return a.inventory.available - b.inventory.available
+        case 'VALUE_DESC':
+          return b.inventory.totalValue - a.inventory.totalValue
+        case 'VALUE_ASC':
+          return a.inventory.totalValue - b.inventory.totalValue
+        case 'DATE_MODIFIED_DESC':
+          return new Date(b.dateModified) - new Date(a.dateModified)
+        case 'DATE_MODIFIED_ASC':
+          return new Date(a.dateModified) - new Date(b.dateModified)
+        case 'ALPHABETICAL_ASC':
+          return a.title.localeCompare(b.title)
+        case 'ALPHABETICAL_DESC':
+          return b.title.localeCompare(a.title)
+        case 'SKU_ASC':
+          return a.sku.localeCompare(b.sku)
+        case 'PRICE_DESC':
+          return b.price - a.price
+        case 'PRICE_ASC':
+          return a.price - b.price
+        default:
+          return 0
+      }
+    })
+
+    return filtered
+  }, [products, selectedTab, queryValue, selectedLocation, sortValue])
 
   const handleFiltersChange = (filters) => {
     console.log('Filters changed:', filters)
@@ -156,6 +414,27 @@ const ProductListing = () => {
     handleSearch()
   }
 
+  const handleTabChange = (selectedTabIndex) => {
+    setSelectedTab(selectedTabIndex)
+  }
+
+  const handleLocationChange = (value) => {
+    setSelectedLocation(value)
+  }
+
+  const handleBulkAction = (action) => {
+    console.log(`Bulk action: ${action} on ${selected.length} items`)
+    if (action === 'transfer') {
+      setTransferModalActive(true)
+    } else if (action === 'adjust') {
+      setAdjustmentModalActive(true)
+    }
+  }
+
+  const handleRowClick = (id) => {
+    navigate(`/inventory/${id}`)
+  }
+
   const resourceName = {
     singular: 'product',
     plural: 'products',
@@ -171,91 +450,153 @@ const ProductListing = () => {
     return <Badge {...config} />
   }
 
-  const getInventoryBadge = (inventory) => {
-    if (inventory === 0) return <Badge tone="critical">Out of stock</Badge>
-    if (inventory < 10) return <Badge tone="warning">Low stock</Badge>
-    return <Badge tone="success">{inventory} in stock</Badge>
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount)
   }
 
-  const rowMarkup = products.map(
-    ({id, title, vendor, status, inventory, price, type, image}, index) => (
-      <ResourceList.Item
-        id={id}
-        key={id}
-        accessibilityLabel={`View details for ${title}`}
-      >
-        <InlineStack gap="400" align="center">
-          <Thumbnail
-            source={image}
-            size="small"
-            alt={title}
-          />
-          <BlockStack gap="200">
-            <Text variant="bodyMd" fontWeight="semibold" as="h3">
-              {title}
-            </Text>
-            <Text tone="subdued" as="p">
-              {vendor} • {type}
-            </Text>
-          </BlockStack>
-        </InlineStack>
-        <InlineStack gap="200">
-          {getStatusBadge(status)}
-          {getInventoryBadge(inventory)}
-        </InlineStack>
-        <Text variant="bodyMd" fontWeight="medium" as="span">
-          {price}
-        </Text>
-        <InlineStack gap="200">
-          <Button variant="plain" icon={EditIcon} />
-          <Button variant="plain" icon={DeleteIcon} />
-        </InlineStack>
-      </ResourceList.Item>
-    ),
-  )
+  const getIndexTableRows = () => {
+    return filteredProducts.map((product, index) => ({
+      id: product.id,
+      title: product.title,
+      sku: product.sku,
+      vendor: product.vendor,
+      inventory: product.inventory,
+      price: product.price,
+      type: product.type,
+      status: product.status,
+    }))
+  }
 
-  const emptyStateMarkup = (
-    <EmptyState
-      heading="No products found"
-      action={{content: 'Add product'}}
-      image="https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg"
-    >
-      <p>Get started by adding your first product.</p>
-    </EmptyState>
-  )
+  const tableHeadings = [
+    { title: 'Product' },
+    { title: 'SKU' },
+    { title: 'Inventory Status' },
+    { title: 'Available' },
+    { title: 'Committed' },
+    { title: 'Value' },
+    { title: 'Price' },
+    { title: 'Status' },
+  ]
+
+  // Calculate inventory summary stats
+  const inventoryStats = useMemo(() => {
+    const totalValue = products.reduce((sum, p) => sum + p.inventory.totalValue, 0)
+    const lowStockCount = products.filter(p =>
+      p.inventory.available > 0 && p.inventory.available <= p.inventory.reorderPoint
+    ).length
+    const outOfStockCount = products.filter(p => p.inventory.available === 0).length
+    const totalAvailable = products.reduce((sum, p) => sum + p.inventory.available, 0)
+
+    return {
+      totalValue,
+      lowStockCount,
+      outOfStockCount,
+      totalAvailable,
+      totalProducts: products.length
+    }
+  }, [products])
 
   return (
     <Page
-      title="Products"
-      subtitle="Manage your product catalog"
+      title="Inventory Management"
+      subtitle="Track stock levels, manage locations, and optimize inventory"
       primaryAction={{
-        content: 'Add product',
-        icon: PlusIcon,
-        onAction: () => console.log('Add product clicked'),
+        content: 'Adjust Stock',
+        icon: AdjustIcon,
+        onAction: () => setAdjustmentModalActive(true),
       }}
+      secondaryActions={[
+        <InventoryImportExport
+          onImport={(results) => console.log('Import completed:', results)}
+          onExport={(data) => console.log('Export completed:', data)}
+        />
+      ]}
     >
       <Layout>
+        {/* Inventory Summary Cards */}
+        <Layout.Section>
+          <Grid columns={{ xs: 1, sm: 2, md: 4 }}>
+            <Card>
+              <BlockStack gap="200">
+                <Text variant="bodySm" tone="subdued">Total Value</Text>
+                <Text variant="heading2xl" as="h2">
+                  {formatCurrency(inventoryStats.totalValue)}
+                </Text>
+              </BlockStack>
+            </Card>
+            <Card>
+              <BlockStack gap="200">
+                <Text variant="bodySm" tone="subdued">Total Available</Text>
+                <Text variant="heading2xl" as="h2">
+                  {inventoryStats.totalAvailable.toLocaleString()}
+                </Text>
+              </BlockStack>
+            </Card>
+            <Card>
+              <BlockStack gap="200">
+                <InlineStack gap="200" align="center">
+                  <Text variant="bodySm" tone="subdued">Low Stock</Text>
+                  <Badge tone="warning">{inventoryStats.lowStockCount}</Badge>
+                </InlineStack>
+                <Text variant="heading2xl" as="h2" tone="warning">
+                  {inventoryStats.lowStockCount}
+                </Text>
+              </BlockStack>
+            </Card>
+            <Card>
+              <BlockStack gap="200">
+                <InlineStack gap="200" align="center">
+                  <Text variant="bodySm" tone="subdued">Out of Stock</Text>
+                  <Badge tone="critical">{inventoryStats.outOfStockCount}</Badge>
+                </InlineStack>
+                <Text variant="heading2xl" as="h2" tone="critical">
+                  {inventoryStats.outOfStockCount}
+                </Text>
+              </BlockStack>
+            </Card>
+          </Grid>
+        </Layout.Section>
+
+        {/* Filters and Controls */}
         <Layout.Section>
           <Card>
             <div style={{ padding: 'var(--p-space-6)' }}>
               <BlockStack gap="400">
-                <InlineStack gap="400">
-                  <TextField
-                    placeholder="Search products"
-                    value={queryValue}
-                    onChange={handleSearchChange}
-                    onBlur={handleSearchBlur}
-                    prefix={<Icon source={SearchIcon} />}
-                    autoComplete="off"
-                  />
-                  <Select
-                    options={sortOptions}
-                    value={sortValue}
-                    onChange={setSortValue}
-                    label="Sort by"
-                    labelHidden
-                  />
-                </InlineStack>
+                <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
+                  <Card.Section>
+                    <InlineStack gap="400" align="center">
+                      <TextField
+                        placeholder="Search products, SKUs, or vendors..."
+                        value={queryValue}
+                        onChange={handleSearchChange}
+                        onBlur={handleSearchBlur}
+                        prefix={<Icon source={SearchIcon} />}
+                        autoComplete="off"
+                        connectedLeft={
+                          <Select
+                            options={locationFilters}
+                            value={selectedLocation}
+                            onChange={handleLocationChange}
+                            label="Location"
+                            labelHidden
+                          />
+                        }
+                        connectedRight={
+                          <Select
+                            options={sortOptions}
+                            value={sortValue}
+                            onChange={(value) => setSortValue(value)}
+                            label="Sort by"
+                            labelHidden
+                          />
+                        }
+                      />
+                    </InlineStack>
+                  </Card.Section>
+                </Tabs>
 
                 <Filters
                   queryValue={queryValue}
@@ -274,70 +615,191 @@ const ProductListing = () => {
           </Card>
         </Layout.Section>
 
+        {/* Inventory Table */}
         <Layout.Section>
           <Card>
-            <ResourceList
+            <IndexTable
               resourceName={resourceName}
-              items={products}
-              renderItem={({id, title, vendor, status, inventory, price, type, image}) => (
-                <ResourceList.Item
+              itemCount={filteredProducts.length}
+              headings={tableHeadings}
+              selectable
+              onRowClick={handleRowClick}
+              promotedBulkActions={[
+                {
+                  content: 'Transfer stock',
+                  icon: TransferIcon,
+                  onAction: () => handleBulkAction('transfer'),
+                },
+                {
+                  content: 'Adjust stock',
+                  icon: AdjustIcon,
+                  onAction: () => handleBulkAction('adjust'),
+                },
+                {
+                  content: 'Print barcodes',
+                  icon: BarcodeIcon,
+                  onAction: () => handleBulkAction('barcode'),
+                },
+              ]}
+            >
+              {getIndexTableRows().map(({ id, title, sku, inventory, price, status }, index) => (
+                <IndexTable.Row
                   id={id}
                   key={id}
-                  accessibilityLabel={`View details for ${title}`}
+                  position={index}
+                  selected={selected.includes(id)}
                 >
-                  <div style={{ padding: 'var(--p-space-4) var(--p-space-6)' }}>
-                    <InlineStack gap="400" align="center" blockAlign="center">
+                  <IndexTable.Cell>
+                    <InlineStack gap="300" align="center">
                       <Thumbnail
-                        source={image}
+                        source="https://cdn.shopify.com/shopifycloud/web/assets/v1/8e8f4f6c7e3f1f1b/logo-light.svg"
                         size="small"
                         alt={title}
                       />
-                      <div style={{ flex: 1 }}>
-                        <BlockStack gap="100">
-                          <Text variant="bodyMd" fontWeight="semibold" as="h3">
-                            {title}
-                          </Text>
-                          <Text tone="subdued" as="p">
-                            {vendor} • {type}
-                          </Text>
-                        </BlockStack>
-                      </div>
-                      <InlineStack gap="200">
-                        {getStatusBadge(status)}
-                        {getInventoryBadge(inventory)}
-                      </InlineStack>
-                      <Text variant="bodyMd" fontWeight="medium" as="span">
-                        {price}
-                      </Text>
-                      <InlineStack gap="200">
-                        <Button variant="plain" icon={EditIcon} />
-                        <Button variant="plain" icon={DeleteIcon} />
-                      </InlineStack>
+                      <BlockStack gap="100">
+                        <Text variant="bodyMd" fontWeight="semibold" as="span">
+                          {title}
+                        </Text>
+                        <Text variant="bodySm" tone="subdued" as="span">
+                          SKU: {sku}
+                        </Text>
+                      </BlockStack>
                     </InlineStack>
-                  </div>
-                </ResourceList.Item>
-              )}
-              emptyState={emptyStateMarkup}
-              showHeader
-              selectable
-              selectedItems={selected}
-              onSelectionChange={setSelected}
-            />
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    <Text variant="bodyMd" as="span">{sku}</Text>
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    <InventoryStatus
+                      quantity={inventory.available}
+                      reorderPoint={inventory.reorderPoint}
+                      maxStock={inventory.maxStock}
+                      showText={true}
+                      showTooltip={true}
+                    />
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    <Text variant="bodyMd" as="span">{inventory.available}</Text>
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    <Text variant="bodyMd" as="span">{inventory.committed}</Text>
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    <Text variant="bodyMd" as="span">
+                      {formatCurrency(inventory.totalValue)}
+                    </Text>
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    <Text variant="bodyMd" as="span">
+                      {formatCurrency(price)}
+                    </Text>
+                  </IndexTable.Cell>
+                  <IndexTable.Cell>
+                    {getStatusBadge(status)}
+                  </IndexTable.Cell>
+                </IndexTable.Row>
+              ))}
+            </IndexTable>
           </Card>
         </Layout.Section>
 
+        {/* Pagination */}
         <Layout.Section>
           <div style={{ textAlign: 'center' }}>
             <Pagination
-              label={`Page ${page} of 10`}
+              label={`Page ${page} of ${Math.ceil(filteredProducts.length / 20) || 1}`}
               hasPrevious={page > 1}
               onPrevious={() => setPage(page - 1)}
-              hasNext={page < 10}
+              hasNext={page < Math.ceil(filteredProducts.length / 20)}
               onNext={() => setPage(page + 1)}
             />
           </div>
         </Layout.Section>
       </Layout>
+
+      {/* Stock Transfer Modal */}
+      <Modal
+        open={transferModalActive}
+        onClose={() => setTransferModalActive(false)}
+        title="Transfer Stock"
+        primaryAction={{
+          content: 'Transfer',
+          onAction: () => setTransferModalActive(false),
+        }}
+        secondaryActions={[
+          {
+            content: 'Cancel',
+            onAction: () => setTransferModalActive(false),
+          },
+        ]}
+      >
+        <Modal.Section>
+          <BlockStack gap="400">
+            <Text as="p">
+              Transfer stock from one location to another. Select the products, quantity, and destination location.
+            </Text>
+            <Select
+              label="From Location"
+              options={locations.filter(l => l.id !== 'all')}
+              onChange={() => {}}
+              value=""
+            />
+            <Select
+              label="To Location"
+              options={locations.filter(l => l.id !== 'all')}
+              onChange={() => {}}
+              value=""
+            />
+          </BlockStack>
+        </Modal.Section>
+      </Modal>
+
+      {/* Stock Adjustment Modal */}
+      <Modal
+        open={adjustmentModalActive}
+        onClose={() => setAdjustmentModalActive(false)}
+        title="Adjust Stock"
+        primaryAction={{
+          content: 'Adjust',
+          onAction: () => setAdjustmentModalActive(false),
+        }}
+        secondaryActions={[
+          {
+            content: 'Cancel',
+            onAction: () => setAdjustmentModalActive(false),
+          },
+        ]}
+      >
+        <Modal.Section>
+          <BlockStack gap="400">
+            <Text as="p">
+              Make manual adjustments to inventory levels. Select products and specify adjustment quantities.
+            </Text>
+            <TextField
+              label="Adjustment Type"
+              type="text"
+              value=""
+              onChange={() => {}}
+              placeholder="Increase/Decrease/Set"
+            />
+            <TextField
+              label="Quantity"
+              type="number"
+              value=""
+              onChange={() => {}}
+              placeholder="Enter quantity"
+            />
+            <TextField
+              label="Reason"
+              type="text"
+              value=""
+              onChange={() => {}}
+              placeholder="Enter adjustment reason"
+              multiline={3}
+            />
+          </BlockStack>
+        </Modal.Section>
+      </Modal>
     </Page>
   )
 }

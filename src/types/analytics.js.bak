@@ -1,0 +1,480 @@
+/**
+ * TypeScript interfaces for Reports and Analytics module
+ * These can be converted to .ts files when migrating to TypeScript
+ */
+
+// Analytics Data Interfaces
+export const AnalyticsDataTypes = {
+  // KPI Metric interface
+  KPIMetric: {
+    title: 'string',
+    value: 'string',
+    change: 'string',
+    changeDirection: 'up | down | neutral',
+    icon: 'React.ComponentType',
+    color: 'success | warning | critical | info | base',
+    trend: 'Array<number>', // For sparkline charts
+    target: 'string?', // Optional target value
+    comparison: 'string?', // Optional comparison text
+  },
+
+  // Chart Data interface
+  ChartData: {
+    labels: 'Array<string>',
+    datasets: 'Array<{ label: string; data: Array<number>; backgroundColor?: string | Array<string>; borderColor?: string | Array<string>; type?: \'line\' | \'bar\' | \'pie\' | \'doughnut\' | \'area\'; }>',
+  },
+
+  // Report interface
+  Report: {
+    id: 'string',
+    name: 'string',
+    description: 'string',
+    type: "'inventory' | 'sales' | 'customer' | 'product' | 'custom'",
+    category: "'executive' | 'operational' | 'strategic'",
+    createdAt: 'Date',
+    updatedAt: 'Date',
+    createdBy: 'string',
+    isScheduled: 'boolean',
+    schedule: '{ frequency: \'daily\' | \'weekly\' | \'monthly\' | \'quarterly\'; dayOfWeek?: number; dayOfMonth?: number; recipients?: Array<string>; }?',
+    filters: 'Array<ReportFilter>',
+    metrics: 'Array<string>',
+    visualizations: 'Array<ChartConfig>',
+    lastRun: 'Date?',
+    nextRun: 'Date?',
+  },
+
+  // Report Filter interface
+  ReportFilter: {
+    field: 'string',
+    operator: "'equals' | 'not_equals' | 'contains' | 'not_contains' | 'greater_than' | 'less_than' | 'between'",
+    value: 'string | number | Array<string | number>',
+    type: "'text' | 'number' | 'date' | 'select' | 'multiselect'",
+    label: 'string',
+  },
+
+  // Chart Configuration interface
+  ChartConfig: {
+    id: 'string',
+    title: 'string',
+    type: "'line' | 'bar' | 'pie' | 'doughnut' | 'area' | 'scatter' | 'heatmap'",
+    dataSource: 'string',
+    xAxis: 'string?',
+    yAxis: 'string | Array<string>',
+    groupBy: 'string?',
+    aggregation: "'sum' | 'average' | 'count' | 'min' | 'max'",
+    filters: 'Array<ReportFilter>?',
+    styling: '{ colors?: Array<string>; showLegend?: boolean; showGrid?: boolean; height?: number; width?: number; }?',
+  },
+
+  // Date Range interface
+  DateRange: {
+    startDate: 'Date',
+    endDate: 'Date',
+    comparison?: 'DateRange',
+    preset: "'today' | 'yesterday' | 'last7days' | 'last30days' | 'last90days' | 'last12months' | 'thisMonth' | 'lastMonth' | 'thisQuarter' | 'lastQuarter' | 'thisYear' | 'lastYear' | 'custom'",
+  },
+
+  // Inventory Analytics interface
+  InventoryAnalytics: {
+    totalProducts: 'number',
+    totalValue: 'number',
+    lowStockItems: 'number',
+    outOfStockItems: 'number',
+    categories: 'Array<{ name: string; count: number; value: number; }>',
+    locations: 'Array<{ name: string; count: number; value: number; capacity: number; }>',
+    turnoverRate: 'number',
+    daysOfSupply: 'number',
+    trendingProducts: 'Array<{ id: string; name: string; trend: \'up\' | \'down\' | \'stable\'; change: number; }>',
+  },
+
+  // Sales Analytics interface
+  SalesAnalytics: {
+    totalRevenue: 'number',
+    totalOrders: 'number',
+    averageOrderValue: 'number',
+    salesByChannel: 'Array<{',
+    '  channel: string;',
+    '  revenue: number;',
+    '  orders: number;',
+    '  percentage: number;',
+    '}>',
+    salesByCategory: 'Array<{',
+    '  category: string;',
+    '  revenue: number;',
+    '  orders: number;',
+    '  percentage: number;',
+    '}>',
+    topProducts: 'Array<{',
+    '  id: string;',
+    '  name: string;',
+    '  sku: string;',
+    '  quantity: number;',
+    '  revenue: number;',
+    '  growth: number;',
+    '}>',
+    salesTrend: 'Array<{',
+    '  date: Date;',
+    '  revenue: number;',
+    '  orders: number;',
+    '  aov: number;',
+    '}>',
+    forecast: 'Array<{',
+    '  date: Date;',
+    '  predicted: number;',
+    '  confidence: number;',
+    '}>',
+  },
+
+  // Customer Analytics interface
+  CustomerAnalytics: {
+    totalCustomers: 'number',
+    activeCustomers: 'number',
+    newCustomers: 'number',
+    customerSegments: 'Array<{',
+    '  segment: string;',
+    '  count: number;',
+    '  revenue: number;',
+    '  aov: number;',
+    '  percentage: number;',
+    '}>',
+    customerLifetimeValue: 'number',
+    retentionRate: 'number',
+    churnRate: 'number',
+    repeatCustomers: 'number',
+    averageOrdersPerCustomer: 'number',
+    topCustomers: 'Array<{',
+    '  id: string;',
+    '  name: string;',
+    '  email: string;',
+    '  orders: number;',
+    '  revenue: number;',
+    '  lastOrder: Date;',
+    '}>',
+    geographicDistribution: 'Array<{',
+    '  region: string;',
+    '  count: number;',
+    '  revenue: number;',
+    '}>',
+  },
+
+  // Product Performance interface
+  ProductPerformance: {
+    totalProducts: 'number',
+    activeProducts: 'number',
+    topPerformers: 'Array<{',
+    '  id: string;',
+    '  name: string;',
+    '  category: string;',
+    '  sales: number;',
+    '  revenue: number;',
+    '  profit: number;',
+    '  rating: number;',
+    '  growth: number;',
+    '}>',
+    underPerformers: 'Array<{',
+    '  id: string;',
+    '  name: string;',
+    '  category: string;',
+    '  sales: number;',
+    '  revenue: number;',
+    '  lastSold: Date;',
+    '}>',
+    categoryPerformance: 'Array<{',
+    '  category: string;',
+    '  count: number;',
+    '  revenue: number;',
+    '  profit: number;',
+    '  growth: number;',
+    '}>',
+    pricePoints: 'Array<{',
+    '  price: number;',
+    '  range: string;',
+    '  count: number;',
+    '  revenue: number;',
+    '}>',
+  },
+
+  // Dashboard Widget interface
+  DashboardWidget: {
+    id: 'string',
+    title: 'string',
+    type: "'kpi' | 'chart' | 'table' | 'metric' | 'list'",
+    size: "'small' | 'medium' | 'large' | 'full'",
+    position: '{',
+    '  x: number;',
+    '  y: number;',
+    '  w: number;',
+    '  h: number;',
+    '}',
+    data: 'any', // Depends on widget type
+    config: 'any', // Widget-specific configuration
+    refreshInterval?: 'number', // In seconds
+    isVisible: 'boolean',
+    isExpanded: 'boolean',
+  },
+
+  // Export Configuration interface
+  ExportConfig: {
+    format: "'csv' | 'excel' | 'pdf' | 'json'",
+    filename: 'string',
+    includeHeaders: 'boolean',
+    dateFormat: 'string',
+    timezone: 'string',
+    filters: 'Array<ReportFilter>?',
+    columns: 'Array<string>?',
+    recipients: 'Array<string>?',
+    schedule: '{',
+    '  frequency: \'once\' | \'daily\' | \'weekly\' | \'monthly\';',
+    '  time: string;',
+    '  dayOfWeek?: number;',
+    '  dayOfMonth?: number;',
+    '}?',
+  },
+}
+
+// Mock Data Generator Functions
+export const MockDataGenerators = {
+  // Generate KPI metrics
+  generateKPIMetrics: () => [
+    {
+      title: 'Total Revenue',
+      value: '$1,234,567',
+      change: '+15.2%',
+      changeDirection: 'up',
+      trend: [100, 95, 110, 125, 118, 132, 145, 138, 152],
+      target: '$1,500,000',
+      color: 'success'
+    },
+    {
+      title: 'Total Orders',
+      value: '8,945',
+      change: '+8.1%',
+      changeDirection: 'up',
+      trend: [800, 850, 820, 900, 950, 980, 1020, 980, 1100],
+      target: '10,000',
+      color: 'success'
+    },
+    {
+      title: 'Average Order Value',
+      value: '$138.45',
+      change: '+3.2%',
+      changeDirection: 'up',
+      trend: [125, 130, 128, 135, 140, 138, 142, 145, 148],
+      target: '$150',
+      color: 'info'
+    },
+    {
+      title: 'Inventory Turnover',
+      value: '4.2x',
+      change: '-0.5%',
+      changeDirection: 'down',
+      trend: [4.8, 4.5, 4.3, 4.4, 4.2, 4.1, 4.0, 4.1, 4.2],
+      target: '5.0x',
+      color: 'warning'
+    }
+  ],
+
+  // Generate chart data
+  generateSalesChartData: () => ({
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [
+      {
+        label: 'Revenue',
+        data: [65000, 72000, 68000, 85000, 92000, 88000, 95000, 102000, 98000, 105000, 112000, 125000],
+        type: 'line',
+        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+        borderColor: 'rgba(0, 123, 255, 1)'
+      },
+      {
+        label: 'Profit',
+        data: [12000, 15000, 14000, 18000, 22000, 20000, 25000, 28000, 24000, 30000, 32000, 38000],
+        type: 'bar',
+        backgroundColor: 'rgba(40, 167, 69, 0.8)'
+      }
+    ]
+  }),
+
+  // Generate inventory analytics data
+  generateInventoryAnalytics: () => ({
+    totalProducts: 2847,
+    totalValue: 156432,
+    lowStockItems: 23,
+    outOfStockItems: 5,
+    categories: [
+      { name: 'Electronics', count: 456, value: 45678 },
+      { name: 'Clothing', count: 789, value: 34567 },
+      { name: 'Home & Garden', count: 234, value: 23456 },
+      { name: 'Sports', count: 123, value: 12345 },
+      { name: 'Books', count: 890, value: 12345 }
+    ],
+    locations: [
+      { name: 'Warehouse A', count: 1500, value: 80000, capacity: 2000 },
+      { name: 'Warehouse B', count: 800, value: 45000, capacity: 1200 },
+      { name: 'Store Front', count: 547, value: 31432, capacity: 600 }
+    ],
+    turnoverRate: 4.2,
+    daysOfSupply: 65,
+    trendingProducts: [
+      { id: '1', name: 'Wireless Headphones', trend: 'up', change: 23.5 },
+      { id: '2', name: 'Smart Watch', trend: 'up', change: 18.2 },
+      { id: '3', name: 'Laptop Stand', trend: 'down', change: -12.1 },
+      { id: '4', name: 'USB Cable', trend: 'stable', change: 2.3 }
+    ]
+  }),
+
+  // Generate sales analytics data
+  generateSalesAnalytics: () => ({
+    totalRevenue: 1234567,
+    totalOrders: 8945,
+    averageOrderValue: 138.45,
+    salesByChannel: [
+      { channel: 'Online Store', revenue: 678900, orders: 5678, percentage: 55.0 },
+      { channel: 'Retail', revenue: 345678, orders: 2345, percentage: 28.0 },
+      { channel: 'Phone', revenue: 123456, orders: 567, percentage: 10.0 },
+      { channel: 'Marketplace', revenue: 86533, orders: 355, percentage: 7.0 }
+    ],
+    salesByCategory: [
+      { category: 'Electronics', revenue: 456789, orders: 3456, percentage: 37.0 },
+      { category: 'Clothing', revenue: 345678, orders: 2345, percentage: 28.0 },
+      { category: 'Home & Garden', revenue: 234567, orders: 1234, percentage: 19.0 },
+      { category: 'Sports', revenue: 123456, orders: 789, percentage: 10.0 },
+      { category: 'Books', revenue: 74077, orders: 1121, percentage: 6.0 }
+    ],
+    topProducts: [
+      { id: '1', name: 'Wireless Headphones', sku: 'WH-001', quantity: 234, revenue: 46789, growth: 23.5 },
+      { id: '2', name: 'Smart Watch', sku: 'SW-002', quantity: 156, revenue: 62345, growth: 18.2 },
+      { id: '3', name: 'Laptop Stand', sku: 'LS-003', quantity: 89, revenue: 12345, growth: -12.1 },
+      { id: '4', name: 'USB Cable', sku: 'UC-004', quantity: 445, revenue: 8890, growth: 2.3 }
+    ]
+  }),
+
+  // Generate customer analytics data
+  generateCustomerAnalytics: () => ({
+    totalCustomers: 15678,
+    activeCustomers: 8901,
+    newCustomers: 567,
+    customerSegments: [
+      { segment: 'VIP', count: 1567, revenue: 456789, aov: 234.56, percentage: 10.0 },
+      { segment: 'Regular', count: 6789, revenue: 567890, aov: 156.78, percentage: 43.3 },
+      { segment: 'Occasional', count: 4567, revenue: 123456, aov: 89.12, percentage: 29.1 },
+      { segment: 'New', count: 2755, revenue: 86432, aov: 45.67, percentage: 17.6 }
+    ],
+    customerLifetimeValue: 1256.78,
+    retentionRate: 78.9,
+    churnRate: 12.3,
+    repeatCustomers: 6789,
+    averageOrdersPerCustomer: 2.3,
+    topCustomers: [
+      { id: '1', name: 'John Smith', email: 'john@example.com', orders: 45, revenue: 12345, lastOrder: new Date('2024-01-15') },
+      { id: '2', name: 'Jane Doe', email: 'jane@example.com', orders: 38, revenue: 10987, lastOrder: new Date('2024-01-14') },
+      { id: '3', name: 'Bob Johnson', email: 'bob@example.com', orders: 32, revenue: 9876, lastOrder: new Date('2024-01-13') }
+    ],
+    geographicDistribution: [
+      { region: 'North America', count: 7890, revenue: 567890 },
+      { region: 'Europe', count: 4567, revenue: 345678 },
+      { region: 'Asia', count: 2345, revenue: 234567 },
+      { region: 'Other', count: 876, revenue: 86432 }
+    ]
+  }),
+
+  // Generate product performance data
+  generateProductPerformance: () => ({
+    totalProducts: 2847,
+    activeProducts: 2567,
+    topPerformers: [
+      { id: '1', name: 'Wireless Headphones', category: 'Electronics', sales: 234, revenue: 46789, profit: 15678, rating: 4.8, growth: 23.5 },
+      { id: '2', name: 'Smart Watch', category: 'Electronics', sales: 156, revenue: 62345, profit: 23456, rating: 4.6, growth: 18.2 },
+      { id: '3', name: 'Laptop Stand', category: 'Electronics', sales: 89, revenue: 12345, profit: 4567, rating: 4.2, growth: -12.1 },
+      { id: '4', name: 'USB Cable', category: 'Electronics', sales: 445, revenue: 8890, profit: 2345, rating: 4.1, growth: 2.3 }
+    ],
+    underPerformers: [
+      { id: '5', name: 'Old Keyboard', category: 'Electronics', sales: 2, revenue: 123, lastSold: new Date('2023-12-15') },
+      { id: '6', name: 'Vintage Mouse', category: 'Electronics', sales: 1, revenue: 45, lastSold: new Date('2023-11-20') }
+    ],
+    categoryPerformance: [
+      { category: 'Electronics', count: 456, revenue: 456789, profit: 156789, growth: 15.2 },
+      { category: 'Clothing', count: 789, revenue: 345678, profit: 123456, growth: 8.7 },
+      { category: 'Home & Garden', count: 234, revenue: 234567, profit: 89012, growth: 12.3 }
+    ],
+    pricePoints: [
+      { price: 25, range: '$0-$25', count: 567, revenue: 12345 },
+      { price: 75, range: '$25-$100', count: 890, revenue: 56789 },
+      { price: 150, range: '$100-$200', count: 445, revenue: 67890 },
+      { price: 300, range: '$200+', count: 123, revenue: 34567 }
+    ]
+  }),
+
+  // Generate dashboard widgets
+  generateDashboardWidgets: () => [
+    {
+      id: 'kpi-1',
+      title: 'Revenue Overview',
+      type: 'kpi',
+      size: 'medium',
+      position: { x: 0, y: 0, w: 2, h: 1 },
+      data: MockDataGenerators.generateKPIMetrics()[0],
+      isVisible: true,
+      isExpanded: false
+    },
+    {
+      id: 'chart-1',
+      title: 'Sales Trend',
+      type: 'chart',
+      size: 'large',
+      position: { x: 2, y: 0, w: 4, h: 2 },
+      data: MockDataGenerators.generateSalesChartData(),
+      isVisible: true,
+      isExpanded: false
+    },
+    {
+      id: 'table-1',
+      title: 'Top Products',
+      type: 'table',
+      size: 'medium',
+      position: { x: 6, y: 0, w: 2, h: 2 },
+      data: MockDataGenerators.generateSalesAnalytics().topProducts,
+      isVisible: true,
+      isExpanded: false
+    }
+  ],
+
+  // Generate report templates
+  generateReportTemplates: () => [
+    {
+      id: 'exec-summary',
+      name: 'Executive Summary',
+      description: 'High-level business overview for executive leadership',
+      type: 'custom',
+      category: 'executive',
+      metrics: ['totalRevenue', 'totalOrders', 'averageOrderValue', 'customerLifetimeValue'],
+      visualizations: [
+        { id: 'rev-trend', type: 'line', title: 'Revenue Trend' },
+        { id: 'channel-perf', type: 'pie', title: 'Channel Performance' }
+      ]
+    },
+    {
+      id: 'inventory-health',
+      name: 'Inventory Health Report',
+      description: 'Detailed analysis of inventory levels and performance',
+      type: 'inventory',
+      category: 'operational',
+      metrics: ['totalProducts', 'lowStockItems', 'turnoverRate', 'daysOfSupply'],
+      visualizations: [
+        { id: 'stock-levels', type: 'bar', title: 'Stock Levels by Category' },
+        { id: 'turnover', type: 'area', title: 'Inventory Turnover Trend' }
+      ]
+    },
+    {
+      id: 'sales-analysis',
+      name: 'Sales Performance Analysis',
+      description: 'Comprehensive sales performance metrics and trends',
+      type: 'sales',
+      category: 'strategic',
+      metrics: ['totalRevenue', 'salesByChannel', 'topProducts', 'salesTrend'],
+      visualizations: [
+        { id: 'revenue-chart', type: 'line', title: 'Revenue Over Time' },
+        { id: 'category-breakdown', type: 'doughnut', title: 'Sales by Category' }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Test Page</title>
+</head>
+<body>
+    <h1>Simple Test Page</h1>
+    <p>If you can see this, the server is working.</p>
+    <div id="test-output"></div>
+
+    <script>
+        console.log("Test script loaded");
+        document.getElementById('test-output').innerHTML = "JavaScript is working!";
+
+        // Test loading main React app
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/src/main.jsx';
+        script.onload = () => console.log('Main React app loaded successfully');
+        script.onerror = (e) => {
+            console.error('Failed to load React app:', e);
+            document.getElementById('test-output').innerHTML += "<br>Failed to load React app";
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

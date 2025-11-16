@@ -12,9 +12,7 @@ import {
   InlineStack,
   BlockStack,
   Grid,
-  VerticalStack,
-  InlineStack,
-  Tabs,
+    Tabs,
   TextField,
   RadioButton,
   ChoiceList,
@@ -119,7 +117,7 @@ const ProductDetail = () => {
   const ImageGallery = () => (
     <Card>
       <div style={{ padding: 'var(--p-space-6)' }}>
-        <VerticalStack gap="400">
+        <BlockStack gap="400">
           {/* Main Image */}
           <div style={{ textAlign: 'center' }}>
             <Thumbnail
@@ -169,15 +167,15 @@ const ProductDetail = () => {
               disabled={selectedImage === images.length - 1}
             />
           </InlineStack>
-        </VerticalStack>
+        </BlockStack>
       </div>
     </Card>
   )
 
   const ProductInfo = () => (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Title and Status */}
-      <VerticalStack gap="200">
+      <BlockStack gap="200">
         <InlineStack align="space-between">
           <Text variant="headingLg" as="h1">{product.title}</Text>
           <InlineStack gap="200">
@@ -195,7 +193,7 @@ const ProductDetail = () => {
           <Text tone="subdued" as="p">{product.type}</Text>
           <Badge tone="success">Active</Badge>
         </InlineStack>
-      </VerticalStack>
+      </BlockStack>
 
       {/* Price */}
       <InlineStack gap="400" align="baseline">
@@ -210,7 +208,7 @@ const ProductDetail = () => {
       <Text as="p">{product.description}</Text>
 
       {/* Variant Selection */}
-      <VerticalStack gap="400">
+      <BlockStack gap="400">
         <Text variant="headingMd" as="h3">Size</Text>
         <RadioButton
           label={variants[0].label}
@@ -236,10 +234,10 @@ const ProductDetail = () => {
           name="size"
           onChange={() => setSelectedVariant(variants[3].value)}
         />
-      </VerticalStack>
+      </BlockStack>
 
       {/* Color Selection */}
-      <VerticalStack gap="400">
+      <BlockStack gap="400">
         <Text variant="headingMd" as="h3">Color</Text>
         <ChoiceList
           title="Color"
@@ -248,10 +246,10 @@ const ProductDetail = () => {
           onChange={(value) => setSelectedColor(value[0])}
           titleHidden
         />
-      </VerticalStack>
+      </BlockStack>
 
       {/* Quantity */}
-      <VerticalStack gap="400">
+      <BlockStack gap="400">
         <Text variant="headingMd" as="h3">Quantity</Text>
         <InlineStack gap="200">
           <Button
@@ -271,10 +269,10 @@ const ProductDetail = () => {
             onClick={() => setQuantity(quantity + 1)}
           />
         </InlineStack>
-      </VerticalStack>
+      </BlockStack>
 
       {/* Action Buttons */}
-      <VerticalStack gap="300">
+      <BlockStack gap="300">
         <Button size="large" primary onClick={() => console.log('Add to cart')}>
           Add to cart
         </Button>
@@ -289,12 +287,12 @@ const ProductDetail = () => {
             Share
           </Button>
         </InlineStack>
-      </VerticalStack>
+      </BlockStack>
 
       {/* Product Details */}
       <Card>
         <div style={{ padding: 'var(--p-space-6)' }}>
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h3">Product Details</Text>
             <InlineStack gap="400">
               <Text tone="subdued" as="p">SKU:</Text>
@@ -312,16 +310,16 @@ const ProductDetail = () => {
               <Text tone="subdued" as="p">Last updated:</Text>
               <Text as="p">{product.updated}</Text>
             </InlineStack>
-          </VerticalStack>
+          </BlockStack>
         </div>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 
   const ReviewsSection = () => (
     <Card>
       <div style={{ padding: 'var(--p-space-6)' }}>
-        <VerticalStack gap="600">
+        <BlockStack gap="600">
           <Text variant="headingMd" as="h3">Customer Reviews</Text>
 
           {/* Overall Rating */}
@@ -343,7 +341,7 @@ const ProductDetail = () => {
 
           {/* Individual Reviews */}
           {reviews.map((review) => (
-            <VerticalStack key={review.id} gap="200">
+            <BlockStack key={review.id} gap="200">
               <InlineStack gap="200" align="center">
                 <InlineStack gap="100">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -359,9 +357,9 @@ const ProductDetail = () => {
               </InlineStack>
               <Text as="p">{review.comment}</Text>
               <Divider />
-            </VerticalStack>
+            </BlockStack>
           ))}
-        </VerticalStack>
+        </BlockStack>
       </div>
     </Card>
   )
@@ -405,7 +403,7 @@ const ProductDetail = () => {
         <Layout.Section>
           <Tabs tabs={tabs} selected={selectedTab} onSelect={setSelectedTab}>
             {selectedTab === 0 && (
-              <VerticalStack gap="600">
+              <BlockStack gap="600">
                 <Card>
                   <div style={{ padding: 'var(--p-space-6)' }}>
                     <Text variant="headingMd" as="h2" marginBottom="400">
@@ -413,7 +411,7 @@ const ProductDetail = () => {
                     </Text>
                     <Text as="p">{product.description}</Text>
                     <Divider />
-                    <VerticalStack gap="300" marginTop="400">
+                    <BlockStack gap="300" marginTop="400">
                       <Text fontWeight="semibold" as="h4">Features:</Text>
                       <ul style={{ margin: 0, paddingLeft: 'var(--p-space-600)' }}>
                         <li>100% organic cotton</li>
@@ -421,11 +419,11 @@ const ProductDetail = () => {
                         <li>Premium quality stitching</li>
                         <li>Comfortable fit</li>
                       </ul>
-                    </VerticalStack>
+                    </BlockStack>
                   </div>
                 </Card>
                 <ReviewsSection />
-              </VerticalStack>
+              </BlockStack>
             )}
 
             {selectedTab === 1 && (
