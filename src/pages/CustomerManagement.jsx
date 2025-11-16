@@ -367,7 +367,7 @@ const CustomerManagement = () => {
         }
       ]}
     >
-      <Modal.Section>
+      <div style={{ padding: 'var(--p-space-6)' }}>
         <Text as="p">
           Export {selected.length} selected customers to CSV format.
         </Text>
@@ -383,7 +383,7 @@ const CustomerManagement = () => {
             onChange={() => {}}
           />
         </div>
-      </Modal.Section>
+      </div>
     </Modal>
   ) : (
     <Modal
@@ -404,11 +404,11 @@ const CustomerManagement = () => {
         }
       ]}
     >
-      <Modal.Section>
+      <div style={{ padding: 'var(--p-space-6)' }}>
         <Text as="p">
           Apply {selectedBulkAction} to {selected.length} selected customers.
         </Text>
-      </Modal.Section>
+      </div>
     </Modal>
   )
 

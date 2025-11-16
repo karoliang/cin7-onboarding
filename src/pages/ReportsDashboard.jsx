@@ -727,26 +727,28 @@ const ReportsDashboard = () => {
             </Text>
             <Grid columns={{ xs: 1, md: 2, lg: 3 }}>
               {MockDataGenerators.generateReportTemplates().map(template => (
-                <Card key={template.id} sectioned>
-                  <BlockStack gap="300">
-                    <InlineStack align="space-between">
-                      <Text as="h3" variant="headingSm">{template.name}</Text>
-                      <Icon source={ChartCohortIcon} tone="info" />
-                    </InlineStack>
-                    <Text as="p" tone="subdued" variant="bodySm">
-                      {template.description}
-                    </Text>
-                    <InlineStack gap="200">
-                      <Badge>{template.category}</Badge>
-                      <Badge status="info">{template.type}</Badge>
-                    </InlineStack>
-                    <Button
-                      size="slim"
-                      onClick={() => handleEditReport(template)}
-                    >
-                      Use Template
-                    </Button>
-                  </BlockStack>
+                <Card key={template.id}>
+                  <div style={{ padding: 'var(--p-space-6)' }}>
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between">
+                        <Text as="h3" variant="headingSm">{template.name}</Text>
+                        <Icon source={ChartCohortIcon} tone="info" />
+                      </InlineStack>
+                      <Text as="p" tone="subdued" variant="bodySm">
+                        {template.description}
+                      </Text>
+                      <InlineStack gap="200">
+                        <Badge>{template.category}</Badge>
+                        <Badge tone="info">{template.type}</Badge>
+                      </InlineStack>
+                      <Button
+                        size="slim"
+                        onClick={() => handleEditReport(template)}
+                      >
+                        Use Template
+                      </Button>
+                    </BlockStack>
+                  </div>
                 </Card>
               ))}
             </Grid>
@@ -835,7 +837,7 @@ const ReportsDashboard = () => {
           },
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <BlockStack gap="400">
             <Text as="p">
               Choose the export format for your report. The current date range and filters will be applied.
@@ -856,7 +858,7 @@ const ReportsDashboard = () => {
               )}
             </BlockStack>
           </BlockStack>
-        </Modal.Section>
+        </div>
       </Modal>
     </>
   )

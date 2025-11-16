@@ -515,7 +515,7 @@ const OrderDetail = () => {
           }
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <FormLayout>
             <TextField
               label="Order notes"
@@ -535,7 +535,7 @@ const OrderDetail = () => {
               multiple
             />
           </FormLayout>
-        </Modal.Section>
+        </div>
       </Modal>
 
       {/* Fulfill Order Modal */}
@@ -557,11 +557,11 @@ const OrderDetail = () => {
           }
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <Text as="p">
             Fulfillment form with tracking information and shipping details will be shown here.
           </Text>
-        </Modal.Section>
+        </div>
       </Modal>
 
       {/* Refund Order Modal */}
@@ -583,11 +583,11 @@ const OrderDetail = () => {
           }
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <Text as="p">
             Refund form with amount and reason will be shown here.
           </Text>
-        </Modal.Section>
+        </div>
       </Modal>
     </Page>
   )

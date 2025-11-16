@@ -488,11 +488,11 @@ const ProductDetail = () => {
           },
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <Text>
             Are you sure you want to delete "{product.title}"? This action cannot be undone.
           </Text>
-        </Modal.Section>
+        </div>
       </Modal>
     </Page>
   )

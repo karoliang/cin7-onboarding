@@ -453,52 +453,54 @@ const InventoryDetail = () => {
         <Card>
           <BlockStack gap="400">
             {product.inventory.locations.map(location => (
-              <Card key={location.locationId} sectioned>
-                <BlockStack gap="400">
-                  <InlineStack gap="400" align="space-between" blockAlign="center">
-                    <Text variant="headingMd" as="h3">{location.locationName}</Text>
-                    <InlineStack gap="200">
-                      <Button icon={EditIcon} variant="plain">Edit</Button>
-                      <Button icon={TransferIcon} variant="plain">Transfer</Button>
+              <Card key={location.locationId}>
+                <div style={{ padding: 'var(--p-space-6)' }}>
+                  <BlockStack gap="400">
+                    <InlineStack gap="400" align="space-between" blockAlign="center">
+                      <Text variant="headingMd" as="h3">{location.locationName}</Text>
+                      <InlineStack gap="200">
+                        <Button icon={EditIcon} variant="plain">Edit</Button>
+                        <Button icon={TransferIcon} variant="plain">Transfer</Button>
+                      </InlineStack>
                     </InlineStack>
-                  </InlineStack>
 
-                  <Grid columns={{ xs: 1, sm: 3 }}>
-                    <BlockStack gap="200">
-                      <Text variant="bodySm" tone="subdued">Current Stock</Text>
-                      <Text variant="headingLg" as="h4">{location.quantity}</Text>
-                    </BlockStack>
-                    <BlockStack gap="200">
-                      <Text variant="bodySm" tone="subdued">Reorder Point</Text>
-                      <Text variant="headingLg" as="h4">{location.reorderPoint}</Text>
-                    </BlockStack>
-                    <BlockStack gap="200">
-                      <Text variant="bodySm" tone="subdued">Max Capacity</Text>
-                      <Text variant="headingLg" as="h4">{location.maxStock}</Text>
-                    </BlockStack>
-                  </Grid>
+                    <Grid columns={{ xs: 1, sm: 3 }}>
+                      <BlockStack gap="200">
+                        <Text variant="bodySm" tone="subdued">Current Stock</Text>
+                        <Text variant="headingLg" as="h4">{location.quantity}</Text>
+                      </BlockStack>
+                      <BlockStack gap="200">
+                        <Text variant="bodySm" tone="subdued">Reorder Point</Text>
+                        <Text variant="headingLg" as="h4">{location.reorderPoint}</Text>
+                      </BlockStack>
+                      <BlockStack gap="200">
+                        <Text variant="bodySm" tone="subdued">Max Capacity</Text>
+                        <Text variant="headingLg" as="h4">{location.maxStock}</Text>
+                      </BlockStack>
+                    </Grid>
 
-                  {location.bins && (
-                    <BlockStack gap="200">
-                      <Text variant="bodyMd" fontWeight="semibold">Bin Locations</Text>
-                      <Grid columns={{ xs: 1, sm: 2, md: 3 }}>
-                        {location.bins.map(bin => (
-                          <div key={bin.binId} style={{
-                            padding: 'var(--p-space-300)',
-                            border: '1px solid var(--p-color-border)',
-                            borderRadius: 'var(--p-border-radius-200)',
-                            backgroundColor: 'var(--p-color-bg-surface)'
-                          }}>
-                            <InlineStack gap="200" align="space-between">
-                              <Text variant="bodySm" fontWeight="medium">{bin.binName}</Text>
-                              <Text variant="bodySm" tone="subdued">{bin.quantity} units</Text>
-                            </InlineStack>
-                          </div>
-                        ))}
-                      </Grid>
-                    </BlockStack>
-                  )}
-                </BlockStack>
+                    {location.bins && (
+                      <BlockStack gap="200">
+                        <Text variant="bodyMd" fontWeight="semibold">Bin Locations</Text>
+                        <Grid columns={{ xs: 1, sm: 2, md: 3 }}>
+                          {location.bins.map(bin => (
+                            <div key={bin.binId} style={{
+                              padding: 'var(--p-space-300)',
+                              border: '1px solid var(--p-color-border)',
+                              borderRadius: 'var(--p-border-radius-200)',
+                              backgroundColor: 'var(--p-color-bg-surface)'
+                            }}>
+                              <InlineStack gap="200" align="space-between">
+                                <Text variant="bodySm" fontWeight="medium">{bin.binName}</Text>
+                                <Text variant="bodySm" tone="subdued">{bin.quantity} units</Text>
+                              </InlineStack>
+                            </div>
+                          ))}
+                        </Grid>
+                      </BlockStack>
+                    )}
+                  </BlockStack>
+                </div>
               </Card>
             ))}
           </BlockStack>
@@ -638,7 +640,7 @@ const InventoryDetail = () => {
           },
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <BlockStack gap="400">
             <TextField
               label="Location"
@@ -670,7 +672,7 @@ const InventoryDetail = () => {
               multiline={3}
             />
           </BlockStack>
-        </Modal.Section>
+        </div>
       </Modal>
 
       {/* Stock Transfer Modal */}
@@ -689,7 +691,7 @@ const InventoryDetail = () => {
           },
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <BlockStack gap="400">
             <Select
               label="From Location"
@@ -719,7 +721,7 @@ const InventoryDetail = () => {
               multiline={3}
             />
           </BlockStack>
-        </Modal.Section>
+        </div>
       </Modal>
     </Page>
   )

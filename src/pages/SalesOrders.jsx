@@ -553,11 +553,11 @@ const SalesOrders = () => {
           }
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <Text as="p">
             Order creation form will be implemented here with customer selection, product selection, and order details.
           </Text>
-        </Modal.Section>
+        </div>
       </Modal>
     </Page>
   )

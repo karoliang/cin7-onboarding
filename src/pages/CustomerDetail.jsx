@@ -684,13 +684,13 @@ const CustomerDetail = () => {
           }
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <TextContainer>
             <Text as="p">
               Edit customer information and preferences.
             </Text>
           </TextContainer>
-        </Modal.Section>
+        </div>
       </Modal>
 
       {/* Delete Confirmation Modal */}
@@ -710,13 +710,13 @@ const CustomerDetail = () => {
           }
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-6)' }}>
           <TextContainer>
             <Text as="p">
               Are you sure you want to delete {customer.firstName} {customer.lastName}? This action cannot be undone.
             </Text>
           </TextContainer>
-        </Modal.Section>
+        </div>
       </Modal>
     </Page>
   )
