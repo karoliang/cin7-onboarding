@@ -72,10 +72,6 @@ const InventoryStatus = ({
     }
   }
 
-  const getStatusIcon = (IconComponent) => {
-    return <IconComponent tone={stockInfo.tone} />
-  }
-
   const badgeContent = showText
     ? `${quantity} ${stockInfo.label.toLowerCase()}`
     : quantity.toString()
@@ -84,7 +80,7 @@ const InventoryStatus = ({
     <Badge
       tone={stockInfo.tone}
       size={getBadgeSize(size)}
-      icon={getStatusIcon(stockInfo.icon)}
+      icon={stockInfo.icon}
     >
       {badgeContent}
     </Badge>
