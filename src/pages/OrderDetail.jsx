@@ -20,8 +20,6 @@ import {
   ActionList,
   Banner,
   Tabs,
-  VerticalStack,
-  HorizontalStack,
   Grid,
   Spinner
 } from '@shopify/polaris'
@@ -35,7 +33,7 @@ import {
   PackageIcon,
   CashDollarIcon,
   DeliveryIcon,
-  DocumentIcon,
+  FileIcon,
   CreditCardIcon,
   NoteIcon,
   LabelPrinterIcon

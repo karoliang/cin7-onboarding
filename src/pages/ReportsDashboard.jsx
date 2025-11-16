@@ -22,14 +22,13 @@ import {
 import {
   ChartCohortIcon,
   PlusIcon,
-  DownloadIcon,
-  RefreshIcon,
   ImportIcon,
-  ChartBarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  RefreshIcon,
+  ChartVerticalIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
   InventoryIcon,
-  CustomersIcon,
+  PersonIcon,
   CashDollarIcon,
   PackageIcon,
   ClockIcon,
@@ -167,8 +166,8 @@ const ReportsDashboard = () => {
               <Text tone="subdued" as="p">{title}</Text>
               <Icon
                 source={
-                  changeDirection === 'up' ? TrendingUpIcon :
-                  changeDirection === 'down' ? TrendingDownIcon :
+                  changeDirection === 'up' ? ArrowUpIcon :
+                  changeDirection === 'down' ? ArrowDownIcon :
                   ClockIcon
                 }
                 tone={color}
@@ -180,8 +179,8 @@ const ReportsDashboard = () => {
             <InlineStack gap="200" align="center">
               <Icon
                 source={
-                  changeDirection === 'up' ? TrendingUpIcon :
-                  changeDirection === 'down' ? TrendingDownIcon :
+                  changeDirection === 'up' ? ArrowUpIcon :
+                  changeDirection === 'down' ? ArrowDownIcon :
                   ClockIcon
                 }
                 tone={changeColor}
@@ -305,7 +304,7 @@ const ReportsDashboard = () => {
               <Button icon={PlusIcon} onClick={handleCreateReport}>
                 Create New Report
               </Button>
-              <Button icon={DownloadIcon} onClick={() => setShowExportModal(true)}>
+              <Button icon={ImportIcon} onClick={() => setShowExportModal(true)}>
                 Export Dashboard
               </Button>
               <Button icon={RefreshIcon} onClick={handleRefresh} loading={refreshing}>
@@ -770,7 +769,7 @@ const ReportsDashboard = () => {
         secondaryActions={[
           {
             content: 'Export',
-            icon: DownloadIcon,
+            icon: ImportIcon,
             onAction: () => setShowExportModal(true),
           },
           {

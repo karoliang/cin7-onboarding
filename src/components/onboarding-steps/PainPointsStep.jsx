@@ -7,8 +7,8 @@ import {
   TextField,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
@@ -17,13 +17,13 @@ import {
 } from '@shopify/polaris'
 import {
   AlertCircleIcon,
-  TrendingUpIcon,
+  ArrowUpIcon,
   ClockIcon,
-  DollarCircleIcon,
+  CashDollarIcon,
   PackageIcon,
-  CustomersIcon,
+  PersonIcon,
   MobileIcon,
-  ChartBarIcon
+  ChartVerticalIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../../contexts/OnboardingContext'
@@ -54,7 +54,7 @@ const COMMON_PAIN_POINTS = [
     value: 'lack-visibility',
     label: 'Limited Visibility',
     description: 'Can\'t see real-time inventory across locations',
-    icon: ChartBarIcon,
+    icon: ChartVerticalIcon,
     category: 'visibility'
   },
   {
@@ -68,7 +68,7 @@ const COMMON_PAIN_POINTS = [
     value: 'customer-service',
     label: 'Customer Service Issues',
     description: 'Inaccurate stock information leading to customer complaints',
-    icon: CustomersIcon,
+    icon: PersonIcon,
     category: 'customer'
   },
   {
@@ -82,14 +82,14 @@ const COMMON_PAIN_POINTS = [
     value: 'cost-control',
     label: 'Rising Costs',
     description: 'Storage and carrying costs are too high',
-    icon: DollarCircleIcon,
+    icon: CashDollarIcon,
     category: 'financial'
   },
   {
     value: 'growth-scaling',
     label: 'Scaling Challenges',
     description: 'Current systems can\'t handle business growth',
-    icon: TrendingUpIcon,
+    icon: ArrowUpIcon,
     category: 'growth'
   },
   {
@@ -110,7 +110,7 @@ const COMMON_PAIN_POINTS = [
     value: 'forecasting',
     label: 'Poor Demand Forecasting',
     description: 'Can\'t predict which products will be popular',
-    icon: ChartBarIcon,
+    icon: ChartVerticalIcon,
     category: 'planning'
   }
 ]
@@ -120,13 +120,13 @@ const BUSINESS_GOALS = [
     value: 'reduce-costs',
     label: 'Reduce Operational Costs',
     description: 'Lower inventory carrying and operational costs',
-    icon: DollarCircleIcon
+    icon: CashDollarIcon
   },
   {
     value: 'increase-sales',
     label: 'Increase Sales Revenue',
     description: 'Never miss a sale due to stockouts',
-    icon: TrendingUpIcon
+    icon: ArrowUpIcon
   },
   {
     value: 'improve-efficiency',
@@ -138,19 +138,19 @@ const BUSINESS_GOALS = [
     value: 'better-decisions',
     label: 'Make Better Decisions',
     description: 'Use real-time data for strategic planning',
-    icon: ChartBarIcon
+    icon: ChartVerticalIcon
   },
   {
     value: 'customer-satisfaction',
     label: 'Enhance Customer Satisfaction',
     description: 'Improve order accuracy and delivery times',
-    icon: CustomersIcon
+    icon: PersonIcon
   },
   {
     value: 'scale-business',
     label: 'Scale the Business',
     description: 'Support growth and expansion plans',
-    icon: TrendingUpIcon
+    icon: ArrowUpIcon
   },
   {
     value: 'multi-channel',
@@ -283,11 +283,11 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
   }
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Pain Points Section */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What challenges are you facing?
             </Text>
@@ -308,7 +308,7 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                     description: painPoint.description,
                     value: painPoint.value,
                     renderChildren: ({ selected }) => (
-                      <HorizontalStack gap="200">
+                      <InlineStack gap="200">
                         <Icon source={painPoint.icon} size="small" />
                         <Text variant="bodySm" tone="subdued">
                           {painPoint.description}
@@ -318,7 +318,7 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                             Selected
                           </Badge>
                         )}
-                      </HorizontalStack>
+                      </InlineStack>
                     )
                   }))}
                   selected={[...selectedPainPoints, ...(showOtherPainPoint ? ['other'] : [])]}
@@ -359,14 +359,14 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                 multiline={2}
               />
             )}
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Business Goals Section */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What are your business goals?
             </Text>
@@ -394,8 +394,8 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                       }
                     }}
                   >
-                    <VerticalStack gap="300">
-                      <HorizontalStack gap="300" align="start">
+                    <BlockStack gap="300">
+                      <InlineStack gap="300" align="start">
                         <Checkbox
                           label=""
                           checked={isSelected}
@@ -405,7 +405,7 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                         <Text variant="bodySm" fontWeight="medium">
                           {goal.label}
                         </Text>
-                      </HorizontalStack>
+                      </InlineStack>
                       <Text variant="bodyXs" tone="subdued">
                         {goal.description}
                       </Text>
@@ -414,7 +414,7 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                           Selected
                         </Badge>
                       )}
-                    </VerticalStack>
+                    </BlockStack>
                   </Card>
                 )
               })}
@@ -422,7 +422,7 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
 
             {/* Other goals */}
             <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-              <VerticalStack gap="300">
+              <BlockStack gap="300">
                 <Checkbox
                   label="I have other specific goals"
                   checked={showOtherGoal}
@@ -443,16 +443,16 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
                     multiline={3}
                   />
                 )}
-              </VerticalStack>
+              </BlockStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Priority Ranking */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What's most important to you right now?
             </Text>
@@ -461,31 +461,31 @@ const PainPointsStep = ({ onValidationChange, onSave }) => {
             </Text>
 
             <Box padding="400" backgroundColor="bg-surface-secondary" borderRadius="200">
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Text variant="bodySm" fontWeight="medium">
                   Based on your selections, here are your top priorities:
                 </Text>
-                <VerticalStack gap="100">
+                <BlockStack gap="100">
                   {selectedPainPoints.slice(0, 3).map((painPointId, index) => {
                     const painPoint = COMMON_PAIN_POINTS.find(p => p.value === painPointId)
                     return painPoint ? (
-                      <HorizontalStack key={painPointId} gap="200">
+                      <InlineStack key={painPointId} gap="200">
                         <Badge size="small">{index + 1}</Badge>
                         <Text variant="bodySm">{painPoint.label}</Text>
-                      </HorizontalStack>
+                      </InlineStack>
                     ) : null
                   })}
-                </VerticalStack>
-              </VerticalStack>
+                </BlockStack>
+              </BlockStack>
             </Box>
 
             <Text variant="bodySm" tone="subdued">
               We'll prioritize features and setup steps that address these challenges first, ensuring you see immediate value from Cin7 Core.
             </Text>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

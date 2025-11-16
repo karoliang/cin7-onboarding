@@ -7,15 +7,13 @@ import {
   TextField,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
   Box,
   Divider,
-  BlockStack,
-  InlineStack,
   ChoiceList,
   RadioButton,
   FormLayout
@@ -339,11 +337,11 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
   const recommendations = INDUSTRY_RECOMMENDATIONS[selectedIndustry]
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Industry Selection */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What industry best describes your business?
             </Text>
@@ -362,20 +360,20 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                   padding="400"
                   cursor="pointer"
                 >
-                  <VerticalStack gap="300">
-                    <HorizontalStack gap="300">
+                  <BlockStack gap="300">
+                    <InlineStack gap="300">
                       <Icon source={industry.icon} size="medium" />
                       <Text variant="headingSm" fontWeight="medium">
                         {industry.label}
                       </Text>
-                    </HorizontalStack>
+                    </InlineStack>
                     <Text variant="bodySm" tone="subdued">
                       {industry.description}
                     </Text>
                     {selectedIndustry === industry.value && (
                       <Badge tone="success">Selected</Badge>
                     )}
-                  </VerticalStack>
+                  </BlockStack>
                 </Card>
               ))}
             </Grid>
@@ -411,14 +409,14 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                 />
               </div>
             )}
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Business Model */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What is your primary business model?
             </Text>
@@ -434,14 +432,14 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
               onChange={setBusinessModel}
               allowMultiple
             />
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Sales Channels */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Where do you sell your products?
             </Text>
@@ -470,8 +468,8 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                       }
                     }}
                   >
-                    <VerticalStack gap="300">
-                      <HorizontalStack gap="300" align="start">
+                    <BlockStack gap="300">
+                      <InlineStack gap="300" align="start">
                         <Checkbox
                           label=""
                           checked={isSelected}
@@ -486,23 +484,23 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                             Recommended
                           </Badge>
                         )}
-                      </HorizontalStack>
+                      </InlineStack>
                       <Text variant="bodyXs" tone="subdued">
                         {channel.description}
                       </Text>
-                    </VerticalStack>
+                    </BlockStack>
                   </Card>
                 )
               })}
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Operational Needs */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               What are your key operational needs?
             </Text>
@@ -531,8 +529,8 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                       }
                     }}
                   >
-                    <VerticalStack gap="300">
-                      <HorizontalStack gap="300" align="start">
+                    <BlockStack gap="300">
+                      <InlineStack gap="300" align="start">
                         <Checkbox
                           label=""
                           checked={isSelected}
@@ -547,11 +545,11 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                             Recommended
                           </Badge>
                         )}
-                      </HorizontalStack>
+                      </InlineStack>
                       <Text variant="bodyXs" tone="subdued">
                         {need.description}
                       </Text>
-                    </VerticalStack>
+                    </BlockStack>
                   </Card>
                 )
               })}
@@ -560,11 +558,11 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
             {/* Industry-Specific Recommendations */}
             {recommendations && (
               <Box padding="400" backgroundColor="bg-surface-secondary" borderRadius="200">
-                <VerticalStack gap="200">
+                <BlockStack gap="200">
                   <Text variant="headingSm" as="h3">
                     Based on your {selectedIndustryData?.label} industry, we recommend:
                   </Text>
-                  <HorizontalStack gap="200" wrap>
+                  <InlineStack gap="200" wrap>
                     {recommendations.features.map((feature, index) => (
                       <Badge key={index} tone="attention">
                         {feature.split('-').map(word =>
@@ -572,14 +570,14 @@ const IndustrySelection = ({ onValidationChange, onSave }) => {
                         ).join(' ')}
                       </Badge>
                     ))}
-                  </HorizontalStack>
-                </VerticalStack>
+                  </InlineStack>
+                </BlockStack>
               </Box>
             )}
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

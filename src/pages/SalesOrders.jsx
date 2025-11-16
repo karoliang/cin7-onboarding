@@ -26,7 +26,7 @@ import {
   SearchIcon,
   PlusIcon,
   FilterIcon,
-  DownloadIcon,
+  ImportIcon,
   ViewIcon,
   EditIcon,
   DeleteIcon,
@@ -296,7 +296,7 @@ const SalesOrders = () => {
       secondaryActions={[
         {
           content: 'Export',
-          icon: DownloadIcon,
+          icon: ImportIcon,
           onAction: () => console.log('Export orders')
         }
       ]}

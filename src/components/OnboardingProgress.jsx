@@ -4,15 +4,13 @@ import {
   Text,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
   Box,
   Divider,
-  BlockStack,
-  InlineStack,
   ProgressBar,
   Avatar,
   Scrollable,
@@ -28,7 +26,7 @@ import {
   FlagIcon,
   AlertDiamondIcon,
   LockIcon,
-  ChartBarIcon,
+  ChartVerticalIcon,
   SmileyHappyIcon,
   ExternalIcon
 } from '@shopify/polaris-icons'
@@ -98,7 +96,7 @@ const ACHIEVEMENT_DEFINITIONS = {
     id: 'data-driven',
     title: 'Data Driven',
     description: 'Set up 5 or more reports and dashboards',
-    icon: ChartBarIcon,
+    icon: ChartVerticalIcon,
     category: 'exploration',
     rarity: 'common',
     points: 15,
@@ -251,50 +249,50 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
   if (compact) {
     return (
       <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-        <HorizontalStack gap="300" align="center">
+        <InlineStack gap="300" align="center">
           <Icon source={currentMilestone.progress === 100 ? StarIcon : ClockIcon} size="small" />
-          <VerticalStack gap="100">
+          <BlockStack gap="100">
             <Text variant="bodySm" fontWeight="medium">
               {currentMilestone.title}
             </Text>
             <ProgressBar size="small" progress={currentMilestone.progress} tone="primary" />
-          </VerticalStack>
+          </BlockStack>
           <Text variant="bodySm" tone="subdued">
             {currentMilestone.progress}%
           </Text>
-        </HorizontalStack>
+        </InlineStack>
       </Box>
     )
   }
 
   return (
-    <VerticalStack gap="500">
+    <BlockStack gap="500">
       {/* Current Milestone */}
       {showMilestones && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
-              <HorizontalStack gap="300">
+            <BlockStack gap="400">
+              <InlineStack gap="300">
                 <Icon source={currentMilestone.progress === 100 ? StarIcon : FlagIcon} size="large" />
-                <VerticalStack gap="200">
+                <BlockStack gap="200">
                   <Text variant="headingLg" as="h2">
                     {currentMilestone.title}
                   </Text>
                   <Text variant="bodyLg" tone="subdued">
                     {currentMilestone.description}
                   </Text>
-                </VerticalStack>
-              </HorizontalStack>
+                </BlockStack>
+              </InlineStack>
 
               <div>
-                <HorizontalStack align="space-between" gap="200" marginBottom="200">
+                <InlineStack align="space-between" gap="200" marginBottom="200">
                   <Text variant="headingSm" as="h3">
                     Milestone Progress
                   </Text>
                   <Text variant="headingSm" as="span">
                     {currentMilestone.progress}%
                   </Text>
-                </HorizontalStack>
+                </InlineStack>
                 <ProgressBar
                   progress={currentMilestone.progress}
                   size="medium"
@@ -303,7 +301,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
               </div>
 
               {/* Milestone Requirements */}
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Text variant="bodySm" fontWeight="medium">
                   Requirements:
                 </Text>
@@ -313,7 +311,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                   )
 
                   return (
-                    <HorizontalStack key={index} gap="200">
+                    <InlineStack key={index} gap="200">
                       <Icon
                         source={isCompleted ? CheckCircleIcon : ClockIcon}
                         size="small"
@@ -328,22 +326,22 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                           word.charAt(0).toUpperCase() + word.slice(1)
                         ).join(' ')}
                       </Text>
-                    </HorizontalStack>
+                    </InlineStack>
                   )
                 })}
-              </VerticalStack>
+              </BlockStack>
 
               {/* Milestone Rewards */}
               {currentMilestone.rewards.length > 0 && (
                 <Box padding="300" backgroundColor="bg-surface-tertiary" borderRadius="200">
-                  <VerticalStack gap="200">
+                  <BlockStack gap="200">
                     <Text variant="bodySm" fontWeight="medium">
                       🎁 Unlock Reward:
                     </Text>
                     {currentMilestone.rewards.map((reward, index) => (
-                      <HorizontalStack key={index} gap="200" align="start">
+                      <InlineStack key={index} gap="200" align="start">
                         <Icon source={GiftCardIcon} size="small" tone="attention" />
-                        <VerticalStack gap="100">
+                        <BlockStack gap="100">
                           <Text variant="bodySm" fontWeight="medium">
                             {reward.name}
                           </Text>
@@ -358,13 +356,13 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                           {reward.claimed && (
                             <Badge tone="success">Claimed</Badge>
                           )}
-                        </VerticalStack>
-                      </HorizontalStack>
+                        </BlockStack>
+                      </InlineStack>
                     ))}
-                  </VerticalStack>
+                  </BlockStack>
                 </Box>
               )}
-            </VerticalStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
@@ -372,50 +370,50 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
       {/* Overall Progress Stats */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Overall Progress
             </Text>
 
             <Grid columns={{ xs: 1, sm: 3 }}>
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-                <VerticalStack gap="200">
+                <BlockStack gap="200">
                   <Icon source="ChartBar" tone="primary" />
                   <Text variant="bodySm" tone="subdued">Completion</Text>
                   <Text variant="headingLg">{overallProgress}%</Text>
-                </VerticalStack>
+                </BlockStack>
               </Box>
 
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-                <VerticalStack gap="200">
+                <BlockStack gap="200">
                   <Icon source={ClockIcon} tone="primary" />
                   <Text variant="bodySm" tone="subdued">Time Spent</Text>
                   <Text variant="headingLg">{Math.floor(state.progress.timeSpent / 60)}h {state.progress.timeSpent % 60}m</Text>
-                </VerticalStack>
+                </BlockStack>
               </Box>
 
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-                <VerticalStack gap="200">
+                <BlockStack gap="200">
                   <Icon source={StarIcon} tone="primary" />
                   <Text variant="bodySm" tone="subdued">Est. Remaining</Text>
                   <Text variant="headingLg">{Math.floor(timeRemaining / 60)}h {timeRemaining % 60}m</Text>
-                </VerticalStack>
+                </BlockStack>
               </Box>
             </Grid>
 
             {/* Progress Bar */}
             <div>
-              <HorizontalStack align="space-between" gap="200" marginBottom="200">
+              <InlineStack align="space-between" gap="200" marginBottom="200">
                 <Text variant="bodySm" fontWeight="medium">
                   Overall Completion
                 </Text>
                 <Text variant="bodySm" as="span">
                   {overallProgress}%
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
               <ProgressBar progress={overallProgress} size="large" tone="primary" />
             </div>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
@@ -423,8 +421,8 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
       {showAchievements && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
-              <HorizontalStack gap="300">
+            <BlockStack gap="400">
+              <InlineStack gap="300">
                 <Icon source={StarIcon} size="large" />
                 <Text variant="headingLg" as="h2">
                   Achievements
@@ -432,19 +430,19 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                 <Badge size="large">
                   {state.progress.achievements.length}/{Object.keys(ACHIEVEMENT_DEFINITIONS).length}
                 </Badge>
-              </HorizontalStack>
+              </InlineStack>
 
               {/* Recently Unlocked */}
               {unlockedAchievements.length > 0 && (
                 <Banner status="success">
-                  <VerticalStack gap="200">
+                  <BlockStack gap="200">
                     <Text variant="bodySm" fontWeight="bold">
                       🎉 New Achievement{unlockedAchievements.length > 1 ? 's' : ''} Unlocked!
                     </Text>
                     {unlockedAchievements.map((achievement, index) => {
                       const rarityConfig = getRarityConfig(achievement.rarity)
                       return (
-                        <HorizontalStack key={index} gap="200">
+                        <InlineStack key={index} gap="200">
                           <Icon source={achievement.icon} size="small" tone="success" />
                           <Text variant="bodySm" fontWeight="medium">
                             {achievement.title}
@@ -452,10 +450,10 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                           <Badge size="small" tone={rarityConfig.badge}>
                             +{achievement.points} pts
                           </Badge>
-                        </HorizontalStack>
+                        </InlineStack>
                       )
                     })}
-                  </VerticalStack>
+                  </BlockStack>
                 </Banner>
               )}
 
@@ -469,22 +467,22 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                     <Tooltip
                       key={achievement.id}
                       content={
-                        <VerticalStack gap="200">
+                        <BlockStack gap="200">
                           <Text variant="bodySm" fontWeight="bold">
                             {achievement.title}
                           </Text>
                           <Text variant="bodyXs">
                             {achievement.description}
                           </Text>
-                          <HorizontalStack gap="200">
+                          <InlineStack gap="200">
                             <Badge size="small" tone={rarityConfig.badge}>
                               {achievement.rarity}
                             </Badge>
                             <Badge size="small">
                               +{achievement.points} pts
                             </Badge>
-                          </HorizontalStack>
-                        </VerticalStack>
+                          </InlineStack>
+                        </BlockStack>
                       }
                       preferredPosition="above"
                     >
@@ -496,7 +494,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                         opacity={isUnlocked ? 1 : 0.5}
                         cursor={isUnlocked ? 'default' : 'not-allowed'}
                       >
-                        <VerticalStack gap="200">
+                        <BlockStack gap="200">
                           <Box>
                             {isUnlocked ? (
                               <Icon source={achievement.icon} size="large" tone={rarityConfig.color} />
@@ -512,7 +510,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                               {achievement.rarity}
                             </Badge>
                           )}
-                        </VerticalStack>
+                        </BlockStack>
                       </Box>
                     </Tooltip>
                   )
@@ -520,7 +518,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
               </Grid>
 
               {/* Achievement Stats */}
-              <HorizontalStack gap="400" justify="center">
+              <InlineStack gap="400" justify="center">
                 <Box textAlign="center">
                   <Text variant="headingLg" tone="success">
                     {state.progress.achievements.reduce((sum, a) => {
@@ -548,8 +546,8 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                   </Text>
                   <Text variant="bodySm" tone="subdued">Epic</Text>
                 </Box>
-              </HorizontalStack>
-            </VerticalStack>
+              </InlineStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
@@ -558,7 +556,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
       {showMilestones && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
+            <BlockStack gap="400">
               <Text variant="headingLg" as="h2">
                 All Milestones
               </Text>
@@ -580,8 +578,8 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                       borderColor={isCurrent ? 'border-primary' : 'border-transparent'}
                       padding="400"
                     >
-                      <VerticalStack gap="300">
-                        <HorizontalStack align="space-between">
+                      <BlockStack gap="300">
+                        <InlineStack align="space-between">
                           <Icon
                             source={isCompleted ? StarIcon : FlagIcon}
                             tone={isCompleted ? 'success' : isCurrent ? 'primary' : 'subdued'}
@@ -592,7 +590,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                           {isCurrent && (
                             <Badge tone="info">Current</Badge>
                           )}
-                        </HorizontalStack>
+                        </InlineStack>
 
                         <Text variant="headingSm" fontWeight="medium">
                           {milestone.title}
@@ -609,19 +607,19 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                         />
 
                         {milestone.rewards.length > 0 && (
-                          <HorizontalStack gap="200">
+                          <InlineStack gap="200">
                             <Icon source={GiftCardIcon} size="small" tone="attention" />
                             <Text variant="bodyXs" tone="subdued">
                               {milestone.rewards.length} reward{milestone.rewards.length > 1 ? 's' : ''}
                             </Text>
-                          </HorizontalStack>
+                          </InlineStack>
                         )}
-                      </VerticalStack>
+                      </BlockStack>
                     </Card>
                   )
                 })}
               </Grid>
-            </VerticalStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
@@ -630,7 +628,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
       {showRewardModal && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
+            <BlockStack gap="400">
               <Text variant="headingLg" as="h2">
                 Claim Your Reward
               </Text>
@@ -640,7 +638,7 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
               <Text variant="bodyMd" tone="subdued">
                 {showRewardModal.description}
               </Text>
-              <HorizontalStack gap="200">
+              <InlineStack gap="200">
                 <Button primary onClick={() => {
                   // This would handle the reward claiming logic
                   setShowRewardModal(null)
@@ -650,12 +648,12 @@ const OnboardingProgress = ({ compact = false, showAchievements = true, showMile
                 <Button onClick={() => setShowRewardModal(null)}>
                   Maybe Later
                 </Button>
-              </HorizontalStack>
-            </VerticalStack>
+              </InlineStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

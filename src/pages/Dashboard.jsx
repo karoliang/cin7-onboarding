@@ -27,9 +27,7 @@ import {
   ViewIcon,
   ClockIcon,
   AlertCircleIcon,
-  OrdersIcon,
-  CustomersIcon,
-  TrendingUpIcon
+  OrderIcon
 } from '@shopify/polaris-icons'
 
 const Dashboard = () => {
@@ -81,7 +79,7 @@ const Dashboard = () => {
       value: '156',
       change: '+24',
       changeDirection: 'up',
-      icon: OrdersIcon,
+      icon: OrderIcon,
       color: 'success',
     },
     {
@@ -89,7 +87,7 @@ const Dashboard = () => {
       value: '$182.54',
       change: '+$12.30',
       changeDirection: 'up',
-      icon: TrendingUpIcon,
+      icon: ArrowUpIcon,
       color: 'success',
     },
     {
@@ -97,7 +95,7 @@ const Dashboard = () => {
       value: '42',
       change: '+15',
       changeDirection: 'up',
-      icon: CustomersIcon,
+      icon: PersonIcon,
       color: 'info',
     },
   ]

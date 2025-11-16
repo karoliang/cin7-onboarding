@@ -4,8 +4,8 @@ import {
   Text,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
@@ -18,8 +18,8 @@ import {
   EditIcon,
   PackageIcon,
   StoreIcon,
-  TrendingUpIcon,
-  ChartBarIcon,
+  ArrowUpIcon,
+  ChartVerticalIcon,
   GlobeIcon,
   DeliveryIcon,
   ArchiveIcon
@@ -41,8 +41,8 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
     const iconMap = {
       'inventory-management': PackageIcon,
       'order-management': StoreIcon,
-      'customer-management': TrendingUpIcon,
-      'reporting-analytics': ChartBarIcon,
+      'customer-management': ArrowUpIcon,
+      'reporting-analytics': ChartVerticalIcon,
       'ecommerce-integration': GlobeIcon,
       'pos-integration': StoreIcon,
       'accounting-integration': ArchiveIcon,
@@ -101,11 +101,11 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
   const totalSetupTime = calculateSetupTime()
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Success Header */}
       <Card>
         <Box padding="600" textAlign="center">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Box textAlign="center">
               <Avatar customer size="extraLarge" name="Cin7 Core" />
             </Box>
@@ -126,23 +126,23 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                 </Text>
               </Box>
             </Badge>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Business Information Review */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
-            <HorizontalStack gap="300">
-              <Icon source={BuildingIcon} size="medium" />
+          <BlockStack gap="400">
+            <InlineStack gap="300">
+              <Icon source={StoreIcon} size="medium" />
               <Text variant="headingMd" as="h2">
                 Business Profile
               </Text>
-            </HorizontalStack>
+            </InlineStack>
 
             <Grid columns={{ xs: 1, sm: 2 }}>
-              <VerticalStack gap="300">
+              <BlockStack gap="300">
                 <Box>
                   <Text variant="bodySm" tone="subdued">Company Name</Text>
                   <Text variant="bodyMd" fontWeight="medium">
@@ -163,9 +163,9 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                     {formatBusinessSize(businessInfo.businessSize)}
                   </Text>
                 </Box>
-              </VerticalStack>
+              </BlockStack>
 
-              <VerticalStack gap="300">
+              <BlockStack gap="300">
                 <Box>
                   <Text variant="bodySm" tone="subdued">Contact Person</Text>
                   <Text variant="bodyMd" fontWeight="medium">
@@ -186,22 +186,22 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                     {businessInfo.contactInfo.role.charAt(0).toUpperCase() + businessInfo.contactInfo.role.slice(1)}
                   </Text>
                 </Box>
-              </VerticalStack>
+              </BlockStack>
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Selected Features Review */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
-            <HorizontalStack gap="300">
+          <BlockStack gap="400">
+            <InlineStack gap="300">
               <Icon source={PackageIcon} size="medium" />
               <Text variant="headingMd" as="h2">
                 Selected Features ({featureConfiguration.selectedFeatures.length})
               </Text>
-            </HorizontalStack>
+            </InlineStack>
 
             <Grid columns={{ xs: 1, sm: 2, md: 3 }}>
               {featureConfiguration.selectedFeatures.map((featureId) => {
@@ -209,12 +209,12 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
 
                 return (
                   <Box key={featureId} padding="200">
-                    <HorizontalStack gap="200">
+                    <InlineStack gap="200">
                       <IconComponent size="small" tone="primary" />
                       <Text variant="bodySm" fontWeight="medium">
                         {getFeatureLabel(featureId)}
                       </Text>
-                    </HorizontalStack>
+                    </InlineStack>
                   </Box>
                 )
               })}
@@ -225,7 +225,7 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                 No features selected. You can add features later from the settings.
               </Text>
             )}
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
@@ -233,18 +233,18 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
       {featureConfiguration.integrations.enabledIntegrations.length > 0 && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
-              <HorizontalStack gap="300">
+            <BlockStack gap="400">
+              <InlineStack gap="300">
                 <Icon source={GlobeIcon} size="medium" />
                 <Text variant="headingMd" as="h2">
                   Integrations ({featureConfiguration.integrations.enabledIntegrations.length})
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
               <Grid columns={{ xs: 1, sm: 2, md: 3 }}>
                 {featureConfiguration.integrations.enabledIntegrations.map((integration) => (
                   <Box key={integration.id} padding="200">
-                    <HorizontalStack gap="200">
+                    <InlineStack gap="200">
                       <Icon source={CheckCircleIcon} size="small" tone="success" />
                       <Text variant="bodySm" fontWeight="medium">
                         {integration.name}
@@ -252,11 +252,11 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                       <Badge size="small" tone="info">
                         Setup Later
                       </Badge>
-                    </HorizontalStack>
+                    </InlineStack>
                   </Box>
                 ))}
               </Grid>
-            </VerticalStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
@@ -265,17 +265,17 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
       {featureConfiguration.workflowConfiguration.customWorkflows.length > 0 && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
-              <HorizontalStack gap="300">
-                <Icon source={TrendingUpIcon} size="medium" />
+            <BlockStack gap="400">
+              <InlineStack gap="300">
+                <Icon source={ArrowUpIcon} size="medium" />
                 <Text variant="headingMd" as="h2">
                   Automated Workflows ({featureConfiguration.workflowConfiguration.customWorkflows.length})
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 {featureConfiguration.workflowConfiguration.customWorkflows.map((workflow) => (
-                  <HorizontalStack key={workflow.name} gap="200">
+                  <InlineStack key={workflow.name} gap="200">
                     <Icon source={CheckCircleIcon} size="small" tone="success" />
                     <Text variant="bodySm" fontWeight="medium">
                       {workflow.name}
@@ -283,10 +283,10 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                     <Badge size="small" tone="success">
                       Active
                     </Badge>
-                  </HorizontalStack>
+                  </InlineStack>
                 ))}
-              </VerticalStack>
-            </VerticalStack>
+              </BlockStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
@@ -295,18 +295,18 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
       {featureConfiguration.reportingSetup.selectedReports.length > 0 && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
-              <HorizontalStack gap="300">
-                <Icon source={ChartBarIcon} size="medium" />
+            <BlockStack gap="400">
+              <InlineStack gap="300">
+                <Icon source={ChartVerticalIcon} size="medium" />
                 <Text variant="headingMd" as="h2">
                   Reports ({featureConfiguration.reportingSetup.selectedReports.length})
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
               <Grid columns={{ xs: 1, sm: 2, md: 3 }}>
                 {featureConfiguration.reportingSetup.selectedReports.map((report) => (
                   <Box key={report.id} padding="200">
-                    <HorizontalStack gap="200">
+                    <InlineStack gap="200">
                       <Icon source={CheckCircleIcon} size="small" tone="success" />
                       <Text variant="bodySm" fontWeight="medium">
                         {report.name}
@@ -314,11 +314,11 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                       <Badge size="small" tone="info">
                         {report.schedule}
                       </Badge>
-                    </HorizontalStack>
+                    </InlineStack>
                   </Box>
                 ))}
               </Grid>
-            </VerticalStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
@@ -326,7 +326,7 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
       {/* Setup Summary */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Setup Summary
             </Text>
@@ -363,38 +363,38 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
             </Grid>
 
             <Box padding="400" backgroundColor="bg-surface-secondary" borderRadius="200">
-              <VerticalStack gap="300">
+              <BlockStack gap="300">
                 <Text variant="bodySm" fontWeight="medium" textAlign="center">
                   What happens next?
                 </Text>
-                <VerticalStack gap="200">
-                  <HorizontalStack gap="200">
+                <BlockStack gap="200">
+                  <InlineStack gap="200">
                     <Icon source={CheckCircleIcon} size="small" tone="success" />
                     <Text variant="bodySm">Your configuration will be saved and applied</Text>
-                  </HorizontalStack>
-                  <HorizontalStack gap="200">
+                  </InlineStack>
+                  <InlineStack gap="200">
                     <Icon source={CheckCircleIcon} size="small" tone="success" />
                     <Text variant="bodySm">You'll be redirected to your dashboard</Text>
-                  </HorizontalStack>
-                  <HorizontalStack gap="200">
+                  </InlineStack>
+                  <InlineStack gap="200">
                     <Icon source={CheckCircleIcon} size="small" tone="success" />
                     <Text variant="bodySm">Start using Cin7 Core immediately</Text>
-                  </HorizontalStack>
-                  <HorizontalStack gap="200">
+                  </InlineStack>
+                  <InlineStack gap="200">
                     <Icon source={CheckCircleIcon} size="small" tone="success" />
                     <Text variant="bodySm">Access guided tours and help resources anytime</Text>
-                  </HorizontalStack>
-                </VerticalStack>
-              </VerticalStack>
+                  </InlineStack>
+                </BlockStack>
+              </BlockStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Final Confirmation */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2" textAlign="center">
               Ready to Get Started?
             </Text>
@@ -404,7 +404,7 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
             </Text>
 
             <Box padding="400" backgroundColor="bg-success-subdued" borderRadius="200" textAlign="center">
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Icon source={CheckCircleIcon} size="large" tone="success" />
                 <Text variant="bodySm" fontWeight="medium">
                   Congratulations! You've successfully configured Cin7 Core for your business.
@@ -412,12 +412,12 @@ const ReviewStep = ({ onValidationChange, onSave }) => {
                 <Text variant="bodySm" tone="subdued">
                   You can modify any of these settings later from the configuration panel.
                 </Text>
-              </VerticalStack>
+              </BlockStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

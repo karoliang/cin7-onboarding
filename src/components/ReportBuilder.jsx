@@ -24,13 +24,13 @@ import {
 import {
   PlusIcon,
   DeleteIcon,
-  DragIcon,
-  ChartBarIcon,
-  DocumentIcon,
+  DragHandleIcon,
+  ChartVerticalIcon,
+  FileIcon,
   EmailIcon,
   ClockIcon,
   SettingsIcon,
-  AddNoteIcon,
+  NoteAddIcon,
 } from '@shopify/polaris-icons'
 
 /**
@@ -523,7 +523,7 @@ const ReportBuilder = ({
         {templates.length > 0 && (
           <Button
             onClick={() => setShowTemplateModal(true)}
-            icon={DocumentIcon}
+            icon={FileIcon}
           >
             Start from template
           </Button>

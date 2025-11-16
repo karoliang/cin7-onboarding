@@ -9,7 +9,6 @@ import {
   BlockStack,
   Popover,
   ActionList,
-  Calendar,
   Badge,
   Icon,
 } from '@shopify/polaris'
@@ -326,12 +325,13 @@ const DateRangeSelector = ({
           <Card>
             <div style={{ padding: '16px' }}>
               <Text as="h3" variant="headingSm">Select start date</Text>
-              <Calendar
+              {/* <Calendar
                 selected={new Date(currentStart)}
                 onSelect={(date) => handleCustomDateChange('start', date)}
                 month={new Date(currentStart)}
                 year={new Date(currentStart).getFullYear()}
-              />
+              /> */}
+              <Text>Calendar component placeholder</Text>
             </div>
           </Card>
         </Popover>
@@ -345,12 +345,13 @@ const DateRangeSelector = ({
           <Card>
             <div style={{ padding: '16px' }}>
               <Text as="h3" variant="headingSm">Select end date</Text>
-              <Calendar
+              {/* <Calendar
                 selected={new Date(currentEnd)}
                 onSelect={(date) => handleCustomDateChange('end', date)}
                 month={new Date(currentEnd)}
                 year={new Date(currentEnd).getFullYear()}
-              />
+              /> */}
+              <Text>Calendar component placeholder</Text>
             </div>
           </Card>
         </Popover>

@@ -5,8 +5,8 @@ import {
   Button,
   Checkbox,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
@@ -15,7 +15,7 @@ import {
 } from '@shopify/polaris'
 import {
   AutomationIcon,
-  AlertIcon,
+  AlertCircleIcon,
   PackageIcon,
   ClockIcon,
   CheckCircleIcon
@@ -31,7 +31,7 @@ const WORKFLOW_TEMPLATES = [
     category: 'inventory',
     difficulty: 'easy',
     estimatedTime: '5 min',
-    icon: AlertIcon
+    icon: AlertCircleIcon
   },
   {
     id: 'auto-reorder',
@@ -164,10 +164,10 @@ const WorkflowsStep = ({ onValidationChange, onSave }) => {
   const recommendedWorkflows = getRecommendedWorkflows()
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingLg" as="h2">
               Automate Your Workflow
             </Text>
@@ -176,11 +176,11 @@ const WorkflowsStep = ({ onValidationChange, onSave }) => {
             </Text>
 
             <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Text variant="bodySm" fontWeight="medium">
                   Recommended for your {state.industrySelection.selectedIndustry} business:
                 </Text>
-                <HorizontalStack gap="200" wrap>
+                <InlineStack gap="200" wrap>
                   {recommendedWorkflows.map(workflowId => {
                     const workflow = WORKFLOW_TEMPLATES.find(w => w.id === workflowId)
                     return workflow ? (
@@ -189,16 +189,16 @@ const WorkflowsStep = ({ onValidationChange, onSave }) => {
                       </Badge>
                     ) : null
                   })}
-                </HorizontalStack>
-              </VerticalStack>
+                </InlineStack>
+              </BlockStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               Available Workflow Templates
             </Text>
@@ -218,26 +218,26 @@ const WorkflowsStep = ({ onValidationChange, onSave }) => {
                     cursor="pointer"
                     onClick={() => handleWorkflowToggle(workflow.id)}
                   >
-                    <VerticalStack gap="300">
-                      <HorizontalStack align="space-between">
-                        <HorizontalStack gap="200">
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between">
+                        <InlineStack gap="200">
                           <Icon source={workflow.icon} size="small" />
                           <Text variant="bodySm" fontWeight="medium">
                             {workflow.name}
                           </Text>
-                        </HorizontalStack>
+                        </InlineStack>
                         <Checkbox
                           label=""
                           checked={isSelected}
                           onChange={() => {}}
                         />
-                      </HorizontalStack>
+                      </InlineStack>
 
                       <Text variant="bodyXs" tone="subdued">
                         {workflow.description}
                       </Text>
 
-                      <HorizontalStack gap="200" wrap>
+                      <InlineStack gap="200" wrap>
                         <Badge size="small" tone={getDifficultyColor(workflow.difficulty)}>
                           {workflow.difficulty}
                         </Badge>
@@ -254,60 +254,60 @@ const WorkflowsStep = ({ onValidationChange, onSave }) => {
                             Selected
                           </Badge>
                         )}
-                      </HorizontalStack>
-                    </VerticalStack>
+                      </InlineStack>
+                    </BlockStack>
                   </Card>
                 )
               })}
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {selectedWorkflows.length > 0 && (
         <Card>
           <Box padding="500">
-            <VerticalStack gap="400">
+            <BlockStack gap="400">
               <Text variant="headingMd" as="h2">
                 Selected Workflows ({selectedWorkflows.length})
               </Text>
 
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 {selectedWorkflows.map((workflowId) => {
                   const workflow = WORKFLOW_TEMPLATES.find(w => w.id === workflowId)
                   return workflow ? (
-                    <HorizontalStack key={workflowId} gap="200">
+                    <InlineStack key={workflowId} gap="200">
                       <Icon source={CheckCircleIcon} size="small" tone="success" />
                       <Text variant="bodySm">{workflow.name}</Text>
                       <Badge size="small" tone="info">
                         {workflow.estimatedTime} setup
                       </Badge>
-                    </HorizontalStack>
+                    </InlineStack>
                   ) : null
                 })}
-              </VerticalStack>
+              </BlockStack>
 
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
                 <Text variant="bodySm" tone="subdued">
                   These workflows will be automatically configured during setup. You can modify them anytime from the automation settings.
                 </Text>
               </Box>
-            </VerticalStack>
+            </BlockStack>
           </Box>
         </Card>
       )}
 
       <Card>
         <Box padding="400" backgroundColor="bg-surface-tertiary">
-          <HorizontalStack gap="300">
+          <InlineStack gap="300">
             <Icon source={AutomationIcon} size="small" tone="attention" />
             <Text variant="bodySm" tone="subdued">
               <strong>Pro Tip:</strong> Start with a few simple workflows and add more as you get comfortable with the system. You can always create custom workflows later.
             </Text>
-          </HorizontalStack>
+          </InlineStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

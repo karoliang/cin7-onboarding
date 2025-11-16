@@ -7,7 +7,7 @@ import {
   XCircleIcon,
   DeliveryIcon,
   PackageIcon,
-  CashIcon
+  CashDollarIcon
 } from '@shopify/polaris-icons'
 
 const OrderStatus = ({ status, showLabel = true, size = 'medium', editable = false, onStatusChange }) => {
@@ -51,7 +51,7 @@ const OrderStatus = ({ status, showLabel = true, size = 'medium', editable = fal
     refunded: {
       label: 'Refunded',
       tone: 'critical',
-      icon: CashIcon,
+      icon: CashDollarIcon,
       description: 'Order has been refunded'
     }
   }
@@ -121,25 +121,25 @@ export const PaymentStatus = ({ status, showLabel = true, size = 'medium', edita
     partially_paid: {
       label: 'Partially Paid',
       tone: 'attention',
-      icon: CashIcon,
+      icon: CashDollarIcon,
       description: 'Payment is partially complete'
     },
     paid: {
       label: 'Paid',
       tone: 'success',
-      icon: CashIcon,
+      icon: CashDollarIcon,
       description: 'Payment is complete'
     },
     partially_refunded: {
       label: 'Partially Refunded',
       tone: 'attention',
-      icon: CashIcon,
+      icon: CashDollarIcon,
       description: 'Payment is partially refunded'
     },
     refunded: {
       label: 'Refunded',
       tone: 'critical',
-      icon: CashIcon,
+      icon: CashDollarIcon,
       description: 'Payment has been refunded'
     },
     voided: {

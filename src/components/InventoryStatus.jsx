@@ -2,9 +2,9 @@ import React from 'react'
 import { Badge, InlineStack, Text, Tooltip, Icon } from '@shopify/polaris'
 import {
   InventoryIcon,
-  WarningIcon,
+  AlertTriangleIcon,
   XCircleIcon,
-  InformationIcon
+  InfoIcon
 } from '@shopify/polaris-icons'
 
 const InventoryStatus = ({
@@ -32,7 +32,7 @@ const InventoryStatus = ({
         status: 'LOW_STOCK',
         tone: 'warning',
         label: 'Low stock',
-        icon: WarningIcon,
+        icon: AlertTriangleIcon,
         color: '#E09B00',
         description: `Only ${quantity} items left. Reorder point is ${reorderPoint}.`
       }

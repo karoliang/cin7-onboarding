@@ -38,7 +38,7 @@ import {
   DeleteIcon,
   InventoryIcon,
   PackageIcon,
-  WarningIcon,
+  AlertTriangleIcon,
   ImportIcon,
   ExportIcon,
   AdjustIcon,

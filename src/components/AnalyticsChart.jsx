@@ -13,7 +13,7 @@ import {
 import {
   ViewIcon,
   HideIcon,
-  DownloadIcon,
+  ImportIcon,
   RefreshIcon,
   SettingsIcon,
 } from '@shopify/polaris-icons'
@@ -517,7 +517,7 @@ const AnalyticsChart = ({
 
             {onExport && (
               <Button
-                icon={DownloadIcon}
+                icon={ImportIcon}
                 variant="plain"
                 onClick={onExport}
                 accessibilityLabel="Export chart"

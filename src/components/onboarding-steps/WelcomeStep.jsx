@@ -4,8 +4,8 @@ import {
   Text,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
@@ -19,10 +19,10 @@ import {
   ClockIcon,
   CheckCircleIcon,
   StarFilledIcon,
-  ChartBarIcon,
+  ChartVerticalIcon,
   PackageIcon,
   DeliveryIcon,
-  UsersIcon
+  PersonIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../../contexts/OnboardingContext'
@@ -37,7 +37,7 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
 
   const highlights = [
     {
-      icon: ChartBarIcon,
+      icon: ChartVerticalIcon,
       title: 'Real-time Analytics',
       description: 'Track inventory, sales, and business performance with live dashboards'
     },
@@ -52,7 +52,7 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
       description: 'Sell seamlessly across retail, online, and wholesale channels'
     },
     {
-      icon: UsersIcon,
+      icon: PersonIcon,
       title: 'Customer Management',
       description: 'Complete CRM with order history and personalized customer experiences'
     }
@@ -66,11 +66,11 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
   ]
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Welcome Header */}
       <Card>
         <Box padding="600" textAlign="center">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Box textAlign="center">
               <Avatar customer size="extraLarge" name="Cin7" />
             </Box>
@@ -92,14 +92,14 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
                 </Text>
               </Box>
             </Badge>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Platform Highlights */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2" textAlign="center">
               What makes Cin7 Core different?
             </Text>
@@ -107,28 +107,28 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
             <Grid columns={{ xs: 1, sm: 2 }}>
               {highlights.map((highlight, index) => (
                 <Box key={index} padding="300">
-                  <VerticalStack gap="200">
-                    <HorizontalStack gap="300">
+                  <BlockStack gap="200">
+                    <InlineStack gap="300">
                       <Icon source={highlight.icon} size="medium" tone="primary" />
                       <Text variant="headingSm" fontWeight="medium">
                         {highlight.title}
                       </Text>
-                    </HorizontalStack>
+                    </InlineStack>
                     <Text variant="bodySm" tone="subdued">
                       {highlight.description}
                     </Text>
-                  </VerticalStack>
+                  </BlockStack>
                 </Box>
               ))}
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Success Metrics */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2" textAlign="center">
               Join thousands of successful businesses
             </Text>
@@ -157,52 +157,52 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
                 </Text>
               </Text>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* What to Expect */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2">
               What to Expect from This Onboarding
             </Text>
 
-            <VerticalStack gap="300">
-              <HorizontalStack gap="300">
+            <BlockStack gap="300">
+              <InlineStack gap="300">
                 <Icon source={ClockIcon} size="small" tone="subdued" />
                 <Text variant="bodySm">
                   <strong>30-45 minutes</strong> to complete the full setup
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
-              <HorizontalStack gap="300">
+              <InlineStack gap="300">
                 <Icon source={PackageIcon} size="small" tone="subdued" />
                 <Text variant="bodySm">
                   <strong>Industry-tailored</strong> configuration for your specific needs
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
-              <HorizontalStack gap="300">
+              <InlineStack gap="300">
                 <Icon source={CheckCircleIcon} size="small" tone="subdued" />
                 <Text variant="bodySm">
                   <strong>Step-by-step guidance</strong> with no technical knowledge required
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
 
-              <HorizontalStack gap="300">
+              <InlineStack gap="300">
                 <Icon source={StarFilledIcon} size="small" tone="subdued" />
                 <Text variant="bodySm">
                   <strong>Instant value</strong> - start seeing benefits immediately
                 </Text>
-              </HorizontalStack>
-            </VerticalStack>
+              </InlineStack>
+            </BlockStack>
 
             <Box padding="400" backgroundColor="bg-surface-tertiary" borderRadius="200">
-              <HorizontalStack gap="300">
+              <InlineStack gap="300">
                 <Icon source={PlusIcon} size="small" tone="attention" />
-                <VerticalStack gap="100">
+                <BlockStack gap="100">
                   <Text variant="bodySm" fontWeight="medium">
                     Pro Tip
                   </Text>
@@ -210,17 +210,17 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
                     You can save your progress at any time and return later to complete the setup.
                     All your information will be securely stored.
                   </Text>
-                </VerticalStack>
-              </HorizontalStack>
+                </BlockStack>
+              </InlineStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
 
       {/* Getting Started */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h2" textAlign="center">
               Ready to get started?
             </Text>
@@ -230,7 +230,7 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
             </Text>
 
             <Box padding="400" backgroundColor="bg-surface-secondary" borderRadius="200" textAlign="center">
-              <VerticalStack gap="200">
+              <BlockStack gap="200">
                 <Icon source={StarIcon} size="large" tone="attention" />
                 <Text variant="bodySm" fontWeight="medium">
                   Let's begin with understanding your business
@@ -238,12 +238,12 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
                 <Text variant="bodyXs" tone="subdued">
                   This helps us recommend the right features and configuration for your specific needs
                 </Text>
-              </VerticalStack>
+              </BlockStack>
             </Box>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 

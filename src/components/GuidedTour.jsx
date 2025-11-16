@@ -4,27 +4,24 @@ import {
   Text,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
   Box,
   Divider,
-  BlockStack,
-  InlineStack,
   Popover,
   ActionList,
   Tooltip,
   Modal,
   RadioButton,
-  Checkbox,
-  TextStyle
+  Checkbox
 } from '@shopify/polaris'
 import {
   InfoIcon,
   PlayIcon,
-  PauseIcon,
+  PauseCircleIcon,
   ArrowRightIcon,
   CheckCircleIcon,
   XCircleIcon,
@@ -614,7 +611,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
             }}
           >
             <Modal.Section>
-              <VerticalStack gap="400">
+              <BlockStack gap="400">
                 <Text variant="bodyMd" as="p">
                   Choose a tour to learn more about Cin7 Core features. Each tour is designed to help you master specific aspects of the system.
                 </Text>
@@ -631,31 +628,31 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
 
                     return (
                       <Card key={tourId} padding="400">
-                        <VerticalStack gap="300">
-                          <HorizontalStack align="space-between">
+                        <BlockStack gap="300">
+                          <InlineStack align="space-between">
                             <Text variant="headingSm" fontWeight="bold">
                               {tour.name}
                             </Text>
                             {isCompleted && (
                               <Badge tone="success">Completed</Badge>
                             )}
-                          </HorizontalStack>
+                          </InlineStack>
 
                           <Text variant="bodySm" tone="subdued">
                             {tour.description}
                           </Text>
 
-                          <HorizontalStack gap="200">
+                          <InlineStack gap="200">
                             <Badge size="small" tone={difficultyColors[tour.difficulty]}>
                               {tour.difficulty}
                             </Badge>
-                            <HorizontalStack gap="100">
+                            <InlineStack gap="100">
                               <Icon source={ClockIcon} size="small" />
                               <Text variant="bodyXs" tone="subdued">
                                 {tour.duration}
                               </Text>
-                            </HorizontalStack>
-                          </HorizontalStack>
+                            </InlineStack>
+                          </InlineStack>
 
                           <Button
                             fullWidth
@@ -664,7 +661,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
                           >
                             {isCompleted ? 'Completed' : 'Start Tour'}
                           </Button>
-                        </VerticalStack>
+                        </BlockStack>
                       </Card>
                     )
                   })}
@@ -672,7 +669,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
 
                 {/* Tour Settings */}
                 <Divider />
-                <VerticalStack gap="300">
+                <BlockStack gap="300">
                   <Text variant="headingSm" as="h3">
                     Tour Preferences
                   </Text>
@@ -696,28 +693,28 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
                     checked={tourSettings.allowSkip}
                     onChange={(checked) => setTourSettings(prev => ({ ...prev, allowSkip: checked }))}
                   />
-                </VerticalStack>
+                </BlockStack>
 
                 {/* Keyboard Shortcuts */}
                 {tourSettings.showKeyboardShortcuts && (
                   <>
                     <Divider />
-                    <VerticalStack gap="200">
+                    <BlockStack gap="200">
                       <Text variant="headingSm" as="h3">
                         Keyboard Shortcuts
                       </Text>
                       <Box padding="200" backgroundColor="bg-surface-secondary" borderRadius="200">
-                        <VerticalStack gap="100">
+                        <BlockStack gap="100">
                           <Text variant="bodyXs"><strong>→</strong> Next step</Text>
                           <Text variant="bodyXs"><strong>←</strong> Previous step</Text>
                           <Text variant="bodyXs"><strong>Space</strong> Pause/Resume</Text>
                           <Text variant="bodyXs"><strong>Esc</strong> Exit tour</Text>
-                        </VerticalStack>
+                        </BlockStack>
                       </Box>
-                    </VerticalStack>
+                    </BlockStack>
                   </>
                 )}
-              </VerticalStack>
+              </BlockStack>
             </Modal.Section>
           </Modal>
         )}
@@ -756,9 +753,9 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
           ...tooltipPosition
         }}
       >
-        <VerticalStack gap="300">
+        <BlockStack gap="300">
           {/* Header */}
-          <HorizontalStack align="space-between">
+          <InlineStack align="space-between">
             <Text variant="headingSm" fontWeight="bold">
               {currentStep.title}
             </Text>
@@ -768,7 +765,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
               onClick={() => setShowSkipConfirm(true)}
               accessibilityLabel="Exit tour"
             />
-          </HorizontalStack>
+          </InlineStack>
 
           {/* Content */}
           <Text variant="bodySm">
@@ -778,14 +775,14 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
           {/* Progress */}
           {tourSettings.showProgress && (
             <div>
-              <HorizontalStack align="space-between" gap="200" marginBottom="100">
+              <InlineStack align="space-between" gap="200" marginBottom="100">
                 <Text variant="bodyXs" tone="subdued">
                   Step {currentStepIndex + 1} of {activeTour.steps.length}
                 </Text>
                 <Text variant="bodyXs" tone="subdued">
                   {Math.round(progress)}%
                 </Text>
-              </HorizontalStack>
+              </InlineStack>
               <div
                 style={{
                   height: '4px',
@@ -807,7 +804,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
           )}
 
           {/* Action Buttons */}
-          <HorizontalStack gap="200">
+          <InlineStack gap="200">
             {currentStepIndex > 0 && (
               <Button onClick={previousStep}>
                 <Icon source={ArrowLeftIcon} />
@@ -834,18 +831,18 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
                 Skip
               </Button>
             )}
-          </HorizontalStack>
+          </InlineStack>
 
           {/* Tour Info */}
           <Box padding="200" backgroundColor="bg-surface-secondary" borderRadius="200">
-            <HorizontalStack gap="200">
+            <InlineStack gap="200">
               <Icon source={PlusIcon} size="small" tone="attention" />
               <Text variant="bodyXs" tone="subdued">
                 {activeTour.name} • {activeTour.duration}
               </Text>
-            </HorizontalStack>
+            </InlineStack>
           </Box>
-        </VerticalStack>
+        </BlockStack>
       </div>
 
       {/* Skip Confirmation Modal */}

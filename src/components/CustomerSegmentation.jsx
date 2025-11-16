@@ -24,7 +24,7 @@ import {
   SearchIcon,
   FilterIcon,
   SaveIcon,
-  CancelIcon,
+  XIcon,
 } from '@shopify/polaris-icons'
 import { CustomerStatus, CustomerTier, CustomerSegment } from '../types/customer'
 
@@ -331,7 +331,7 @@ const CustomerSegmentation = ({
       secondaryActions={[
         {
           content: 'Cancel',
-          icon: CancelIcon,
+          icon: XIcon,
           onAction: () => {
             isEdit ? setEditModalOpen(false) : setCreateModalOpen(false)
             setSelectedSegment(null)

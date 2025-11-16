@@ -7,15 +7,13 @@ import {
   TextField,
   Button,
   Layout,
-  VerticalStack,
-  HorizontalStack,
+  BlockStack,
+  InlineStack,
   Grid,
   Badge,
   Icon,
   Box,
   Divider,
-  BlockStack,
-  InlineStack,
   ChoiceList,
   RadioButton,
   FormLayout,
@@ -27,9 +25,9 @@ import {
 import {
   PackageIcon,
   CartIcon,
-  CustomersIcon,
+  PersonIcon,
   ArchiveIcon,
-  ChartBarIcon,
+  ChartCohortIcon,
   StoreIcon,
   GlobeIcon,
   CreditCardIcon,
@@ -40,9 +38,8 @@ import {
   InfoIcon,
   StarIcon,
   MobileIcon,
-  CurrencyIcon,
-  LockIcon,
-  ChartCohortIcon
+  GiftCardIcon,
+  LockIcon
 } from '@shopify/polaris-icons'
 
 import { useOnboarding } from '../contexts/OnboardingContext'
@@ -102,7 +99,7 @@ const CORE_FEATURES = [
     id: 'customer-management',
     title: 'Customer Management',
     description: 'Manage customer information, orders, and communication history',
-    icon: CustomersIcon,
+    icon: PersonIcon,
     category: 'essential',
     estimatedSetupTime: 10,
     prerequisites: [],
@@ -127,7 +124,7 @@ const CORE_FEATURES = [
     id: 'supplier-management',
     title: 'Supplier Management',
     description: 'Manage vendor relationships, purchase orders, and procurement',
-    icon: BuildingIcon,
+    icon: StoreIcon,
     category: 'business',
     estimatedSetupTime: 15,
     prerequisites: ['inventory-management'],
@@ -152,7 +149,7 @@ const CORE_FEATURES = [
     id: 'reporting-analytics',
     title: 'Reporting & Analytics',
     description: 'Get insights into your business performance with detailed reports',
-    icon: ChartBarIcon,
+    icon: ChartCohortIcon,
     category: 'intelligence',
     estimatedSetupTime: 10,
     prerequisites: [],
@@ -352,7 +349,7 @@ const CORE_FEATURES = [
     id: 'multi-currency',
     title: 'Multi-Currency Support',
     description: 'Process transactions in multiple currencies',
-    icon: CurrencyIcon,
+    icon: GiftCardIcon,
     category: 'business',
     estimatedSetupTime: 8,
     prerequisites: ['order-management'],
@@ -582,11 +579,11 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
   ]
 
   return (
-    <VerticalStack gap="600">
+    <BlockStack gap="600">
       {/* Header */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="300">
+          <BlockStack gap="300">
             <Text variant="headingLg" as="h2">
               Configure Your Features
             </Text>
@@ -595,21 +592,21 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
             </Text>
 
             {/* Quick Stats */}
-            <HorizontalStack gap="400">
+            <InlineStack gap="400">
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-                <VerticalStack gap="100">
+                <BlockStack gap="100">
                   <Text variant="bodySm" tone="subdued">Features Selected</Text>
                   <Text variant="headingLg">{selectedFeatures.length}</Text>
-                </VerticalStack>
+                </BlockStack>
               </Box>
               <Box padding="300" backgroundColor="bg-surface-secondary" borderRadius="200">
-                <VerticalStack gap="100">
+                <BlockStack gap="100">
                   <Text variant="bodySm" tone="subdued">Est. Setup Time</Text>
                   <Text variant="headingLg">{Math.round(totalSetupTime / 60)}h {totalSetupTime % 60}m</Text>
-                </VerticalStack>
+                </BlockStack>
               </Box>
-            </HorizontalStack>
-          </VerticalStack>
+            </InlineStack>
+          </BlockStack>
         </Box>
       </Card>
 
@@ -619,41 +616,41 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
           <Tabs tabs={tabs} selected={activeTab} onSelect={setActiveTab}>
             {activeTab === 0 && (
               <Box padding="500">
-                <VerticalStack gap="600">
+                <BlockStack gap="600">
                   {/* Recommended Package */}
                   <Box padding="400" backgroundColor="bg-surface-secondary" borderRadius="200">
-                    <VerticalStack gap="300">
-                      <HorizontalStack gap="200">
+                    <BlockStack gap="300">
+                      <InlineStack gap="200">
                         <Icon source={StarIcon} tone="warning" />
                         <Text variant="headingSm" as="h3">
                           Recommended for Your Business
                         </Text>
-                      </HorizontalStack>
+                      </InlineStack>
                       <Text variant="bodyLg" fontWeight="medium">
                         {recommendedPackage.name}
                       </Text>
                       <Text variant="bodyMd" tone="subdued">
                         {recommendedPackage.description}
                       </Text>
-                      <HorizontalStack gap="200">
+                      <InlineStack gap="200">
                         <Badge size="large" tone="success">
                           {recommendedPackage.price}
                         </Badge>
                         <Badge size="large">
                           {recommendedPackage.features.length} features
                         </Badge>
-                      </HorizontalStack>
+                      </InlineStack>
                       <Button
                         primary
                         onClick={() => handlePackageSelect(recommendedPackage.id)}
                       >
                         Select This Package
                       </Button>
-                    </VerticalStack>
+                    </BlockStack>
                   </Box>
 
                   {/* All Packages */}
-                  <VerticalStack gap="400">
+                  <BlockStack gap="400">
                     <Text variant="headingMd" as="h3">
                       All Available Packages
                     </Text>
@@ -670,8 +667,8 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                             borderColor={isSelected ? 'border-primary' : 'border-transparent'}
                             padding="400"
                           >
-                            <VerticalStack gap="300">
-                              <HorizontalStack align="space-between">
+                            <BlockStack gap="300">
+                              <InlineStack align="space-between">
                                 <Text variant="headingSm" fontWeight="bold">
                                   {pkg.name}
                                 </Text>
@@ -681,7 +678,7 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                                 {isSelected && (
                                   <Badge tone="success">Selected</Badge>
                                 )}
-                              </HorizontalStack>
+                              </InlineStack>
 
                               <Text variant="bodySm" tone="subdued">
                                 {pkg.description}
@@ -695,14 +692,14 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                                 {pkg.features.length} features included
                               </Text>
 
-                              <VerticalStack gap="200">
+                              <BlockStack gap="200">
                                 {pkg.features.slice(0, 3).map((featureId, index) => {
                                   const feature = CORE_FEATURES.find(f => f.id === featureId)
                                   return feature ? (
-                                    <HorizontalStack gap="200" key={index}>
+                                    <InlineStack gap="200" key={index}>
                                       <Icon source={CheckCircleIcon} size="small" tone="success" />
                                       <Text variant="bodySm">{feature.title}</Text>
-                                    </HorizontalStack>
+                                    </InlineStack>
                                   ) : null
                                 })}
                                 {pkg.features.length > 3 && (
@@ -710,7 +707,7 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                                     +{pkg.features.length - 3} more features
                                   </Text>
                                 )}
-                              </VerticalStack>
+                              </BlockStack>
 
                               <Button
                                 primary={isSelected}
@@ -719,25 +716,25 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                               >
                                 {isSelected ? 'Selected' : 'Select Package'}
                               </Button>
-                            </VerticalStack>
+                            </BlockStack>
                           </Card>
                         )
                       })}
                     </Grid>
-                  </VerticalStack>
-                </VerticalStack>
+                  </BlockStack>
+                </BlockStack>
               </Box>
             )}
 
             {activeTab === 1 && (
               <Box padding="500">
-                <VerticalStack gap="600">
+                <BlockStack gap="600">
                   {/* Category Filter */}
                   <div>
                     <Text variant="headingSm" as="h3" marginBottom="200">
                       Filter by Category
                     </Text>
-                    <HorizontalStack gap="200" wrap>
+                    <InlineStack gap="200" wrap>
                       <Button
                         size="small"
                         onClick={() => setFilterCategory('all')}
@@ -755,7 +752,7 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                           {category.label}
                         </Button>
                       ))}
-                    </HorizontalStack>
+                    </InlineStack>
                   </div>
 
                   {/* Features Grid */}
@@ -776,8 +773,8 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                           cursor={canSelect ? 'pointer' : 'not-allowed'}
                           onClick={() => canSelect && handleFeatureToggle(feature.id)}
                         >
-                          <VerticalStack gap="300">
-                            <HorizontalStack align="space-between">
+                          <BlockStack gap="300">
+                            <InlineStack align="space-between">
                               <Icon source={feature.icon} size="medium" />
                               <Checkbox
                                 label=""
@@ -785,7 +782,7 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                                 onChange={() => {}}
                                 disabled={!canSelect}
                               />
-                            </HorizontalStack>
+                            </InlineStack>
 
                             <Text variant="headingSm" fontWeight="medium">
                               {feature.title}
@@ -795,40 +792,40 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                               {feature.description}
                             </Text>
 
-                            <HorizontalStack gap="200" wrap>
+                            <InlineStack gap="200" wrap>
                               <Badge size="small" tone={relevance >= 5 ? 'success' : relevance >= 4 ? 'attention' : 'info'}>
                                 Relevance: {relevance}/5
                               </Badge>
                               <Badge size="small">
                                 {feature.estimatedSetupTime} min setup
                               </Badge>
-                            </HorizontalStack>
+                            </InlineStack>
 
                             {/* Prerequisites Warning */}
                             {!canSelect && (
                               <Box padding="200" backgroundColor="bg-critical-subdued" borderRadius="200">
-                                <HorizontalStack gap="200">
+                                <InlineStack gap="200">
                                   <Icon source={AlertCircleIcon} size="small" tone="critical" />
                                   <Text variant="bodyXs" tone="critical">
                                     Requires: {feature.prerequisites.map(p =>
                                       CORE_FEATURES.find(f => f.id === p)?.title || p
                                     ).join(', ')}
                                   </Text>
-                                </HorizontalStack>
+                                </InlineStack>
                               </Box>
                             )}
 
                             {/* Benefits Preview */}
-                            <VerticalStack gap="100">
+                            <BlockStack gap="100">
                               <Text variant="bodyXs" tone="subdued">Key benefits:</Text>
                               {feature.benefits.slice(0, 2).map((benefit, index) => (
-                                <HorizontalStack gap="200" key={index}>
+                                <InlineStack gap="200" key={index}>
                                   <Icon source={CheckCircleIcon} size="extraSmall" tone="success" />
                                   <Text variant="bodyXs">{benefit}</Text>
-                                </HorizontalStack>
+                                </InlineStack>
                               ))}
-                            </VerticalStack>
-                          </VerticalStack>
+                            </BlockStack>
+                          </BlockStack>
                         </Card>
                       )
                     })}
@@ -836,11 +833,11 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
 
                   {/* Summary */}
                   <Box padding="400" backgroundColor="bg-surface-secondary" borderRadius="200">
-                    <VerticalStack gap="300">
+                    <BlockStack gap="300">
                       <Text variant="headingSm" as="h3">
                         Configuration Summary
                       </Text>
-                      <HorizontalStack gap="400">
+                      <InlineStack gap="400">
                         <Box width="50%">
                           <Text variant="bodySm" tone="subdued">Selected Features:</Text>
                           <Text variant="headingMd">{selectedFeatures.length}</Text>
@@ -851,10 +848,10 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                             {Math.round(totalSetupTime / 60)}h {totalSetupTime % 60}m
                           </Text>
                         </Box>
-                      </HorizontalStack>
-                    </VerticalStack>
+                      </InlineStack>
+                    </BlockStack>
                   </Box>
-                </VerticalStack>
+                </BlockStack>
               </Box>
             )}
           </Tabs>
@@ -864,7 +861,7 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
       {/* Industry-Specific Recommendations */}
       <Card>
         <Box padding="500">
-          <VerticalStack gap="400">
+          <BlockStack gap="400">
             <Text variant="headingMd" as="h3">
               Industry-Specific Recommendations
             </Text>
@@ -881,9 +878,9 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                 .slice(0, 4)
                 .map((feature) => (
                   <Card key={feature.id} padding="400">
-                    <HorizontalStack gap="300">
+                    <InlineStack gap="300">
                       <Icon source={feature.icon} size="small" />
-                      <VerticalStack gap="100">
+                      <BlockStack gap="100">
                         <Text variant="bodySm" fontWeight="medium">
                           {feature.title}
                         </Text>
@@ -896,15 +893,15 @@ const FeatureConfiguration = ({ onValidationChange, onSave }) => {
                         >
                           Add Feature
                         </Button>
-                      </VerticalStack>
-                    </HorizontalStack>
+                      </BlockStack>
+                    </InlineStack>
                   </Card>
                 ))}
             </Grid>
-          </VerticalStack>
+          </BlockStack>
         </Box>
       </Card>
-    </VerticalStack>
+    </BlockStack>
   )
 }
 
