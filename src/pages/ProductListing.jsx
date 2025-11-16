@@ -554,7 +554,7 @@ const ProductListing = () => {
             <div style={{ padding: 'var(--p-space-6)' }}>
               <BlockStack gap="400">
                 <Tabs tabs={tabs} selected={selectedTab} onSelect={handleTabChange}>
-                  <Card.Section>
+                  <div style={{ padding: 'var(--p-space-4) 0' }}>
                     <InlineStack gap="400" align="center">
                       <TextField
                         placeholder="Search products, SKUs, or vendors..."
@@ -583,7 +583,7 @@ const ProductListing = () => {
                         }
                       />
                     </InlineStack>
-                  </Card.Section>
+                  </div>
                 </Tabs>
 
                 <Filters
@@ -721,7 +721,7 @@ const ProductListing = () => {
           },
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-5)' }}>
           <BlockStack gap="400">
             <Text as="p">
               Transfer stock from one location to another. Select the products, quantity, and destination location.
@@ -739,7 +739,7 @@ const ProductListing = () => {
               value=""
             />
           </BlockStack>
-        </Modal.Section>
+        </div>
       </Modal>
 
       {/* Stock Adjustment Modal */}
@@ -758,7 +758,7 @@ const ProductListing = () => {
           },
         ]}
       >
-        <Modal.Section>
+        <div style={{ padding: 'var(--p-space-5)' }}>
           <BlockStack gap="400">
             <Text as="p">
               Make manual adjustments to inventory levels. Select products and specify adjustment quantities.
@@ -786,7 +786,7 @@ const ProductListing = () => {
               multiline={3}
             />
           </BlockStack>
-        </Modal.Section>
+        </div>
       </Modal>
     </Page>
   )
