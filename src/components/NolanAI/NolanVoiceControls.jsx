@@ -8,13 +8,12 @@ import {
   Badge
 } from '@shopify/polaris'
 import {
-  MicrophoneMajor,
-  MicrophoneOffMajor,
-  PlayMinor,
-  PauseMinor,
-  VolumeUpMajor,
-  VolumeOffMajor,
-  SettingsMinor
+  MicrophoneIcon,
+  PlayIcon,
+  PauseCircleIcon,
+  MeasurementVolumeIcon,
+  XCircleIcon,
+  SettingsIcon
 } from '@shopify/polaris-icons'
 
 const NolanVoiceControls = ({
@@ -220,7 +219,7 @@ const NolanVoiceControls = ({
             {/* Listening toggle */}
             <Button
               size="small"
-              icon={isListening ? MicrophoneOffMajor : MicrophoneMajor}
+              icon={MicrophoneIcon}
               onClick={toggleListening}
               tone={isListening ? 'critical' : 'primary'}
               pressed={isListening}
@@ -231,7 +230,7 @@ const NolanVoiceControls = ({
             {/* Settings */}
             <Button
               size="small"
-              icon={SettingsMinor}
+              icon={SettingsIcon}
               onClick={() => setShowSettings(!showSettings)}
               pressed={showSettings}
             />
@@ -258,7 +257,7 @@ const NolanVoiceControls = ({
           {isSpeaking && (
             <Badge status="info">
               <Stack spacing="tight" alignment="center">
-                <Icon source={VolumeUpMajor} />
+                <Icon source={MeasurementVolumeIcon} />
                 <span>Speaking</span>
               </Stack>
             </Badge>

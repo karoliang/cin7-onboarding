@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, Button, TextField, Select, Badge, InlineStack, Tabs } from '@shopify/polaris';
-import { ViewMajor, HideMajor, SearchMajor, RefreshMajor } from '@shopify/polaris-icons';
+import { ViewIcon, HideIcon, SearchIcon, RefreshIcon } from '@shopify/polaris-icons';
 import errorMonitor from './ErrorMonitor';
 import performanceLogger from '../utils/PerformanceLogger';
 
@@ -473,7 +473,7 @@ export const DevConsoleUI = () => {
         }}
       >
         <Button
-          icon={ViewMajor}
+          icon={ViewIcon}
           onClick={() => setIsVisible(true)}
           size="large"
         >
@@ -515,7 +515,7 @@ export const DevConsoleUI = () => {
           <Button size="micro" onClick={refreshHistory}>Refresh</Button>
           <Button size="micro" onClick={clearConsole}>Clear</Button>
           <Button size="micro" onClick={exportData}>Export</Button>
-          <Button size="micro" icon={HideMajor} onClick={() => setIsVisible(false)} />
+          <Button size="micro" icon={HideIcon} onClick={() => setIsVisible(false)} />
         </InlineStack>
       </div>
 
@@ -551,7 +551,7 @@ export const DevConsoleUI = () => {
               value={filters.search}
               onChange={(value) => setFilters(prev => ({ ...prev, search: value }))}
               size="small"
-              connectedLeft={<SearchMajor />}
+              connectedLeft={<SearchIcon />}
             />
           </InlineStack>
         </div>

@@ -9,9 +9,9 @@ import {
   Badge
 } from '@shopify/polaris'
 import {
-  CircleTickMinor,
-  CircleDisabledMajor,
-  DotHorizontalMinor
+  CheckCircleIcon,
+  XCircleIcon,
+  MenuHorizontalIcon
 } from '@shopify/polaris-icons'
 
 const NolanMessage = ({ message }) => {
@@ -120,12 +120,12 @@ const NolanMessage = ({ message }) => {
   const messageActions = [
     {
       content: 'Copy message',
-      icon: CircleTickMinor,
+      icon: CheckCircleIcon,
       onAction: handleCopyMessage
     },
     {
       content: 'Speak message',
-      icon: CircleTickMinor,
+      icon: CheckCircleIcon,
       onAction: handleSpeakMessage,
       disabled: !('speechSynthesis' in window)
     }
@@ -211,7 +211,7 @@ const NolanMessage = ({ message }) => {
                 <Button
                   plain
                   monochrome
-                  icon={DotHorizontalMinor}
+                  icon={MenuHorizontalIcon}
                   onClick={() => setIsActionsOpen(!isActionsOpen)}
                   size="small"
                 />
@@ -223,12 +223,12 @@ const NolanMessage = ({ message }) => {
                   ...messageActions,
                   {
                     content: 'This was helpful',
-                    icon: CircleTickMinor,
+                    icon: CheckCircleIcon,
                     onAction: () => handleFeedback(true)
                   },
                   {
                     content: 'This wasn\'t helpful',
-                    icon: CircleDisabledMajor,
+                    icon: XCircleIcon,
                     onAction: () => handleFeedback(false),
                     destructive: true
                   }

@@ -11,11 +11,11 @@ import {
   Avatar
 } from '@shopify/polaris'
 import {
-  ChatMinor,
-  MobileHorizontalDotsMajor,
-  MicrophoneMajor,
-  SettingsMajor,
-  CircleCancelMinor
+  ChatIcon,
+  MenuHorizontalIcon,
+  MicrophoneIcon,
+  SettingsIcon,
+  XCircleIcon
 } from '@shopify/polaris-icons'
 import { useNolan } from '../../contexts/NolanContext'
 import NolanMessage from './NolanMessage'
@@ -98,7 +98,7 @@ const NolanChatWidget = () => {
             onClick={handleToggleChat}
             primary
             size="large"
-            icon={ChatMinor}
+            icon={ChatIcon}
             style={{
               width: '60px',
               height: '60px',
@@ -109,7 +109,7 @@ const NolanChatWidget = () => {
               cursor: 'pointer'
             }}
           >
-            <Icon source={ChatMinor} color="base" />
+            <Icon source={ChatIcon} color="base" />
           </Button>
 
           {unreadCount > 0 && (
@@ -188,21 +188,21 @@ const NolanChatWidget = () => {
             <Button
               plain
               monochrome
-              icon={SettingsMajor}
+              icon={SettingsIcon}
               onClick={() => setShowSettings(!showSettings)}
               style={{ color: 'white' }}
             />
             <Button
               plain
               monochrome
-              icon={isMinimized ? ChatMinor : MobileHorizontalDotsMajor}
+              icon={isMinimized ? ChatIcon : MenuHorizontalIcon}
               onClick={handleMinimize}
               style={{ color: 'white' }}
             />
             <Button
               plain
               monochrome
-              icon={CircleCancelMinor}
+              icon={XCircleIcon}
               onClick={handleToggleChat}
               style={{ color: 'white' }}
             />

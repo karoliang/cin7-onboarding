@@ -7,10 +7,10 @@ import {
   InlineStack
 } from '@shopify/polaris'
 import {
-  ChevronRightMinor,
-  ExternalMinor,
-  QuestionMarkMajor,
-  ArrowRightMinor
+  ChevronRightIcon,
+  ExternalIcon,
+  QuestionCircleIcon,
+  ArrowRightIcon
 } from '@shopify/polaris-icons'
 
 const NolanSuggestions = ({ suggestions, onSuggestionClick }) => {
@@ -60,18 +60,18 @@ const NolanSuggestions = ({ suggestions, onSuggestionClick }) => {
     const text = suggestion.text?.toLowerCase() || ''
 
     if (text.includes('help') || text.includes('explain')) {
-      return QuestionMarkMajor
+      return QuestionCircleIcon
     }
 
     if (text.includes('contact') || text.includes('support')) {
-      return ExternalMinor
+      return ExternalIcon
     }
 
     if (text.includes('start') || text.includes('begin') || text.includes('next')) {
-      return ArrowRightMinor
+      return ArrowRightIcon
     }
 
-    return ChevronRightMinor
+    return ChevronRightIcon
   }
 
   const getSuggestionColor = (suggestion) => {
@@ -177,7 +177,7 @@ const NolanSuggestions = ({ suggestions, onSuggestionClick }) => {
               </div>
 
               <Icon
-                source={ChevronRightMinor}
+                source={ChevronRightIcon}
                 color="subdued"
               />
             </Button>

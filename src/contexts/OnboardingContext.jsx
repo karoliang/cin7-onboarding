@@ -9,7 +9,7 @@ import {
   OnboardingStep,
   Milestone,
   Achievement
-} from '../types/onboarding'
+} from '../types/onboarding.js'
 
 // Initial state for the onboarding wizard
 const initialState = {

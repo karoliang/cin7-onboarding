@@ -28,7 +28,7 @@ import {
   CheckIcon,
   ClockIcon,
   InfoIcon,
-  SparklesIcon,
+  PlusIcon,
   TrophyIcon
 } from '@shopify/polaris-icons'
 
@@ -470,7 +470,7 @@ const OnboardingWizard = ({
               <Box padding="400">
                 <VerticalStack gap="300">
                   <HorizontalStack gap="200">
-                    <Icon source={SparklesIcon} tone="primary" />
+                    <Icon source={PlusIcon} tone="primary" />
                     <Text variant="headingSm" as="h3">
                       Need Help?
                     </Text>

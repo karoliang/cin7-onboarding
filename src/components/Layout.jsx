@@ -12,7 +12,7 @@ import {
   GlobeIcon,
   SettingsIcon,
   PackageIcon,
-  SparklesIcon
+  PlusIcon
 } from '@shopify/polaris-icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useOnboarding, onboardingSteps } from '../contexts/OnboardingContext'
@@ -104,7 +104,7 @@ const Layout = ({ children }) => {
         actions: [
           {
             items: [
-              { content: 'Start Onboarding', icon: SparklesIcon, onAction: () => navigate('/onboarding') },
+              { content: 'Start Onboarding', icon: PlusIcon, onAction: () => navigate('/onboarding') },
               { content: 'Settings', icon: SettingsIcon, onAction: () => console.log('Open settings') },
               ...(isDevelopment ? [
                 { content: 'Debug Dashboard', icon: ViewIcon, onAction: () => window.location.href = '/debug/dashboard' },

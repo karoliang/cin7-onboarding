@@ -7,9 +7,9 @@ import {
   Tooltip
 } from '@shopify/polaris'
 import {
-  SendMinor,
-  AttachmentMajor,
-  MicrophoneMajor
+  SendIcon,
+  AttachmentIcon,
+  MicrophoneIcon
 } from '@shopify/polaris-icons'
 
 const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
@@ -201,7 +201,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
                 <Button
                   plain
                   monochrome
-                  icon={AttachmentMajor}
+                  icon={AttachmentIcon}
                   onClick={handleAttachment}
                   disabled={disabled}
                   size="large"
@@ -217,7 +217,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
                 <Button
                   plain
                   monochrome
-                  icon={MicrophoneMajor}
+                  icon={MicrophoneIcon}
                   onClick={handleVoiceInput}
                   disabled={disabled || isRecording}
                   size="large"
@@ -233,7 +233,7 @@ const NolanInput = ({ onSendMessage, disabled, inputRef }) => {
               <Tooltip content="Send message">
                 <Button
                   primary
-                  icon={SendMinor}
+                  icon={SendIcon}
                   onClick={handleSubmit}
                   disabled={!message.trim() || disabled}
                   size="large"

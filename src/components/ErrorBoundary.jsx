@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { Card, PageLayout, Text, Button, Banner, InlineStack, BlockStack } from '@shopify/polaris';
-import { ViewMinor, RefreshMinor, HomeMinor } from '@shopify/polaris-icons';
+import { ViewIcon, RefreshIcon, HomeIcon } from '@shopify/polaris-icons';
 import errorMonitor from '../services/ErrorMonitor';
 
 class ErrorBoundary extends Component {
@@ -251,7 +251,7 @@ class ErrorBoundary extends Component {
               <InlineStack gap="200">
                 {showRetry && canRetry && (
                   <Button
-                    icon={RefreshMinor}
+                    icon={RefreshIcon}
                     onClick={this.handleRetry}
                     variant="primary"
                   >
@@ -261,7 +261,7 @@ class ErrorBoundary extends Component {
 
                 {showReload && (
                   <Button
-                    icon={RefreshMinor}
+                    icon={RefreshIcon}
                     onClick={this.handleReload}
                   >
                     Reload Page
@@ -270,7 +270,7 @@ class ErrorBoundary extends Component {
 
                 {showGoHome && (
                   <Button
-                    icon={HomeMinor}
+                    icon={HomeIcon}
                     onClick={this.handleGoHome}
                     variant="plain"
                   >
@@ -280,7 +280,7 @@ class ErrorBoundary extends Component {
 
                 {process.env.NODE_ENV === 'development' && (
                   <Button
-                    icon={ViewMinor}
+                    icon={ViewIcon}
                     onClick={this.handleViewDetails}
                     variant="plain"
                   >

@@ -22,15 +22,15 @@ import {
   Banner
 } from '@shopify/polaris';
 import {
-  RefreshMajor,
-  DownloadMajor,
-  FilterMajor,
-  SortMajor,
-  AlertMajor,
-  CheckCircleMajor,
-  WarningMajor,
-  InfoMinor,
-  DeleteMinor
+  RefreshIcon,
+  ArrowDownIcon,
+  FilterIcon,
+  SortIcon,
+  AlertCircleIcon,
+  CheckCircleIcon,
+  AlertTriangleIcon,
+  InfoIcon,
+  DeleteIcon
 } from '@shopify/polaris-icons';
 import errorMonitor from '../services/ErrorMonitor';
 import performanceLogger from '../utils/PerformanceLogger';
@@ -220,7 +220,7 @@ const ErrorDashboard = () => {
       <Button size="micro" onClick={() => markErrorAsResolved(error.id)}>
         Resolve
       </Button>
-      <Button size="micro" icon={DeleteMinor} onClick={() => deleteError(error.id)} />
+      <Button size="micro" icon={DeleteIcon} onClick={() => deleteError(error.id)} />
     </InlineStack>
   ]);
 
@@ -304,15 +304,15 @@ const ErrorDashboard = () => {
             <Text as="h2" variant="headingMd">System Status</Text>
             <BlockStack gap="300">
               <InlineStack gap="200">
-                <Icon source={CheckCircleMajor} color="success" />
+                <Icon source={CheckCircleIcon} color="success" />
                 <Text>Error Monitor: Active</Text>
               </InlineStack>
               <InlineStack gap="200">
-                <Icon source={CheckCircleMajor} color="success" />
+                <Icon source={CheckCircleIcon} color="success" />
                 <Text>Performance Logger: Active</Text>
               </InlineStack>
               <InlineStack gap="200">
-                <Icon source={CheckCircleMajor} color="success" />
+                <Icon source={CheckCircleIcon} color="success" />
                 <Text>Dev Console: Available</Text>
               </InlineStack>
               <InlineStack gap="200">
@@ -331,10 +331,10 @@ const ErrorDashboard = () => {
         <InlineStack gap="200" align="space-between">
           <Text as="h2" variant="headingMd">Error Log</Text>
           <InlineStack gap="200">
-            <Button icon={RefreshMajor} onClick={loadData} loading={isLoading}>
+            <Button icon={RefreshIcon} onClick={loadData} loading={isLoading}>
               Refresh
             </Button>
-            <Button icon={DownloadMajor} onClick={exportReport}>
+            <Button icon={ArrowDownIcon} onClick={exportReport}>
               Export
             </Button>
           </InlineStack>
@@ -381,7 +381,7 @@ const ErrorDashboard = () => {
             placeholder="Search errors..."
             value={filters.search}
             onChange={(value) => setFilters(prev => ({ ...prev, search: value }))}
-            connectedLeft={<FilterMajor />}
+            connectedLeft={<FilterIcon />}
           />
         </InlineStack>
 
@@ -405,10 +405,10 @@ const ErrorDashboard = () => {
         <InlineStack gap="200" align="space-between">
           <Text as="h2" variant="headingMd">Component Performance</Text>
           <InlineStack gap="200">
-            <Button icon={RefreshMajor} onClick={loadData} loading={isLoading}>
+            <Button icon={RefreshIcon} onClick={loadData} loading={isLoading}>
               Refresh
             </Button>
-            <Button icon={DownloadMajor} onClick={exportReport}>
+            <Button icon={ArrowDownIcon} onClick={exportReport}>
               Export Report
             </Button>
           </InlineStack>
@@ -492,13 +492,13 @@ const ErrorDashboard = () => {
         <div style={{ marginBottom: '16px' }}>
           <InlineStack gap="200" align="end">
             <ButtonGroup>
-              <Button icon={RefreshMajor} onClick={loadData} loading={isLoading}>
+              <Button icon={RefreshIcon} onClick={loadData} loading={isLoading}>
                 Refresh Data
               </Button>
-              <Button icon={DownloadMajor} onClick={exportReport}>
+              <Button icon={ArrowDownIcon} onClick={exportReport}>
                 Export Report
               </Button>
-              <Button icon={DeleteMinor} onClick={clearAllData} tone="critical">
+              <Button icon={DeleteIcon} onClick={clearAllData} tone="critical">
                 Clear All Data
               </Button>
             </ButtonGroup>

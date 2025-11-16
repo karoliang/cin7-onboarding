@@ -14,7 +14,7 @@ import {
   Divider
 } from '@shopify/polaris'
 import {
-  SparklesIcon,
+  PlusIcon,
   TrophyIcon,
   ClockIcon,
   CheckCircleIcon,
@@ -201,7 +201,7 @@ const WelcomeStep = ({ onValidationChange, onSave }) => {
 
             <Box padding="400" backgroundColor="bg-surface-tertiary" borderRadius="200">
               <HorizontalStack gap="300">
-                <Icon source={SparklesIcon} size="small" tone="attention" />
+                <Icon source={PlusIcon} size="small" tone="attention" />
                 <VerticalStack gap="100">
                   <Text variant="bodySm" fontWeight="medium">
                     Pro Tip

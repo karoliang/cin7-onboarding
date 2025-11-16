@@ -25,16 +25,15 @@ import {
   InfoIcon,
   PlayIcon,
   PauseIcon,
-  SkipIcon,
+  ArrowRightIcon,
   CheckCircleIcon,
   XCircleIcon,
-  ArrowRightIcon,
   ArrowLeftIcon,
-  QuestionMarkIcon,
+  QuestionCircleIcon,
   SmileIcon,
   TrophyIcon,
   ClockIcon,
-  SparklesIcon,
+  PlusIcon,
   ExternalIcon
 } from '@shopify/polaris-icons'
 
@@ -597,7 +596,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
     return (
       <Box>
         <Button
-          icon={QuestionMarkIcon}
+          icon={QuestionCircleIcon}
           onClick={() => setShowTourMenu(true)}
           accessibilityLabel="Start guided tour"
         >
@@ -840,7 +839,7 @@ const GuidedTour = ({ onTourComplete, onTourSkip, autoStart = false, availableTo
           {/* Tour Info */}
           <Box padding="200" backgroundColor="bg-surface-secondary" borderRadius="200">
             <HorizontalStack gap="200">
-              <Icon source={SparklesIcon} size="small" tone="attention" />
+              <Icon source={PlusIcon} size="small" tone="attention" />
               <Text variant="bodyXs" tone="subdued">
                 {activeTour.name} • {activeTour.duration}
               </Text>
