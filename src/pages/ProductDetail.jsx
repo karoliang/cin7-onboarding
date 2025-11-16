@@ -12,7 +12,7 @@ import {
   InlineStack,
   BlockStack,
   Grid,
-    Tabs,
+  Tabs,
   TextField,
   RadioButton,
   ChoiceList,

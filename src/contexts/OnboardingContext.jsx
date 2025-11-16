@@ -12,7 +12,7 @@ import {
 } from '../types/onboarding'
 
 // Initial state for the onboarding wizard
-const initialState: OnboardingState = {
+const initialState = {
   currentStep: 0,
   totalSteps: 8,
   isCompleted: false,
@@ -152,7 +152,7 @@ const initialState: OnboardingState = {
 }
 
 // Define all onboarding steps
-const onboardingSteps: OnboardingStep[] = [
+const onboardingSteps = [
   {
     id: 'welcome',
     title: 'Welcome to Cin7 Core',
@@ -246,7 +246,7 @@ const onboardingSteps: OnboardingStep[] = [
 ]
 
 // Define milestones
-const milestones: Milestone[] = [
+const milestones = [
   {
     id: 'welcome',
     title: 'Getting Started',
@@ -324,24 +324,43 @@ const milestones: Milestone[] = [
   }
 ]
 
-// Action types for the reducer
-type OnboardingAction =
-  | { type: 'UPDATE_STATE'; payload: Partial<OnboardingState> }
-  | { type: 'NEXT_STEP' }
-  | { type: 'PREVIOUS_STEP' }
-  | { type: 'GO_TO_STEP'; payload: number }
-  | { type: 'COMPLETE_STEP'; payload: string }
-  | { type: 'SKIP_STEP'; payload: string }
-  | { type: 'UPDATE_BUSINESS_INFO'; payload: Partial<BusinessInfo> }
-  | { type: 'UPDATE_INDUSTRY_SELECTION'; payload: Partial<IndustrySelection> }
-  | { type: 'UPDATE_FEATURE_CONFIGURATION'; payload: Partial<FeatureConfiguration> }
-  | { type: 'SAVE_PROGRESS' }
-  | { type: 'LOAD_PROGRESS'; payload: OnboardingState }
-  | { type: 'RESET_PROGRESS' }
-  | { type: 'UPDATE_ACHIEVEMENTS'; payload: Achievement[] }
+// Action types for the reducer - using constants for better type safety
+const ONBOARDING_ACTIONS = {
+  UPDATE_STATE: 'UPDATE_STATE',
+  NEXT_STEP: 'NEXT_STEP',
+  PREVIOUS_STEP: 'PREVIOUS_STEP',
+  GO_TO_STEP: 'GO_TO_STEP',
+  COMPLETE_STEP: 'COMPLETE_STEP',
+  SKIP_STEP: 'SKIP_STEP',
+  UPDATE_BUSINESS_INFO: 'UPDATE_BUSINESS_INFO',
+  UPDATE_INDUSTRY_SELECTION: 'UPDATE_INDUSTRY_SELECTION',
+  UPDATE_FEATURE_CONFIGURATION: 'UPDATE_FEATURE_CONFIGURATION',
+  SAVE_PROGRESS: 'SAVE_PROGRESS',
+  LOAD_PROGRESS: 'LOAD_PROGRESS',
+  RESET_PROGRESS: 'RESET_PROGRESS',
+  UPDATE_ACHIEVEMENTS: 'UPDATE_ACHIEVEMENTS'
+}
+
+// Action type definitions (for documentation)
+/*
+OnboardingAction can be one of:
+- { type: 'UPDATE_STATE', payload: Partial<OnboardingState> }
+- { type: 'NEXT_STEP' }
+- { type: 'PREVIOUS_STEP' }
+- { type: 'GO_TO_STEP', payload }
+- { type: 'COMPLETE_STEP', payload }
+- { type: 'SKIP_STEP', payload }
+- { type: 'UPDATE_BUSINESS_INFO', payload: Partial<BusinessInfo> }
+- { type: 'UPDATE_INDUSTRY_SELECTION', payload: Partial<IndustrySelection> }
+- { type: 'UPDATE_FEATURE_CONFIGURATION', payload: Partial<FeatureConfiguration> }
+- { type: 'SAVE_PROGRESS' }
+- { type: 'LOAD_PROGRESS', payload: OnboardingState }
+- { type: 'RESET_PROGRESS' }
+- { type: 'UPDATE_ACHIEVEMENTS', payload: Achievement[] }
+*/
 
 // Reducer function
-function onboardingReducer(state: OnboardingState, action: OnboardingAction): OnboardingState {
+function onboardingReducer(state, action) {
   switch (action.type) {
     case 'UPDATE_STATE':
       return { ...state, ...action.payload }
@@ -374,7 +393,7 @@ function onboardingReducer(state: OnboardingState, action: OnboardingAction): On
         step.id === action.payload
           ? {
               ...step,
-              status: 'completed' as const,
+              status: 'completed',
               completedAt: new Date().toISOString()
             }
           : step
@@ -387,7 +406,7 @@ function onboardingReducer(state: OnboardingState, action: OnboardingAction): On
         if (stepToComplete) {
           updatedCompletedSteps.push({
             ...stepToComplete,
-            status: 'completed' as const,
+            status: 'completed',
             completedAt: new Date().toISOString()
           })
         }
@@ -405,7 +424,7 @@ function onboardingReducer(state: OnboardingState, action: OnboardingAction): On
     case 'SKIP_STEP':
       const updatedSteps = state.progress.completedSteps.map(step =>
         step.id === action.payload
-          ? { ...step, status: 'skipped' as const }
+          ? { ...step, status: 'skipped' }
           : step
       )
 
@@ -414,7 +433,7 @@ function onboardingReducer(state: OnboardingState, action: OnboardingAction): On
       if (stepToSkip && !updatedSteps.some(step => step.id === action.payload)) {
         updatedSteps.push({
           ...stepToSkip,
-          status: 'skipped' as const
+          status: 'skipped'
         })
       }
 
@@ -571,16 +590,16 @@ export function OnboardingProvider({ children }) {
     dispatch({ type: 'PREVIOUS_STEP' })
   }, [])
 
-  const goToStep = useCallback((stepIndex: number) => {
+  const goToStep = useCallback((stepIndex) => {
     dispatch({ type: 'GO_TO_STEP', payload: stepIndex })
   }, [])
 
   // Step management functions
-  const completeStep = useCallback((stepId: string) => {
+  const completeStep = useCallback((stepId) => {
     dispatch({ type: 'COMPLETE_STEP', payload: stepId })
   }, [])
 
-  const skipStep = useCallback((stepId: string) => {
+  const skipStep = useCallback((stepId) => {
     dispatch({ type: 'SKIP_STEP', payload: stepId })
   }, [])
 
@@ -600,7 +619,7 @@ export function OnboardingProvider({ children }) {
     loadProgress()
   }, [loadProgress])
 
-  const value: OnboardingContextType = {
+  const value = {
     state,
     updateState: (updates) => dispatch({ type: 'UPDATE_STATE', payload: updates }),
     saveProgress,
