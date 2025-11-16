@@ -97,27 +97,6 @@ const Layout = ({ children }) => {
     <TopBar
       showNavigationToggle
       searchResultsVisible={false}
-      userMenu={{
-        initials: 'C7',
-        name: 'Cin7 Core',
-        detail: 'Admin',
-        actions: [
-          {
-            items: [
-              { content: 'Start Onboarding', icon: PlusIcon, onAction: () => navigate('/onboarding') },
-              { content: 'Settings', icon: SettingsIcon, onAction: () => console.log('Open settings') },
-              ...(isDevelopment ? [
-                { content: 'Debug Dashboard', icon: ViewIcon, onAction: () => window.location.href = '/debug/dashboard' },
-                { content: 'Export Debug Data', icon: ViewIcon, onAction: () => {
-                  const errorMonitor = require('../services/ErrorMonitor').default;
-                  errorMonitor.generateReport();
-                } }
-              ] : []),
-              { content: 'Help & Support', icon: ChatIcon, onAction: () => console.log('Open help') }
-            ]
-          }
-        ]
-      }}
     />
   )
 
